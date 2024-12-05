@@ -6,7 +6,7 @@
 /*   By: anoteris <noterisarthur42@gmail.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/05 04:41:45 by anoteris          #+#    #+#             */
-/*   Updated: 2024/12/05 08:20:41 by anoteris         ###   ########.fr       */
+/*   Updated: 2024/12/05 12:37:40 by anoteris         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,8 +80,10 @@ bool	check_flood_fill(t_map *map)
 	int 	x ;
 	int 	y ;
 
+	map->player->x = get_player_x(map->map);
+	map->player->y = get_player_y(map->map);
 	map_cpy = copy_map(map->map);
-	flood_fill(map_cpy, get_player_x(map_cpy), get_player_y(map_cpy));
+	flood_fill(map_cpy, map->player->x, map->player->y);
 	y = 0 ;
 	while (map_cpy[++y])
 	{

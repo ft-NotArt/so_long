@@ -66,7 +66,6 @@
 
 
 
-
 # COLORS
 
 define generate_random_color
@@ -103,7 +102,8 @@ FILES			=	so_long														\
 					pars/pars													\
 					map/map map/map_pars map/flood_fill							\
 					exit/exit exit/error										\
-					game/game													\
+					game/game game/display game/tiles							\
+					game/player													\
 \
 
 SRC				=	$(addprefix src/, $(addsuffix .c, $(FILES)))

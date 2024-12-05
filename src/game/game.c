@@ -6,7 +6,7 @@
 /*   By: anoteris <noterisarthur42@gmail.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/05 06:14:48 by anoteris          #+#    #+#             */
-/*   Updated: 2024/12/05 10:04:36 by anoteris         ###   ########.fr       */
+/*   Updated: 2024/12/05 16:15:33 by anoteris         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,78 +24,27 @@ void	close_game(void *param)
 	exit(EXIT_SUCCESS);
 }
 
-char	*get_around_ground(char **map, int x, int y)
+void	keyboard_hook(mlx_key_data_t key_data, void *param)
 {
-	char	*around;
+	t_game	*game ;
 
-	around = ft_calloc(9, sizeof(char));
-	around[0] = '0' + ('1' != map[y - 1][x]);
-	around[1] = '0' + ('1' != map[y - 1][x + 1]
-		&& '1' != map[y - 1][x] && '1' != map[y][x + 1]);
-	around[2] = '0' + ('1' != map[y][x + 1]);
-	around[3] = '0' + ('1' != map[y + 1][x + 1]
-		&& '1' != map[y][x + 1] && '1' != map[y + 1][x]);
-	around[4] = '0' + ('1' != map[y + 1][x]);
-	around[5] = '0' + ('1' != map[y + 1][x - 1]
-		&& '1' != map[y + 1][x] && '1' != map[y][x - 1]);
-	around[6] = '0' + ('1' != map[y][x - 1]);
-	around[7] = '0' + ('1' != map[y - 1][x - 1]
-		&& '1' != map[y][x - 1] && '1' != map[y - 1][x]);
-	return (around);
-}
+	game = (t_game *) param ;
 
-mlx_image_t	*get_mlx_ground(t_game *game, int x, int y)
-{
-	mlx_texture_t	*texture ;
-	mlx_image_t		*img ;
-	char			*sprite_file ;
-	char			*around;
-
-	sprite_file = ft_calloc(ft_strlen(GRASS) + 13, sizeof(char));
-	ft_strlcpy(sprite_file, GRASS, ft_strlen(GRASS) + 1) ;
-	around = get_around_ground(game->maps->map, x, y);
-	ft_strlcat(sprite_file, around, ft_strlen(GRASS) + 9);
-	free(around);
-	ft_strlcat(sprite_file, PNG, ft_strlen(sprite_file) + 5);
-	texture = mlx_load_png(sprite_file);
-	free(sprite_file);
-	img = mlx_texture_to_image(game->mlx, texture);
-	mlx_delete_texture(texture);
-	return (img);
-}
-
-mlx_image_t	*get_mlx_img(t_game *game, char *sprite_file)
-{
-	mlx_texture_t	*texture ;
-	mlx_image_t		*img ;
-
-	texture = mlx_load_png(sprite_file);
-	img = mlx_texture_to_image(game->mlx, texture);
-	mlx_delete_texture(texture);
-	return (img);
-}
-
-void	display_spites(t_game *game)
-{
-	int x ;
-	int y ;
-
-	y = -1 ;
-	while (game->maps->map[++y])
+	if (key_data.action == MLX_PRESS) //  || key_data.action == MLX_REPEAT
 	{
-		x = -1 ;
-		while (game->maps->map[y][++x])
-		{
-			IMG_WIN(game->mlx, get_mlx_img(game, WATER), 32 * x, 32 * y);
-			if (game->maps->map[y][x] != '1')
-				IMG_WIN(game->mlx, get_mlx_ground(game, x, y), 32 * x, 32 * y);
-			if (game->maps->map[y][x] == 'P')
-				IMG_WIN(game->mlx, get_mlx_img(game, KIRBY), 32 * x, 32 * y);
-		}
+		if (key_data.key == MLX_KEY_W || key_data.key == MLX_KEY_UP
+			|| key_data.key == MLX_KEY_A || key_data.key == MLX_KEY_LEFT
+			|| key_data.key == MLX_KEY_S || key_data.key == MLX_KEY_DOWN
+			|| key_data.key == MLX_KEY_D || key_data.key == MLX_KEY_RIGHT)
+			get_input_dir(key_data.key, game);
+		if (key_data.key == MLX_KEY_P)
+			printf("POYO!\n");
+		if (key_data.key == MLX_KEY_ESCAPE)
+			close_game(game);
 	}
 }
 
-void	game_init(t_map *maps)
+t_game	*game_init(t_map *maps)
 {
 	t_game	*game ;
 
@@ -103,9 +52,21 @@ void	game_init(t_map *maps)
 	game->mlx = mlx_init(1100, 1500, "TEST", true);
 	game->maps = maps ;
 	
+	return (game);
+}
 
-	display_spites(game);
+void	game_loop(t_map *maps)
+{
+	t_game	*game ;
 
+	game = game_init(maps);
+
+	
+	display_full_map(game);
+
+	// mlx_loop_hook(game->mlx, );
+
+	mlx_key_hook(game->mlx, keyboard_hook, game);
 	mlx_close_hook(game->mlx, close_game, game);
 	mlx_loop(game->mlx);
 }

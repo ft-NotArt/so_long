@@ -6,7 +6,7 @@
 /*   By: anoteris <noterisarthur42@gmail.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/05 00:40:37 by anoteris          #+#    #+#             */
-/*   Updated: 2024/12/05 05:36:30 by anoteris         ###   ########.fr       */
+/*   Updated: 2024/12/05 12:05:32 by anoteris         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,7 +71,11 @@ static bool	map_content(t_map *map)
 {
 	int i ;
 	int j ;
+	int P ;
+	int E ;
 
+	P = 0 ;
+	E = 0 ;
 	i = 0 ;
 	while (map->map[++i])
 	{
@@ -79,16 +83,14 @@ static bool	map_content(t_map *map)
 		while (map->map[i][++j])
 		{
 			if (map->map[i][j] == 'P')
-				map->P++ ;
+				P++ ;
 			if (map->map[i][j] == 'C')
 				map->C++ ;
 			if (map->map[i][j] == 'E')
-				map->E++ ;
+				E++ ;
 		}
 	}
-	if (map->P != 1
-		|| map->E != 1
-		|| map->C < 1)
+	if (P != 1 || E != 1 || map->C < 1)
 		return (false);
 	return (true);
 }
