@@ -100,9 +100,9 @@ LFLAGS			=	-ldl -lglfw -lm												\
 # FILES
 
 FILES			=	so_long														\
-					pars/so_long_pars											\
-					map/so_long_map map/so_long_map_pars						\
-					exit/so_long_exit exit/so_long_error						\
+					pars/pars													\
+					map/map map/map_pars map/flood_fill							\
+					exit/exit exit/error										\
 \
 
 SRC				=	$(addprefix src/, $(addsuffix .c, $(FILES)))
