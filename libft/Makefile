@@ -33,6 +33,7 @@ FILES			=	is/ft_isalnum is/ft_isdigit is/ft_isalpha				\
 					mem/ft_memcpy mem/ft_memmove							\
 					mem/ft_memchr mem/ft_memcmp								\
 					mem/ft_calloc											\
+					mem/free_str_array										\
 \
 					fd/ft_putchar_fd fd/ft_putstr_fd fd/ft_putendl_fd		\
 					fd/ft_putnbr_fd fd/ft_putunbr_fd						\

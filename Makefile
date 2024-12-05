@@ -69,6 +69,11 @@
 
 # COLORS
 
+define generate_random_color
+python3 -c "import random; \
+print(''.join(['\033[38;5;' + str(random.randint(16, 255)) + 'm' + c + '\033[0m' for c in '$(1)']))"
+endef
+
 PINK			=	\x1b[0m\x1b[38;2;247;115;171m
 LIGHT_PINK		=	\x1b[0m\x1b[38;2;249;157;196m
 DARK_PINK		=	\x1b[1m\x1b[38;2;198;92;137m
@@ -87,17 +92,21 @@ LIBMLX 			=	$(MLX)/build/libmlx42.a
 # FLAGS
 
 MAKEFLAGS		+=	-s
-CFLAGS			=	-Wall -Werror -Wextra -g -Ilibft -Ilibft/printf -IMLX42/include -pthread	\
+CFLAGS			=	-Wall -Werror -Wextra -g -pthread							\
+					-Iinc -Ilibft -Ilibft/printf -Ilibft/gnl -IMLX42/include	\
 
 LFLAGS			=	-ldl -lglfw -lm												\
 
 # FILES
 
-FILES			=	test														\
+FILES			=	so_long														\
+					pars/so_long_pars											\
+					map/so_long_map map/so_long_map_pars						\
+					exit/so_long_exit exit/so_long_error						\
 \
 
-SRC				=	$(addsuffix .c, $(FILES))
-OBJ				=	$(addsuffix .o, $(FILES))
+SRC				=	$(addprefix src/, $(addsuffix .c, $(FILES)))
+OBJ				=	$(addprefix src/, $(addsuffix .o, $(FILES)))
 
 # RULES
 
@@ -108,10 +117,13 @@ $(LIBFT_PATH)	:
 
 $(LIBMLX)		:
 					if [ ! -d "$(MLX)" ]; then	\
-						echo "Clonage de MLX42 library...";	\
+						echo -e 'call generate_random_color';	\
 						git clone https://github.com/codam-coding-college/MLX42.git $(MLX);	\
+						cd $(MLX);	\
+						git reset --hard 7f95e70415705dcc723f94a2696aba84ed3756ad;	\
+						cd ..;	\
 					fi
-					echo -e "Compilation de MLX42 library..."
+					echo -e 'Compilation de MLX42 library...'
 					cmake -S $(MLX) -B $(MLX)/build
 					cmake --build $(MLX)/build
 

@@ -6,7 +6,7 @@
 /*   By: anoteris <noterisarthur42@gmail.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/20 07:14:00 by anoteris          #+#    #+#             */
-/*   Updated: 2024/11/26 09:07:12 by anoteris         ###   ########.fr       */
+/*   Updated: 2024/12/05 01:08:31 by anoteris         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -335,6 +335,13 @@ int			ft_memcmp(const void *s1, const void *s2, size_t n);
  * @author NotArt
  */
 void		*ft_calloc(size_t nmemb, size_t size);
+
+/**
+ * @name free_str_array
+ * @param to_free An array of strings to free (the array must be null-terminated)
+ * @author NotArt
+ */
+void		free_str_array(char **to_free);
 
 // <|===|> Fd <|===|>
 
