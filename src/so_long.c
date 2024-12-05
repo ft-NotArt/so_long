@@ -6,7 +6,7 @@
 /*   By: anoteris <noterisarthur42@gmail.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/04 22:19:35 by anoteris          #+#    #+#             */
-/*   Updated: 2024/12/05 03:34:34 by anoteris         ###   ########.fr       */
+/*   Updated: 2024/12/05 06:54:06 by anoteris         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,9 +32,11 @@ int	main(int argc, char *argv[])
 		ft_printf("\n");
 		current = current->next ;
 	}
-	
+
+	game_init(maps);
 	// * pars
 	// * game
 	// * exit
-	free_maps(maps);
+
+	// free_maps(maps);
 }

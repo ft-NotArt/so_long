@@ -1,28 +1,36 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   so_long_map_pars.c                                 :+:      :+:    :+:   */
+/*   map_pars.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: anoteris <noterisarthur42@gmail.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/05 00:40:37 by anoteris          #+#    #+#             */
-/*   Updated: 2024/12/05 04:04:55 by anoteris         ###   ########.fr       */
+/*   Updated: 2024/12/05 05:36:30 by anoteris         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
 
-bool	map_has_empty_line(char *map_in_line)
+static bool	check_map_char(char **map, char *charset)
 {
-	if (ft_strnstr(map_in_line, "\n\n", ft_strlen(map_in_line)))
+	int	x ;
+	int	y ;
+
+	y = -1 ;
+	while (map[++y])
 	{
-		error_map(NULL);
-		return (true);
+		x = -1 ;
+		while (map[y][++x])
+		{
+			if (!ft_strchr(charset, map[y][x]))
+				return (false);
+		}
 	}
-	return (false);
+	return (true);
 }
 
-bool	map_is_rectangle(char **map)
+static bool	map_is_rectangle(char **map)
 {
 	size_t	len_ref ;
 	int		i ;
@@ -37,7 +45,7 @@ bool	map_is_rectangle(char **map)
 	return (true);
 }
 
-bool	map_is_close(char **map)
+static bool	map_is_close(char **map)
 {
 	int	height ;
 	int	width ;
@@ -59,7 +67,7 @@ bool	map_is_close(char **map)
 	return (true);
 }
 
-bool	map_content(t_map *map)
+static bool	map_content(t_map *map)
 {
 	int i ;
 	int j ;
@@ -78,8 +86,8 @@ bool	map_content(t_map *map)
 				map->E++ ;
 		}
 	}
-	if (map->P == 0 || map->P > 1
-		|| map->E == 0 || map->E > 1
+	if (map->P != 1
+		|| map->E != 1
 		|| map->C < 1)
 		return (false);
 	return (true);
@@ -87,9 +95,11 @@ bool	map_content(t_map *map)
 
 bool	pars_map(t_map *map)
 {
-	if (!map_is_rectangle(map->map)
+	if (!check_map_char(map->map, "01PEC")
+		|| !map_is_rectangle(map->map)
 		|| !map_is_close(map->map)
-		|| !map_content(map))
+		|| !map_content(map)
+		|| !check_flood_fill(map))
 	{
 		error_map();
 		return (false);

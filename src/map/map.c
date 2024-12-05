@@ -1,16 +1,26 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   so_long_map.c                                      :+:      :+:    :+:   */
+/*   map.c                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: anoteris <noterisarthur42@gmail.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/04 22:24:48 by anoteris          #+#    #+#             */
-/*   Updated: 2024/12/05 03:58:41 by anoteris         ###   ########.fr       */
+/*   Updated: 2024/12/05 05:29:42 by anoteris         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
+
+static bool	map_has_empty_line(char *map_in_line)
+{
+	if (ft_strnstr(map_in_line, "\n\n", ft_strlen(map_in_line)))
+	{
+		error_map(NULL);
+		return (true);
+	}
+	return (false);
+}
 
 static char	**read_map(char *map_file)
 {
@@ -73,6 +83,5 @@ t_map	*maps_init(int argc, char *argv[])
 			return (free_maps(maps), NULL);
 		current = current->next ;
 	}
-	// current->next = NULL ;
 	return (maps);
 }

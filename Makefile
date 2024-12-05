@@ -103,6 +103,7 @@ FILES			=	so_long														\
 					pars/pars													\
 					map/map map/map_pars map/flood_fill							\
 					exit/exit exit/error										\
+					game/game													\
 \
 
 SRC				=	$(addprefix src/, $(addsuffix .c, $(FILES)))
