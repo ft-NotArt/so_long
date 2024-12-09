@@ -6,7 +6,7 @@
 /*   By: anoteris <noterisarthur42@gmail.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/04 22:19:52 by anoteris          #+#    #+#             */
-/*   Updated: 2024/12/05 17:05:10 by anoteris         ###   ########.fr       */
+/*   Updated: 2024/12/09 23:11:20 by anoteris         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,16 +79,18 @@ typedef enum position
 
 typedef struct s_player
 {
-	int x ;
-	int y ;
-	int	orient ;
-	int	pose ;
+	mlx_image_t	*image ;
+	int 		x ;
+	int 		y ;
+	int			orient ;
+	int			pose ;
 }			t_player ;
 
 void	error_arguments();
 void	error_map();
 
 void	free_maps(t_map *maps);
+void	free_game(t_game *game);
 
 bool	check_flood_fill(t_map *map);
 
@@ -97,6 +99,10 @@ bool	pars_map(t_map *map);
 bool	check_ber(int argc, char *argv[]);
 
 t_map	*maps_init(int argc, char *argv[]);
+char	**read_map(char *map_file);
+
+t_game	*game_init(t_map *maps);
+t_map	*map_init(char *map_file);
 
 void	game_loop(t_map *maps);
 
@@ -108,5 +114,17 @@ mlx_image_t	*get_mlx_img(t_game *game, char *sprite_file);
 mlx_image_t	*get_mlx_player(t_game *game);
 
 void	get_input_dir(keys_t key_press, t_game *game);
+
+void	update_player_sprite(t_game *game, t_player *player);
+
+void	keyboard_hook(mlx_key_data_t key_data, void *param);
+void	close_game(void *param);
+
+int	update_pose(int current_pose);
+
+void	move_east(t_game *game, int player_y, int player_x);
+void	move_south(t_game *game, int player_y, int player_x);
+void	move_west(t_game *game, int player_y, int player_x);
+void	move_north(t_game *game, int player_y, int player_x);
 
 #endif

@@ -6,27 +6,52 @@
 /*   By: anoteris <noterisarthur42@gmail.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/05 11:55:57 by anoteris          #+#    #+#             */
-/*   Updated: 2024/12/05 17:06:06 by anoteris         ###   ########.fr       */
+/*   Updated: 2024/12/09 23:44:15 by anoteris         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
 
+static void	display_water(t_game *game, int x, int y)
+{
+	mlx_image_t	*water ;
+
+	water = get_mlx_img(game, WATER);
+	IMG_WIN(game->mlx, water, 32 * x, 32 * y);
+	mlx_set_instance_depth(water->instances, 2);
+}
+
+static void	display_ground(t_game *game, int x, int y)
+{
+	mlx_image_t	*ground ;
+
+	ground = get_mlx_ground(game, x, y);
+	IMG_WIN(game->mlx, ground, 32 * x, 32 * y);
+	mlx_set_instance_depth(ground->instances, 4);
+}
+
+static void	display_player(t_game *game, int x, int y)
+{
+	game->maps->player->image = get_mlx_player(game);
+	IMG_WIN(game->mlx, game->maps->player->image, 32 * x, 32 * y);
+	mlx_set_instance_depth(game->maps->player->image->instances, 8);
+}
+
 void	display_tile(t_game *game, int x, int y)
 {
-	IMG_WIN(game->mlx, get_mlx_img(game, WATER), 32 * x, 32 * y);
+	display_water(game, x, y);
 	if (game->maps->map[y][x] != '1')
-		IMG_WIN(game->mlx, get_mlx_ground(game, x, y), 32 * x, 32 * y);
+		display_ground(game, x, y);
 	if (game->maps->map[y][x] == 'P')
-		IMG_WIN(game->mlx, get_mlx_player(game), 32 * x, 32 * y);
+		display_player(game, x, y);
 	else if (game->maps->map[y][x] == 'E')
 		IMG_WIN(game->mlx, get_mlx_img(game, STAR), 32 * x, 32 * y);
 }
 
 void	display_full_map(t_game *game)
 {
-	int x ;
-	int y ;
+	int	x ;
+	int	y ;
 
 	y = -1 ;
 	while (game->maps->map[++y])

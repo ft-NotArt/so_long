@@ -102,8 +102,14 @@ FILES			=	so_long														\
 					pars/pars													\
 					map/map map/map_pars map/flood_fill							\
 					exit/exit exit/error										\
-					game/game game/display game/tiles							\
-					game/player													\
+					game/game													\
+					game/display/display										\
+					game/display/tiles_player game/display/tiles_background		\
+					game/entities/player										\
+					game/entities/move											\
+					game/entities/status										\
+					game/hooks													\
+					init/init													\
 \
 
 SRC				=	$(addprefix src/, $(addsuffix .c, $(FILES)))

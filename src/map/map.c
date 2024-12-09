@@ -6,7 +6,7 @@
 /*   By: anoteris <noterisarthur42@gmail.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/04 22:24:48 by anoteris          #+#    #+#             */
-/*   Updated: 2024/12/05 15:59:31 by anoteris         ###   ########.fr       */
+/*   Updated: 2024/12/09 22:58:28 by anoteris         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ static bool	map_has_empty_line(char *map_in_line)
 	return (false);
 }
 
-static char	**read_map(char *map_file)
+char	**read_map(char *map_file)
 {
 	char	**res ;
 	char	*line ;
@@ -48,30 +48,6 @@ static char	**read_map(char *map_file)
 	res = ft_split(map_in_line, '\n');
 	free(map_in_line);
 	return (res);
-}
-
-static t_player	*player_init(void)
-{
-	t_player	*player ;
-
-	player = malloc(sizeof(t_player));
-	player->x = 0 ;
-	player->y = 0 ;
-	player->orient = EAST ;
-	player->pose = STANDING ;
-	return (player);
-}
-
-static t_map	*map_init(char *map_file)
-{
-	t_map	*map ;
-
-	map = malloc(sizeof(t_map));
-	map->map = read_map(map_file);
-	map->player = player_init();
-	map->C = 0 ;
-	map->next = NULL ;
-	return (map);
 }
 
 t_map	*maps_init(int argc, char *argv[])

@@ -6,7 +6,7 @@
 /*   By: anoteris <noterisarthur42@gmail.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/05 04:41:45 by anoteris          #+#    #+#             */
-/*   Updated: 2024/12/05 12:37:40 by anoteris         ###   ########.fr       */
+/*   Updated: 2024/12/09 23:49:19 by anoteris         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,13 +24,13 @@ char	**copy_map(char **map)
 	cpy[height] = NULL ;
 	while (--height >= 0)
 		cpy[height] = ft_strdup(map[height]);
-	return (cpy);	
+	return (cpy);
 }
 
 int	get_player_x(char **map)
 {
-	int x ;
-	int y ;
+	int	x ;
+	int	y ;
 
 	y = 0 ;
 	while (map[++y])
@@ -47,8 +47,8 @@ int	get_player_x(char **map)
 
 int	get_player_y(char **map)
 {
-	int x ;
-	int y ;
+	int	x ;
+	int	y ;
 
 	y = 0 ;
 	while (map[++y])
@@ -77,8 +77,8 @@ void	flood_fill(char **map, int x, int y)
 bool	check_flood_fill(t_map *map)
 {
 	char	**map_cpy ;
-	int 	x ;
-	int 	y ;
+	int		x ;
+	int		y ;
 
 	map->player->x = get_player_x(map->map);
 	map->player->y = get_player_y(map->map);
