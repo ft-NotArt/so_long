@@ -6,7 +6,7 @@
 /*   By: anoteris <noterisarthur42@gmail.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/04 22:19:52 by anoteris          #+#    #+#             */
-/*   Updated: 2024/12/10 06:07:21 by anoteris         ###   ########.fr       */
+/*   Updated: 2024/12/10 08:56:48 by anoteris         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,7 +70,8 @@ typedef enum position
 {
 	STANDING,
 	WALKING1,
-	WALKING2
+	WALKING2,
+	SWALLOWING
 }			pos ;
 
 typedef enum type
@@ -166,7 +167,10 @@ mlx_image_t	*get_mlx_enemy(t_game *game, t_enemy *enemy);
 
 t_enemy	*enemy_last(t_enemy *lst);
 void	enemy_add_back(t_enemy **lst, t_enemy *new);
+void	enemy_del_coord(t_game *game, t_enemy **enemy, int y, int x);
 
 void	check_tile(t_game *game, int y, int x);
+
+void	player_attack(t_game *game, t_player *player);
 
 #endif

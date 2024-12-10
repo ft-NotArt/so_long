@@ -6,7 +6,7 @@
 /*   By: anoteris <noterisarthur42@gmail.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/09 22:46:43 by anoteris          #+#    #+#             */
-/*   Updated: 2024/12/10 05:22:32 by anoteris         ###   ########.fr       */
+/*   Updated: 2024/12/10 11:20:25 by anoteris         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,6 +57,7 @@ t_enemy	*enemy_init(t_map *map, int x, int y)
 	enemy->orient = (orient % 4) ;
 	orient++ ;
 	enemy->last_action_time = 0 ;
+	enemy->next = NULL ;
 	return (enemy);
 }
 

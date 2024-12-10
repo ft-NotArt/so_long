@@ -6,7 +6,7 @@
 /*   By: anoteris <noterisarthur42@gmail.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/05 13:08:24 by anoteris          #+#    #+#             */
-/*   Updated: 2024/12/10 06:08:30 by anoteris         ###   ########.fr       */
+/*   Updated: 2024/12/10 09:02:41 by anoteris         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -87,4 +87,27 @@ void	get_input_dir(keys_t key_press, t_game *game)
 		align_or_move_player(game, WEST);
 	else if (key_press == MLX_KEY_W || key_press == MLX_KEY_UP)
 		align_or_move_player(game, NORTH);
+}
+
+void	player_attack(t_game *game, t_player *player)
+{
+	if (player->orient == EAST
+		&& (game->maps->map[player->y][player->x + 1] == 'C'
+		|| game->maps->map[player->y][player->x + 1] == 'D'))
+		enemy_del_coord(game, &game->maps->enemies, player->y, player->x + 1);
+	if (player->orient == SOUTH
+		&& (game->maps->map[player->y + 1][player->x] == 'C'
+		|| game->maps->map[player->y + 1][player->x] == 'D'))
+		enemy_del_coord(game, &game->maps->enemies, player->y + 1, player->x);
+	if (player->orient == WEST
+		&& (game->maps->map[player->y][player->x - 1] == 'C'
+		|| game->maps->map[player->y][player->x - 1] == 'D'))
+		enemy_del_coord(game, &game->maps->enemies, player->y, player->x - 1);
+	if (player->orient == NORTH
+		&& (game->maps->map[player->y - 1][player->x] == 'C'
+		|| game->maps->map[player->y - 1][player->x] == 'D'))
+		enemy_del_coord(game, &game->maps->enemies, player->y - 1, player->x);
+	player->pose = SWALLOWING ;
+	player->last_action_time = mlx_get_time();
+	update_player_sprite(game, player);
 }

@@ -6,17 +6,32 @@
 /*   By: anoteris <noterisarthur42@gmail.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/05 02:10:19 by anoteris          #+#    #+#             */
-/*   Updated: 2024/12/09 23:30:48 by anoteris         ###   ########.fr       */
+/*   Updated: 2024/12/10 11:43:46 by anoteris         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
 
-// static void	free_player(t_player *player)
-// {
-// 	free(player->image);
-// 	free(player);
-// }
+void	free_enemies(t_enemy *enemy)
+{
+	t_enemy	*next ;
+
+	while (enemy)
+	{
+		next = enemy->next ;
+		free(enemy);
+		enemy = next ;
+	}
+	
+}
+
+void	free_map(t_map *map)
+{
+	free_str_array(map->map);
+	free_enemies(map->enemies);
+	free(map->player);
+	free(map);
+}
 
 void	free_maps(t_map *maps)
 {
@@ -24,17 +39,14 @@ void	free_maps(t_map *maps)
 
 	while (maps)
 	{
-		free_str_array(maps->map);
-		// free_player(maps->player);
-		free(maps->player);
 		next = maps->next ;
-		free(maps);
+		free_map(maps);
 		maps = next ;
 	}
 }
 
 void	free_game(t_game *game)
 {
-	free_maps(game->maps);
+	free_map(game->maps);
 	free(game);
 }

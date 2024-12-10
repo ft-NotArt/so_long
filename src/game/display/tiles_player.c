@@ -6,7 +6,7 @@
 /*   By: anoteris <noterisarthur42@gmail.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/09 23:40:27 by anoteris          #+#    #+#             */
-/*   Updated: 2024/12/10 05:10:36 by anoteris         ###   ########.fr       */
+/*   Updated: 2024/12/10 09:02:03 by anoteris         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,9 @@ static void	player_add_pos(int pose, char *sprite_file)
 	else if (pose == WALKING2)
 		ft_strlcat(sprite_file, K_WALKIN_2,
 			ft_strlen(sprite_file) + ft_strlen(K_WALKIN_2) + 1);
+	else if (pose == SWALLOWING)
+		ft_strlcat(sprite_file, K_SWALLOWIN,
+			ft_strlen(sprite_file) + ft_strlen(K_SWALLOWIN) + 1);
 }
 
 static void	player_add_orient(int orient, char *sprite_file)
