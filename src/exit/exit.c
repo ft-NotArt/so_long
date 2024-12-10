@@ -6,7 +6,7 @@
 /*   By: anoteris <noterisarthur42@gmail.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/05 02:10:19 by anoteris          #+#    #+#             */
-/*   Updated: 2024/12/10 11:43:46 by anoteris         ###   ########.fr       */
+/*   Updated: 2024/12/10 16:46:35 by anoteris         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,6 @@ void	free_enemies(t_enemy *enemy)
 		free(enemy);
 		enemy = next ;
 	}
-	
 }
 
 void	free_map(t_map *map)

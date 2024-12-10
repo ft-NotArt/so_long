@@ -6,7 +6,7 @@
 /*   By: anoteris <noterisarthur42@gmail.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/09 22:46:43 by anoteris          #+#    #+#             */
-/*   Updated: 2024/12/10 11:20:25 by anoteris         ###   ########.fr       */
+/*   Updated: 2024/12/10 16:49:39 by anoteris         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,7 +54,7 @@ t_enemy	*enemy_init(t_map *map, int x, int y)
 		enemy->type = DOO ;
 	enemy->x = x ;
 	enemy->y = y ;
-	enemy->orient = (orient % 4) ;
+	enemy->orient = (orient % 4);
 	orient++ ;
 	enemy->last_action_time = 0 ;
 	enemy->next = NULL ;
@@ -68,6 +68,6 @@ t_game	*game_init(t_map *maps)
 	game = malloc(sizeof(t_game));
 	game->maps = maps ;
 	game->mlx = mlx_init(game->maps->width * BITS, game->maps->height * BITS,
-		"TEST", true);
+			"TEST", false);
 	return (game);
 }

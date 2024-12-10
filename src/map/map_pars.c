@@ -6,7 +6,7 @@
 /*   By: anoteris <noterisarthur42@gmail.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/05 00:40:37 by anoteris          #+#    #+#             */
-/*   Updated: 2024/12/10 05:40:47 by anoteris         ###   ########.fr       */
+/*   Updated: 2024/12/10 14:25:37 by anoteris         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -84,8 +84,7 @@ static bool	map_content(t_map *map)
 		{
 			if (map->map[i][j] == 'P')
 				p++ ;
-			if (map->map[i][j] == 'B'
-				|| map->map[i][j] == 'C' || map->map[i][j] == 'D')
+			if (is_enemy(map->map[i][j]))
 				map->enemy_number++ ;
 			if (map->map[i][j] == 'E')
 				e++ ;

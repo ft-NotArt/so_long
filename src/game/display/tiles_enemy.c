@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   tiles_enemies.c                                    :+:      :+:    :+:   */
+/*   tiles_enemy.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: anoteris <noterisarthur42@gmail.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/10 04:20:54 by anoteris          #+#    #+#             */
-/*   Updated: 2024/12/10 05:24:53 by anoteris         ###   ########.fr       */
+/*   Updated: 2024/12/10 16:38:22 by anoteris         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,13 +45,13 @@ mlx_image_t	*get_mlx_enemy(t_game *game, t_enemy *enemy)
 	return (img);
 }
 
-// void	update_enemy_sprite(t_game *game, t_player *player)
-// {
-// 	mlx_image_t	*tmp_img ;
+void	update_enemy_sprite(t_game *game, t_enemy *enemy)
+{
+	mlx_image_t	*tmp_img ;
 
-// 	tmp_img = get_mlx_player(game);
-// 	free(player->image->pixels);
-// 	player->image->pixels = tmp_img->pixels ;
-// 	tmp_img->pixels = NULL ;
-// 	mlx_delete_image(game->mlx, tmp_img);
-// }
+	tmp_img = get_mlx_enemy(game, enemy);
+	free(enemy->image->pixels);
+	enemy->image->pixels = tmp_img->pixels ;
+	tmp_img->pixels = NULL ;
+	mlx_delete_image(game->mlx, tmp_img);
+}

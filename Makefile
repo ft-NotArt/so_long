@@ -111,6 +111,7 @@ FILES			=	so_long														\
 					game/entities/status										\
 					game/entities/lst_enemies									\
 					game/entities/check											\
+					game/entities/enemy											\
 					game/hooks/hooks											\
 					init/init													\
 \

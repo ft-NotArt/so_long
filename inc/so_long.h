@@ -6,7 +6,7 @@
 /*   By: anoteris <noterisarthur42@gmail.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/04 22:19:52 by anoteris          #+#    #+#             */
-/*   Updated: 2024/12/10 08:56:48 by anoteris         ###   ########.fr       */
+/*   Updated: 2024/12/10 16:39:01 by anoteris         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,6 +55,9 @@
 
 # define PNG			".png"
 
+# define PLAYER			game->maps->player, NULL
+# define ENEMY			NULL, enemy
+
 // TODO: is it possible despite the norm to rm ?
 # define IMG_WIN mlx_image_to_window
 
@@ -76,8 +79,8 @@ typedef enum position
 
 typedef enum type
 {
-	DEE,
-	DOO
+	DEE = 'C',
+	DOO = 'D'
 }			type ;
 
 typedef struct s_game
@@ -110,7 +113,7 @@ typedef struct s_player
 typedef struct s_enemy
 {
 	mlx_image_t		*image ;
-	int				type ;
+	char			type ;
 	int 			x ;
 	int 			y ;
 	int				orient ;
@@ -148,16 +151,17 @@ mlx_image_t	*get_mlx_player(t_game *game);
 void	get_input_dir(keys_t key_press, t_game *game);
 
 void	update_player_sprite(t_game *game, t_player *player);
+void	update_enemy_sprite(t_game *game, t_enemy *enemy);
 
 void	keyboard_hook(mlx_key_data_t key_data, void *param);
 void	close_game(void *param);
 
 int		alternate_walking(int current_pose);
 
-void	move_east(t_game *game, int player_y, int player_x);
-void	move_south(t_game *game, int player_y, int player_x);
-void	move_west(t_game *game, int player_y, int player_x);
-void	move_north(t_game *game, int player_y, int player_x);
+void	move_east(t_game *game, t_player *player, t_enemy *enemy);
+void	move_south(t_game *game, t_player *player, t_enemy *enemy);
+void	move_west(t_game *game, t_player *player, t_enemy *enemy);
+void	move_north(t_game *game, t_player *player, t_enemy *enemy);
 
 void	frame_hook(void *param);
 
@@ -169,8 +173,12 @@ t_enemy	*enemy_last(t_enemy *lst);
 void	enemy_add_back(t_enemy **lst, t_enemy *new);
 void	enemy_del_coord(t_game *game, t_enemy **enemy, int y, int x);
 
-void	check_tile(t_game *game, int y, int x);
+void	check_player_tile(t_game *game, int y, int x);
+void	check_enemy_tile(t_game *game, int y, int x);
+bool	is_enemy(char c);
 
 void	player_attack(t_game *game, t_player *player);
+
+void	enemy_turn(t_game *game, t_enemy *enemy);
 
 #endif
