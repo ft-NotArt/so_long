@@ -6,7 +6,7 @@
 /*   By: anoteris <noterisarthur42@gmail.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/04 22:19:35 by anoteris          #+#    #+#             */
-/*   Updated: 2024/12/09 23:28:02 by anoteris         ###   ########.fr       */
+/*   Updated: 2024/12/10 00:57:09 by anoteris         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ int	main(int argc, char *argv[])
 		return (error_arguments(), EXIT_FAILURE);
 	maps = maps_init(argc, argv);
 	if (!maps)
-		return (EXIT_FAILURE);
+		return (error_map(), EXIT_FAILURE);
 
 	t_map	*current = maps;
 	while (current)

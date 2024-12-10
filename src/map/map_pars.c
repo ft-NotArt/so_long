@@ -6,7 +6,7 @@
 /*   By: anoteris <noterisarthur42@gmail.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/05 00:40:37 by anoteris          #+#    #+#             */
-/*   Updated: 2024/12/09 23:46:26 by anoteris         ###   ########.fr       */
+/*   Updated: 2024/12/10 00:56:41 by anoteris         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,18 +30,18 @@ static bool	check_map_char(char **map, char *charset)
 	return (true);
 }
 
-static bool	map_is_rectangle(char **map)
+static bool	map_is_rectangle(t_map *map)
 {
-	size_t	len_ref ;
 	int		i ;
 
 	i = 0 ;
-	len_ref = ft_strlen(map[i]);
-	while (map[++i])
+	map->width = ft_strlen(map->map[i]);
+	while (map->map[++i])
 	{
-		if (ft_strlen(map[i]) != len_ref)
+		if (ft_strlen(map->map[i]) != map->width)
 			return (false);
 	}
+	map->height = i ;
 	return (true);
 }
 
@@ -98,13 +98,10 @@ static bool	map_content(t_map *map)
 bool	pars_map(t_map *map)
 {
 	if (!check_map_char(map->map, "01PEC")
-		|| !map_is_rectangle(map->map)
+		|| !map_is_rectangle(map)
 		|| !map_is_close(map->map)
 		|| !map_content(map)
 		|| !check_flood_fill(map))
-	{
-		error_map();
 		return (false);
-	}
 	return (true);
 }

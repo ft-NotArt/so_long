@@ -6,7 +6,7 @@
 /*   By: anoteris <noterisarthur42@gmail.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/05 11:55:57 by anoteris          #+#    #+#             */
-/*   Updated: 2024/12/09 23:44:15 by anoteris         ###   ########.fr       */
+/*   Updated: 2024/12/10 00:44:48 by anoteris         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ static void	display_water(t_game *game, int x, int y)
 	mlx_image_t	*water ;
 
 	water = get_mlx_img(game, WATER);
-	IMG_WIN(game->mlx, water, 32 * x, 32 * y);
+	IMG_WIN(game->mlx, water, BITS * x, BITS * y);
 	mlx_set_instance_depth(water->instances, 2);
 }
 
@@ -26,14 +26,14 @@ static void	display_ground(t_game *game, int x, int y)
 	mlx_image_t	*ground ;
 
 	ground = get_mlx_ground(game, x, y);
-	IMG_WIN(game->mlx, ground, 32 * x, 32 * y);
+	IMG_WIN(game->mlx, ground, BITS * x, BITS * y);
 	mlx_set_instance_depth(ground->instances, 4);
 }
 
 static void	display_player(t_game *game, int x, int y)
 {
 	game->maps->player->image = get_mlx_player(game);
-	IMG_WIN(game->mlx, game->maps->player->image, 32 * x, 32 * y);
+	IMG_WIN(game->mlx, game->maps->player->image, BITS * x, BITS * y);
 	mlx_set_instance_depth(game->maps->player->image->instances, 8);
 }
 
@@ -45,7 +45,7 @@ void	display_tile(t_game *game, int x, int y)
 	if (game->maps->map[y][x] == 'P')
 		display_player(game, x, y);
 	else if (game->maps->map[y][x] == 'E')
-		IMG_WIN(game->mlx, get_mlx_img(game, STAR), 32 * x, 32 * y);
+		IMG_WIN(game->mlx, get_mlx_img(game, STAR), BITS * x, BITS * y);
 }
 
 void	display_full_map(t_game *game)

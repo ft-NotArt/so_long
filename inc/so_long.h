@@ -6,7 +6,7 @@
 /*   By: anoteris <noterisarthur42@gmail.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/04 22:19:52 by anoteris          #+#    #+#             */
-/*   Updated: 2024/12/09 23:11:20 by anoteris         ###   ########.fr       */
+/*   Updated: 2024/12/10 00:44:03 by anoteris         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,8 @@
 
 # include "ft_printf.h"
 # include "get_next_line.h"
+
+# define BITS 32
 
 # define WATER			"textures/ground/water.png"
 
@@ -57,8 +59,10 @@ typedef struct s_game
 typedef struct s_map
 {
 	char			**map ;
-	struct s_player	*player ;
+	size_t			width ;
+	size_t			height ;
 	int				C ;
+	struct s_player	*player ;
 	struct s_map	*next ;
 }			t_map ;
 
@@ -120,7 +124,7 @@ void	update_player_sprite(t_game *game, t_player *player);
 void	keyboard_hook(mlx_key_data_t key_data, void *param);
 void	close_game(void *param);
 
-int	update_pose(int current_pose);
+int		update_pose(int current_pose);
 
 void	move_east(t_game *game, int player_y, int player_x);
 void	move_south(t_game *game, int player_y, int player_x);

@@ -6,7 +6,7 @@
 /*   By: anoteris <noterisarthur42@gmail.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/09 22:46:43 by anoteris          #+#    #+#             */
-/*   Updated: 2024/12/09 23:37:14 by anoteris         ###   ########.fr       */
+/*   Updated: 2024/12/10 00:50:12 by anoteris         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,8 +31,10 @@ t_map	*map_init(char *map_file)
 
 	map = malloc(sizeof(t_map));
 	map->map = read_map(map_file);
-	map->player = player_init();
+	map->width = 0 ;
+	map->height = 0 ;
 	map->C = 0 ;
+	map->player = player_init();
 	map->next = NULL ;
 	return (map);
 }
@@ -42,7 +44,8 @@ t_game	*game_init(t_map *maps)
 	t_game	*game ;
 
 	game = malloc(sizeof(t_game));
-	game->mlx = mlx_init(1100, 1500, "TEST", true);
 	game->maps = maps ;
+	game->mlx = mlx_init(game->maps->width * BITS, game->maps->height * BITS,
+		"TEST", true);
 	return (game);
 }

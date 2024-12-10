@@ -6,7 +6,7 @@
 /*   By: anoteris <noterisarthur42@gmail.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/04 22:24:48 by anoteris          #+#    #+#             */
-/*   Updated: 2024/12/09 22:58:28 by anoteris         ###   ########.fr       */
+/*   Updated: 2024/12/10 00:56:08 by anoteris         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,10 +15,7 @@
 static bool	map_has_empty_line(char *map_in_line)
 {
 	if (ft_strnstr(map_in_line, "\n\n", ft_strlen(map_in_line)))
-	{
-		error_map(NULL);
 		return (true);
-	}
 	return (false);
 }
 
