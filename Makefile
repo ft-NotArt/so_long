@@ -109,6 +109,8 @@ FILES			=	so_long														\
 					game/entities/player										\
 					game/entities/move											\
 					game/entities/status										\
+					game/entities/lst_enemies									\
+					game/entities/check											\
 					game/hooks/hooks											\
 					init/init													\
 \
@@ -125,7 +127,6 @@ $(LIBFT_PATH)	:
 
 $(LIBMLX)		:
 					if [ ! -d "$(MLX)" ]; then	\
-						echo -e 'call generate_random_color';	\
 						git clone https://github.com/codam-coding-college/MLX42.git $(MLX);	\
 						cd $(MLX);	\
 						git reset --hard 7f95e70415705dcc723f94a2696aba84ed3756ad;	\

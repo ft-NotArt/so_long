@@ -1,34 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   game.c                                             :+:      :+:    :+:   */
+/*   check.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: anoteris <noterisarthur42@gmail.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/12/05 06:14:48 by anoteris          #+#    #+#             */
-/*   Updated: 2024/12/10 06:19:17 by anoteris         ###   ########.fr       */
+/*   Created: 2024/12/10 05:33:43 by anoteris          #+#    #+#             */
+/*   Updated: 2024/12/10 06:07:15 by anoteris         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
 
-void	game_loop(t_map *maps)
+void	check_tile(t_game *game, int y, int x)
 {
-	t_game	*game ;
-
-	game = game_init(maps);
-	if (!game->mlx)
+	if (game->maps->map[y][x] == 'E' && game->maps->enemy_number == 0)
 	{
-		free(game);
-		return ; //TODO: appropriate error function
+		printf("GG !\n");
+		close_game(game);
 	}
-
-	
-	display_full_map(game);
-
-
-	mlx_loop_hook(game->mlx, frame_hook, game);
-	mlx_key_hook(game->mlx, keyboard_hook, game);
-	mlx_close_hook(game->mlx, close_game, game);
-	mlx_loop(game->mlx);
+	else if (game->maps->map[y][x] == 'C' || game->maps->map[y][x] == 'D')
+	{
+		printf("Game Over !\n");
+		close_game(game);
+	}
 }

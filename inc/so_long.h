@@ -6,7 +6,7 @@
 /*   By: anoteris <noterisarthur42@gmail.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/04 22:19:52 by anoteris          #+#    #+#             */
-/*   Updated: 2024/12/10 05:20:21 by anoteris         ###   ########.fr       */
+/*   Updated: 2024/12/10 06:07:21 by anoteris         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -92,7 +92,7 @@ typedef struct s_map
 	size_t			height ;
 	int				enemy_number ;
 	struct s_player	*player ;
-	struct s_list	*enemies ;
+	struct s_enemy	*enemies ;
 	struct s_map	*next ;
 }			t_map ;
 
@@ -108,12 +108,13 @@ typedef struct s_player
 
 typedef struct s_enemy
 {
-	mlx_image_t	*image ;
-	int			type ;
-	int 		x ;
-	int 		y ;
-	int			orient ;
-	double		last_action_time ;
+	mlx_image_t		*image ;
+	int				type ;
+	int 			x ;
+	int 			y ;
+	int				orient ;
+	double			last_action_time ;
+	struct s_enemy	*next ;
 }			t_enemy ;
 
 void	error_arguments();
@@ -162,5 +163,10 @@ void	frame_hook(void *param);
 t_enemy	*enemy_init(t_map *map, int x, int y);
 
 mlx_image_t	*get_mlx_enemy(t_game *game, t_enemy *enemy);
+
+t_enemy	*enemy_last(t_enemy *lst);
+void	enemy_add_back(t_enemy **lst, t_enemy *new);
+
+void	check_tile(t_game *game, int y, int x);
 
 #endif

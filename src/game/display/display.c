@@ -6,7 +6,7 @@
 /*   By: anoteris <noterisarthur42@gmail.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/05 11:55:57 by anoteris          #+#    #+#             */
-/*   Updated: 2024/12/10 05:26:59 by anoteris         ###   ########.fr       */
+/*   Updated: 2024/12/10 05:54:50 by anoteris         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,7 +52,7 @@ static void	display_enemy(t_game *game, int x, int y)
 	mlx_image_t	*img ;
 
 	enemy = enemy_init(game->maps, x, y);
-	ft_lstadd_back(&(game->maps->enemies), ft_lstnew(enemy));
+	enemy_add_back(&(game->maps->enemies), enemy);
 	img = get_mlx_enemy(game, enemy);
 	enemy->image = img ;
 	IMG_WIN(game->mlx, img, BITS * x, BITS * y);

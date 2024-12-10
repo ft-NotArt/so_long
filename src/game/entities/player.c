@@ -6,7 +6,7 @@
 /*   By: anoteris <noterisarthur42@gmail.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/05 13:08:24 by anoteris          #+#    #+#             */
-/*   Updated: 2024/12/10 02:06:31 by anoteris         ###   ########.fr       */
+/*   Updated: 2024/12/10 06:08:30 by anoteris         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,13 +44,25 @@
 void	move_player(t_game *game, int input_dir, int player_y, int player_x)
 {
 	if (input_dir == EAST)
+	{
+		check_tile(game, player_y, player_x + 1);
 		move_east(game, player_y, player_x);
+	}
 	if (input_dir == SOUTH)
+	{
+		check_tile(game, player_y + 1, player_x);
 		move_south(game, player_y, player_x);
+	}
 	if (input_dir == WEST)
+	{
+		check_tile(game, player_y, player_x - 1);
 		move_west(game, player_y, player_x);
+	}
 	if (input_dir == NORTH)
+	{
+		check_tile(game, player_y - 1, player_x);
 		move_north(game, player_y, player_x);
+	}
 	game->maps->player->pose = alternate_walking(game->maps->player->pose);
 }
 

@@ -1,34 +1,34 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   game.c                                             :+:      :+:    :+:   */
+/*   lst_enemies.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: anoteris <noterisarthur42@gmail.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/12/05 06:14:48 by anoteris          #+#    #+#             */
-/*   Updated: 2024/12/10 06:19:17 by anoteris         ###   ########.fr       */
+/*   Created: 2024/12/10 05:46:22 by anoteris          #+#    #+#             */
+/*   Updated: 2024/12/10 05:56:19 by anoteris         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
 
-void	game_loop(t_map *maps)
+t_enemy	*enemy_last(t_enemy *lst)
 {
-	t_game	*game ;
-
-	game = game_init(maps);
-	if (!game->mlx)
-	{
-		free(game);
-		return ; //TODO: appropriate error function
-	}
-
-	
-	display_full_map(game);
-
-
-	mlx_loop_hook(game->mlx, frame_hook, game);
-	mlx_key_hook(game->mlx, keyboard_hook, game);
-	mlx_close_hook(game->mlx, close_game, game);
-	mlx_loop(game->mlx);
+	if (!lst)
+		return (NULL);
+	while (lst->next)
+		lst = lst->next;
+	return (lst);
 }
+
+void	enemy_add_back(t_enemy **lst, t_enemy *new)
+{
+	if (!lst)
+		return ;
+	if (!*lst)
+		*lst = new ;
+	else
+		enemy_last(*lst)->next = new ;
+}
+
+//TODO: del lst by coordinates

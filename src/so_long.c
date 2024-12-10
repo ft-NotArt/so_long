@@ -6,7 +6,7 @@
 /*   By: anoteris <noterisarthur42@gmail.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/04 22:19:35 by anoteris          #+#    #+#             */
-/*   Updated: 2024/12/10 04:47:55 by anoteris         ###   ########.fr       */
+/*   Updated: 2024/12/10 05:58:26 by anoteris         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,21 +29,13 @@ int	main(int argc, char *argv[])
 		{
 			ft_printf("%s\n", current_map->map[i]);
 		}
-		ft_printf("\n");
-
-		t_list	*current_enemy = current_map->enemies;
-		while (current_enemy)
-		{
-			t_enemy	*enemy = current_enemy->content ;
-			ft_printf("\n--Enemy--\n\tx=%d y=%d\n\torient=%d\n", enemy->x, enemy->y, enemy->orient);
-			current_enemy = current_enemy->next ;
-		}
-		
+		ft_printf("\n");		
 
 		current_map = current_map->next ;
 	}
 
 	game_loop(maps);
+
 	// * pars
 	// * game
 	// * exit
