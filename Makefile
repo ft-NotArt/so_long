@@ -104,11 +104,12 @@ FILES			=	so_long														\
 					exit/exit exit/error										\
 					game/game													\
 					game/display/display										\
-					game/display/tiles_player game/display/tiles_background		\
+					game/display/tiles_player game/display/tiles_enemy			\
+					game/display/tiles_background								\
 					game/entities/player										\
 					game/entities/move											\
 					game/entities/status										\
-					game/hooks/hooks													\
+					game/hooks/hooks											\
 					init/init													\
 \
 

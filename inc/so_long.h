@@ -6,7 +6,7 @@
 /*   By: anoteris <noterisarthur42@gmail.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/04 22:19:52 by anoteris          #+#    #+#             */
-/*   Updated: 2024/12/10 02:35:24 by anoteris         ###   ########.fr       */
+/*   Updated: 2024/12/10 05:20:21 by anoteris         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,6 +42,12 @@
 # define K_WALKIN_2		"walking/kirby_walking_2_"
 # define K_SWALLOWIN	"swallowin/kirby_swallow_"
 
+# define ENEMY_EX		"textures/enemies/waddle_doo/waddle_doo_rght.png"
+
+# define WADDLE_DOO		"textures/enemies/waddle_doo/waddle_doo_"
+
+# define WADDLE_DEE		"textures/enemies/waddle_dee/waddle_dee_"
+
 # define RIGHT			"rght"
 # define FRONT			"frnt"
 # define LEFT			"left"
@@ -49,23 +55,8 @@
 
 # define PNG			".png"
 
+// TODO: is it possible despite the norm to rm ?
 # define IMG_WIN mlx_image_to_window
-
-typedef struct s_game
-{
-	mlx_t			*mlx ;
-	struct s_map	*maps ;
-}			t_game ;
-
-typedef struct s_map
-{
-	char			**map ;
-	size_t			width ;
-	size_t			height ;
-	int				C ;
-	struct s_player	*player ;
-	struct s_map	*next ;
-}			t_map ;
 
 typedef enum orientation
 {
@@ -82,6 +73,29 @@ typedef enum position
 	WALKING2
 }			pos ;
 
+typedef enum type
+{
+	DEE,
+	DOO
+}			type ;
+
+typedef struct s_game
+{
+	mlx_t			*mlx ;
+	struct s_map	*maps ;
+}			t_game ;
+
+typedef struct s_map
+{
+	char			**map ;
+	size_t			width ;
+	size_t			height ;
+	int				enemy_number ;
+	struct s_player	*player ;
+	struct s_list	*enemies ;
+	struct s_map	*next ;
+}			t_map ;
+
 typedef struct s_player
 {
 	mlx_image_t	*image ;
@@ -91,6 +105,16 @@ typedef struct s_player
 	int			pose ;
 	double		last_action_time ;
 }			t_player ;
+
+typedef struct s_enemy
+{
+	mlx_image_t	*image ;
+	int			type ;
+	int 		x ;
+	int 		y ;
+	int			orient ;
+	double		last_action_time ;
+}			t_enemy ;
 
 void	error_arguments();
 void	error_map();
@@ -134,5 +158,9 @@ void	move_west(t_game *game, int player_y, int player_x);
 void	move_north(t_game *game, int player_y, int player_x);
 
 void	frame_hook(void *param);
+
+t_enemy	*enemy_init(t_map *map, int x, int y);
+
+mlx_image_t	*get_mlx_enemy(t_game *game, t_enemy *enemy);
 
 #endif

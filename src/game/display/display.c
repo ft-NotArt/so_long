@@ -6,7 +6,7 @@
 /*   By: anoteris <noterisarthur42@gmail.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/05 11:55:57 by anoteris          #+#    #+#             */
-/*   Updated: 2024/12/10 00:44:48 by anoteris         ###   ########.fr       */
+/*   Updated: 2024/12/10 05:26:59 by anoteris         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ static void	display_water(t_game *game, int x, int y)
 
 	water = get_mlx_img(game, WATER);
 	IMG_WIN(game->mlx, water, BITS * x, BITS * y);
-	mlx_set_instance_depth(water->instances, 2);
+	mlx_set_instance_depth(water->instances, 0);
 }
 
 static void	display_ground(t_game *game, int x, int y)
@@ -27,14 +27,36 @@ static void	display_ground(t_game *game, int x, int y)
 
 	ground = get_mlx_ground(game, x, y);
 	IMG_WIN(game->mlx, ground, BITS * x, BITS * y);
-	mlx_set_instance_depth(ground->instances, 4);
+	mlx_set_instance_depth(ground->instances, 2);
+}
+
+static void	display_star(t_game *game, int x, int y)
+{
+	mlx_image_t	*star ;
+
+	star = get_mlx_img(game, STAR);
+	IMG_WIN(game->mlx, star, BITS * x, BITS * y);
+	mlx_set_instance_depth(star->instances, 4);
 }
 
 static void	display_player(t_game *game, int x, int y)
 {
 	game->maps->player->image = get_mlx_player(game);
 	IMG_WIN(game->mlx, game->maps->player->image, BITS * x, BITS * y);
-	mlx_set_instance_depth(game->maps->player->image->instances, 8);
+	mlx_set_instance_depth(game->maps->player->image->instances, 6);
+}
+
+static void	display_enemy(t_game *game, int x, int y)
+{
+	t_enemy		*enemy ;
+	mlx_image_t	*img ;
+
+	enemy = enemy_init(game->maps, x, y);
+	ft_lstadd_back(&(game->maps->enemies), ft_lstnew(enemy));
+	img = get_mlx_enemy(game, enemy);
+	enemy->image = img ;
+	IMG_WIN(game->mlx, img, BITS * x, BITS * y);
+	mlx_set_instance_depth(img->instances, 10);
 }
 
 void	display_tile(t_game *game, int x, int y)
@@ -44,8 +66,10 @@ void	display_tile(t_game *game, int x, int y)
 		display_ground(game, x, y);
 	if (game->maps->map[y][x] == 'P')
 		display_player(game, x, y);
+	else if (game->maps->map[y][x] == 'C' || game->maps->map[y][x] == 'D')
+		display_enemy(game, x, y);
 	else if (game->maps->map[y][x] == 'E')
-		IMG_WIN(game->mlx, get_mlx_img(game, STAR), BITS * x, BITS * y);
+		display_star(game, x, y);
 }
 
 void	display_full_map(t_game *game)

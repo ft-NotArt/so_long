@@ -6,7 +6,7 @@
 /*   By: anoteris <noterisarthur42@gmail.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/05 00:40:37 by anoteris          #+#    #+#             */
-/*   Updated: 2024/12/10 00:56:41 by anoteris         ###   ########.fr       */
+/*   Updated: 2024/12/10 04:51:55 by anoteris         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -84,20 +84,21 @@ static bool	map_content(t_map *map)
 		{
 			if (map->map[i][j] == 'P')
 				p++ ;
-			if (map->map[i][j] == 'C')
-				map->C++ ;
+			if (map->map[i][j] == 'B'
+				|| map->map[i][j] == 'C' || map->map[i][j] == 'D')
+				map->enemy_number++ ;
 			if (map->map[i][j] == 'E')
 				e++ ;
 		}
 	}
-	if (p != 1 || e != 1 || map->C < 1)
+	if (p != 1 || e != 1 || map->enemy_number < 1)
 		return (false);
 	return (true);
 }
 
 bool	pars_map(t_map *map)
 {
-	if (!check_map_char(map->map, "01PEC")
+	if (!check_map_char(map->map, "01PEBCD")
 		|| !map_is_rectangle(map)
 		|| !map_is_close(map->map)
 		|| !map_content(map)
