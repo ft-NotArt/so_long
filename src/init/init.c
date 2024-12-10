@@ -6,7 +6,7 @@
 /*   By: anoteris <noterisarthur42@gmail.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/09 22:46:43 by anoteris          #+#    #+#             */
-/*   Updated: 2024/12/10 00:50:12 by anoteris         ###   ########.fr       */
+/*   Updated: 2024/12/10 02:00:40 by anoteris         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,7 @@ t_player	*player_init(void)
 	player->y = 0 ;
 	player->orient = EAST ;
 	player->pose = STANDING ;
+	player->last_action_time = 0 ;
 	return (player);
 }
 

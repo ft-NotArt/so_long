@@ -6,7 +6,7 @@
 /*   By: anoteris <noterisarthur42@gmail.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/05 13:08:24 by anoteris          #+#    #+#             */
-/*   Updated: 2024/12/09 23:39:31 by anoteris         ###   ########.fr       */
+/*   Updated: 2024/12/10 02:06:31 by anoteris         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,7 +51,7 @@ void	move_player(t_game *game, int input_dir, int player_y, int player_x)
 		move_west(game, player_y, player_x);
 	if (input_dir == NORTH)
 		move_north(game, player_y, player_x);
-	game->maps->player->pose = update_pose(game->maps->player->pose);
+	game->maps->player->pose = alternate_walking(game->maps->player->pose);
 }
 
 void	align_or_move_player(t_game *game, int input_dir)
@@ -61,6 +61,7 @@ void	align_or_move_player(t_game *game, int input_dir)
 	else
 		move_player(game, input_dir,
 			game->maps->player->y, game->maps->player->x);
+	game->maps->player->last_action_time = mlx_get_time();
 	update_player_sprite(game, game->maps->player);
 }
 

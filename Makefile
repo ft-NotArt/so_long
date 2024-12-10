@@ -108,7 +108,7 @@ FILES			=	so_long														\
 					game/entities/player										\
 					game/entities/move											\
 					game/entities/status										\
-					game/hooks													\
+					game/hooks/hooks													\
 					init/init													\
 \
 

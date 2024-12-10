@@ -6,7 +6,7 @@
 /*   By: anoteris <noterisarthur42@gmail.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/04 22:19:52 by anoteris          #+#    #+#             */
-/*   Updated: 2024/12/10 00:44:03 by anoteris         ###   ########.fr       */
+/*   Updated: 2024/12/10 02:35:24 by anoteris         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,7 @@
 # define SO_LONG_H
 
 # include <MLX42/MLX42.h>
+# include <math.h>
 # include <fcntl.h>
 # include <errno.h>
 # include <string.h>
@@ -88,6 +89,7 @@ typedef struct s_player
 	int 		y ;
 	int			orient ;
 	int			pose ;
+	double		last_action_time ;
 }			t_player ;
 
 void	error_arguments();
@@ -124,11 +126,13 @@ void	update_player_sprite(t_game *game, t_player *player);
 void	keyboard_hook(mlx_key_data_t key_data, void *param);
 void	close_game(void *param);
 
-int		update_pose(int current_pose);
+int		alternate_walking(int current_pose);
 
 void	move_east(t_game *game, int player_y, int player_x);
 void	move_south(t_game *game, int player_y, int player_x);
 void	move_west(t_game *game, int player_y, int player_x);
 void	move_north(t_game *game, int player_y, int player_x);
+
+void	frame_hook(void *param);
 
 #endif
