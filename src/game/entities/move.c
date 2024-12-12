@@ -6,7 +6,7 @@
 /*   By: anoteris <noterisarthur42@gmail.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/09 23:00:55 by anoteris          #+#    #+#             */
-/*   Updated: 2024/12/10 14:43:38 by anoteris         ###   ########.fr       */
+/*   Updated: 2024/12/12 16:00:16 by anoteris         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,6 +35,7 @@ void	move_east(t_game *game, t_player *player, t_enemy *enemy)
 			game->maps->map[player->y][player->x] = '0' ;
 			player->image->instances->x += BITS ;
 			player->x++ ;
+			update_step_count(game);
 		}
 	}
 	else if (enemy != NULL)
@@ -62,6 +63,7 @@ void	move_south(t_game *game, t_player *player, t_enemy *enemy)
 			game->maps->map[player->y][player->x] = '0' ;
 			player->image->instances->y += BITS ;
 			player->y++ ;
+			update_step_count(game);
 		}
 	}
 	else if (enemy != NULL)
@@ -89,6 +91,7 @@ void	move_west(t_game *game, t_player *player, t_enemy *enemy)
 			game->maps->map[player->y][player->x] = '0' ;
 			player->image->instances->x -= BITS ;
 			player->x-- ;
+			update_step_count(game);
 		}
 	}
 	else if (enemy != NULL)
@@ -116,6 +119,7 @@ void	move_north(t_game *game, t_player *player, t_enemy *enemy)
 			game->maps->map[player->y][player->x] = '0' ;
 			player->image->instances->y -= BITS ;
 			player->y-- ;
+			update_step_count(game);
 		}
 	}
 	else if (enemy != NULL)

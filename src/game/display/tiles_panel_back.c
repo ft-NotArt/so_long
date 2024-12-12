@@ -6,13 +6,13 @@
 /*   By: anoteris <noterisarthur42@gmail.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/12 09:59:48 by anoteris          #+#    #+#             */
-/*   Updated: 2024/12/12 15:07:08 by anoteris         ###   ########.fr       */
+/*   Updated: 2024/12/12 16:32:07 by anoteris         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
 
-static void panel_add_type(t_game *game, size_t x, char *sprite_file)
+static void	panel_add_type(t_game *game, size_t x, char *sprite_file)
 {
 	if (x == 0 || x == game->maps->width - 1)
 	{
@@ -26,7 +26,7 @@ static void panel_add_type(t_game *game, size_t x, char *sprite_file)
 	}
 }
 
-static void panel_add_vertical(size_t y, char *sprite_file)
+static void	panel_add_vertical(size_t y, char *sprite_file)
 {
 	if (y == 0)
 	{
@@ -40,7 +40,7 @@ static void panel_add_vertical(size_t y, char *sprite_file)
 	}
 }
 
-static void panel_add_side(t_game *game, size_t x, char *sprite_file)
+static void	panel_add_side(t_game *game, size_t x, char *sprite_file)
 {
 	if (x == 0)
 	{
@@ -57,7 +57,7 @@ static void panel_add_side(t_game *game, size_t x, char *sprite_file)
 mlx_image_t	*get_mlx_panel(t_game *game, size_t x, size_t y)
 {
 	mlx_image_t	*img ;
-	char		sprite_file[100] ;
+	char		sprite_file[100];
 
 	ft_strlcpy(sprite_file, PANEL, ft_strlen(PANEL) + 1);
 	panel_add_type(game, x, sprite_file);
@@ -69,13 +69,14 @@ mlx_image_t	*get_mlx_panel(t_game *game, size_t x, size_t y)
 	img = get_mlx_img(game, sprite_file);
 	return (img);
 }
-//TODO: is it necessary to keep track of the image instead of returning it immediately ?
+//TODO: is it necessary to keep track of the image instead of
+// returning it immediately ?
 
 void	display_panel(t_game *game)
 {
-	mlx_image_t		*panel ;
-	size_t	x ;
-	size_t	y ;
+	mlx_image_t	*panel ;
+	size_t		x ;
+	size_t		y ;
 
 	y = 0 ;
 	while (y < 2)

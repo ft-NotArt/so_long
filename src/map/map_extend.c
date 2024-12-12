@@ -6,7 +6,7 @@
 /*   By: anoteris <noterisarthur42@gmail.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/12 14:23:35 by anoteris          #+#    #+#             */
-/*   Updated: 2024/12/12 14:34:13 by anoteris         ###   ########.fr       */
+/*   Updated: 2024/12/12 16:35:11 by anoteris         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 static size_t	extend_left(t_map *map)
 {
-	char	extend[MIN_WIDTH] ;
+	char	extend[MIN_WIDTH];
 	char	*tmp ;
 	size_t	i ;
 	size_t	j ;
@@ -40,7 +40,7 @@ static size_t	extend_left(t_map *map)
 
 static size_t	extend_right(t_map *map)
 {
-	char	extend[MIN_WIDTH] ;
+	char	extend[MIN_WIDTH];
 	char	*tmp ;
 	size_t	i ;
 	size_t	j ;

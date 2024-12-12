@@ -6,7 +6,7 @@
 /*   By: anoteris <noterisarthur42@gmail.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/09 22:46:43 by anoteris          #+#    #+#             */
-/*   Updated: 2024/12/12 11:59:42 by anoteris         ###   ########.fr       */
+/*   Updated: 2024/12/12 16:30:19 by anoteris         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,7 @@ t_player	*player_init(void)
 	player->y = 0 ;
 	player->orient = EAST ;
 	player->pose = STANDING ;
+	player->step_count = 0 ;
 	player->last_action_time = 0 ;
 	return (player);
 }
@@ -36,6 +37,7 @@ t_map	*map_init(char *map_file)
 	map->height = 0 ;
 	map->enemy_number = 0 ;
 	map->player = player_init();
+	map->step_count_img = NULL ;
 	map->enemies = NULL ;
 	map->next = NULL ;
 	return (map);
@@ -67,7 +69,8 @@ t_game	*game_init(t_map *maps)
 
 	game = malloc(sizeof(t_game));
 	game->maps = maps ;
-	game->mlx = mlx_init(game->maps->width * BITS, (game->maps->height + 2) * BITS,
+	game->mlx = mlx_init(game->maps->width * BITS,
+			(game->maps->height + 2) * BITS,
 			"TEST", false);
 	return (game);
 }

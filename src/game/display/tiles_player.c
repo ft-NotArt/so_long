@@ -6,7 +6,7 @@
 /*   By: anoteris <noterisarthur42@gmail.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/09 23:40:27 by anoteris          #+#    #+#             */
-/*   Updated: 2024/12/12 05:03:17 by anoteris         ###   ########.fr       */
+/*   Updated: 2024/12/12 16:35:30 by anoteris         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,7 +47,7 @@ static void	player_add_orient(int orient, char *sprite_file)
 mlx_image_t	*get_mlx_player(t_game *game)
 {
 	mlx_image_t		*img ;
-	char			sprite_file[100] ;
+	char			sprite_file[100];
 
 	ft_strlcpy(sprite_file, KIRBY, ft_strlen(KIRBY) + 1);
 	player_add_pos(game->maps->player->pose, sprite_file);

@@ -6,7 +6,7 @@
 /*   By: anoteris <noterisarthur42@gmail.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/04 22:19:52 by anoteris          #+#    #+#             */
-/*   Updated: 2024/12/12 15:28:23 by anoteris         ###   ########.fr       */
+/*   Updated: 2024/12/12 15:59:27 by anoteris         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -109,6 +109,7 @@ typedef struct s_map
 	size_t			height ;
 	int				enemy_number ;
 	struct s_player	*player ;
+	mlx_image_t		*step_count_img ;
 	struct s_enemy	*enemies ;
 	struct s_map	*next ;
 }			t_map ;
@@ -120,6 +121,7 @@ typedef struct s_player
 	int 		y ;
 	int			orient ;
 	int			pose ;
+	int			step_count ;
 	double		last_action_time ;
 }			t_player ;
 
@@ -201,5 +203,7 @@ void	display_water(t_game *game, int x, int y);
 void	map_extend(t_map *map);
 
 void	display_inside_panel(t_game *game);
+
+void	update_step_count(t_game *game);
 
 #endif

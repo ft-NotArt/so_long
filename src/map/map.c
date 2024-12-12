@@ -6,7 +6,7 @@
 /*   By: anoteris <noterisarthur42@gmail.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/04 22:24:48 by anoteris          #+#    #+#             */
-/*   Updated: 2024/12/12 14:23:52 by anoteris         ###   ########.fr       */
+/*   Updated: 2024/12/12 16:36:22 by anoteris         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,7 +68,7 @@ t_map	*maps_init(int argc, char *argv[])
 		if (!next->map || !pars_map(next))
 			return (free_maps(maps), NULL);
 		if (maps->width < MIN_WIDTH)
-			//
+			map_extend(maps);
 		current = current->next ;
 	}
 	return (maps);
