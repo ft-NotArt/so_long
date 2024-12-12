@@ -6,7 +6,7 @@
 /*   By: anoteris <noterisarthur42@gmail.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/04 22:19:52 by anoteris          #+#    #+#             */
-/*   Updated: 2024/12/12 14:34:32 by anoteris         ###   ########.fr       */
+/*   Updated: 2024/12/12 15:28:23 by anoteris         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@
 
 # define BITS 32
 
-# define MIN_WIDTH 5
+# define MIN_WIDTH 7
 
 # define WATER			"textures/ground/water.png"
 
@@ -42,6 +42,10 @@
 
 # define CORNER			"corner_"
 # define BORDER			"border_"
+
+# define BOX			"textures/panel/box_power_"
+
+# define SIGN			"textures/panel/sign"
 
 # define KIRBY			"textures/kirby/"
 
@@ -195,5 +199,7 @@ void	display_panel(t_game *game);
 void	display_water(t_game *game, int x, int y);
 
 void	map_extend(t_map *map);
+
+void	display_inside_panel(t_game *game);
 
 #endif
