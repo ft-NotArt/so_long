@@ -42,6 +42,7 @@ FILES			=	is/ft_isalnum is/ft_isdigit is/ft_isalpha				\
 					math/ft_atoi math/ft_atol math/ft_itoa					\
 					math/ft_intlen math/ft_uintlen math/ft_hexlen			\
 					math/ft_abs												\
+					math/rand												\
 \
 					list/ft_lstnew											\
 					list/ft_lstsize											\

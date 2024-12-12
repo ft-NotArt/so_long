@@ -6,7 +6,7 @@
 /*   By: anoteris <noterisarthur42@gmail.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/10 15:00:20 by anoteris          #+#    #+#             */
-/*   Updated: 2024/12/10 16:59:24 by anoteris         ###   ########.fr       */
+/*   Updated: 2024/12/12 07:55:26 by anoteris         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,23 +43,10 @@ void	move_enemy(t_game *game, t_enemy *enemy, int input_dir)
 
 void	enemy_turn(t_game *game, t_enemy *enemy)
 {
-	int				fd ;
-	unsigned char	c[1];
 
 	if (enemy == NULL)
 		return ;
-	fd = open("/dev/random", O_RDONLY);
-	if (fd == -1)
-		c[0] = 1 ;
-	else
-		read(fd, c, 1);
-	if ((c[0] % 6) == 0)
-	{
-		read(fd, c, 1);
-		close(fd);
-		move_enemy(game, enemy, (c[0] % 4));
-	}
-	else
-		close(fd);
+	if ((rand_uchar() % 6) == 0)
+		move_enemy(game, enemy, (rand_uchar() % 4));
 	enemy_turn(game, enemy->next);
 }
