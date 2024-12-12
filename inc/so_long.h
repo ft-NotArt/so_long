@@ -6,7 +6,7 @@
 /*   By: anoteris <noterisarthur42@gmail.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/04 22:19:52 by anoteris          #+#    #+#             */
-/*   Updated: 2024/12/12 11:45:01 by anoteris         ###   ########.fr       */
+/*   Updated: 2024/12/12 14:34:32 by anoteris         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,8 @@
 # include "get_next_line.h"
 
 # define BITS 32
+
+# define MIN_WIDTH 5
 
 # define WATER			"textures/ground/water.png"
 
@@ -191,5 +193,7 @@ void	enemy_turn(t_game *game, t_enemy *enemy);
 void	display_panel(t_game *game);
 
 void	display_water(t_game *game, int x, int y);
+
+void	map_extend(t_map *map);
 
 #endif

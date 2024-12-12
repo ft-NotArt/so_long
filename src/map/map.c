@@ -6,7 +6,7 @@
 /*   By: anoteris <noterisarthur42@gmail.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/04 22:24:48 by anoteris          #+#    #+#             */
-/*   Updated: 2024/12/10 00:56:08 by anoteris         ###   ########.fr       */
+/*   Updated: 2024/12/12 14:23:52 by anoteris         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,6 +58,8 @@ t_map	*maps_init(int argc, char *argv[])
 	maps = map_init(argv[i]);
 	if (!maps->map || !pars_map(maps))
 		return (free_maps(maps), NULL);
+	if (maps->width < MIN_WIDTH)
+		map_extend(maps);
 	current = maps ;
 	while (++i < argc)
 	{
@@ -65,6 +67,8 @@ t_map	*maps_init(int argc, char *argv[])
 		current->next = next ;
 		if (!next->map || !pars_map(next))
 			return (free_maps(maps), NULL);
+		if (maps->width < MIN_WIDTH)
+			//
 		current = current->next ;
 	}
 	return (maps);

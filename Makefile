@@ -100,7 +100,7 @@ LFLAGS			=	-ldl -lglfw -lm												\
 
 FILES			=	so_long														\
 					pars/pars													\
-					map/map map/map_pars map/flood_fill							\
+					map/map map/map_pars map/flood_fill map/map_extend			\
 					exit/exit exit/error										\
 					game/game													\
 					game/display/display										\
