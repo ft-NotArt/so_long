@@ -6,7 +6,7 @@
 /*   By: anoteris <noterisarthur42@gmail.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/04 22:19:52 by anoteris          #+#    #+#             */
-/*   Updated: 2024/12/12 08:20:22 by anoteris         ###   ########.fr       */
+/*   Updated: 2024/12/12 11:45:01 by anoteris         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,6 +36,11 @@
 
 # define DECO			"deco/deco_"
 
+# define PANEL			"textures/panel/panel_"
+
+# define CORNER			"corner_"
+# define BORDER			"border_"
+
 # define KIRBY			"textures/kirby/"
 
 # define K_STANDING		"standing/kirby_standing_"
@@ -52,8 +57,8 @@
 # define LEFT			"left"
 # define BACK			"back"
 
-# define TOP			"top_"
-# define BOT			"bot_"
+# define TOP			"top"
+# define BOT			"bot"
 
 # define PNG			".png"
 
@@ -182,5 +187,9 @@ bool	is_enemy(char c);
 void	player_attack(t_game *game, t_player *player);
 
 void	enemy_turn(t_game *game, t_enemy *enemy);
+
+void	display_panel(t_game *game);
+
+void	display_water(t_game *game, int x, int y);
 
 #endif

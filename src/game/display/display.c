@@ -6,13 +6,13 @@
 /*   By: anoteris <noterisarthur42@gmail.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/05 11:55:57 by anoteris          #+#    #+#             */
-/*   Updated: 2024/12/10 16:44:18 by anoteris         ###   ########.fr       */
+/*   Updated: 2024/12/12 11:44:51 by anoteris         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
 
-static void	display_water(t_game *game, int x, int y)
+void	display_water(t_game *game, int x, int y)
 {
 	mlx_image_t	*water ;
 
@@ -86,4 +86,5 @@ void	display_full_map(t_game *game)
 			display_tile(game, x, y);
 		}
 	}
+	display_panel(game);
 }

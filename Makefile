@@ -106,6 +106,7 @@ FILES			=	so_long														\
 					game/display/display										\
 					game/display/tiles_player game/display/tiles_enemy			\
 					game/display/tiles_background								\
+					game/display/tiles_panel								\
 					game/entities/player										\
 					game/entities/move											\
 					game/entities/status										\
