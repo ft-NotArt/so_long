@@ -6,7 +6,7 @@
 /*   By: anoteris <noterisarthur42@gmail.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/05 11:46:51 by anoteris          #+#    #+#             */
-/*   Updated: 2024/12/12 04:52:18 by anoteris         ###   ########.fr       */
+/*   Updated: 2024/12/12 09:16:47 by anoteris         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,9 +51,21 @@ mlx_image_t	*get_mlx_ground(t_game *game, int x, int y)
 
 	ft_strlcpy(sprite_file, GRASS, ft_strlen(GRASS) + 1);
 	around = get_around_ground(game->maps->map, x, y);
-	ft_strlcat(sprite_file, around, ft_strlen(sprite_file) + 9);
+	if (!ft_strcmp(around, "11111111") && (rand_uchar() % 3) == 0)
+	{
+		ft_strlcat(sprite_file, DECO,
+			ft_strlen(sprite_file) + ft_strlen(DECO) + 1);
+		ft_strlcat(sprite_file, ft_itoa(rand_uchar() % 12),
+			ft_strlen(sprite_file) + 3);
+	}
+	else
+	{
+		ft_strlcat(sprite_file, GROUND, 
+			ft_strlen(sprite_file) + ft_strlen(GROUND) + 1);
+		ft_strlcat(sprite_file, around, ft_strlen(sprite_file) + 9);
+	}
 	free(around);
-	ft_strlcat(sprite_file, PNG, ft_strlen(sprite_file) + 5);
+	ft_strlcat(sprite_file, PNG, ft_strlen(sprite_file) + ft_strlen(PNG) + 1);
 	img = get_mlx_img(game, sprite_file);
 	return (img);
 }

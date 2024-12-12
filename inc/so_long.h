@@ -6,7 +6,7 @@
 /*   By: anoteris <noterisarthur42@gmail.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/04 22:19:52 by anoteris          #+#    #+#             */
-/*   Updated: 2024/12/12 05:03:46 by anoteris         ###   ########.fr       */
+/*   Updated: 2024/12/12 08:20:22 by anoteris         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,7 @@
 # include <string.h>
 # include <stdbool.h>
 
+# include "libft.h"
 # include "ft_printf.h"
 # include "get_next_line.h"
 
@@ -29,7 +30,11 @@
 
 # define STAR			"textures/ground/star.png"
 
-# define GRASS			"textures/ground/grass/ground"
+# define GRASS			"textures/ground/grass/"
+
+# define GROUND			"ground"
+
+# define DECO			"deco/deco_"
 
 # define KIRBY			"textures/kirby/"
 
