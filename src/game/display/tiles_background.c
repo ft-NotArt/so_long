@@ -6,7 +6,7 @@
 /*   By: anoteris <noterisarthur42@gmail.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/05 11:46:51 by anoteris          #+#    #+#             */
-/*   Updated: 2024/12/09 23:43:47 by anoteris         ###   ########.fr       */
+/*   Updated: 2024/12/12 04:52:18 by anoteris         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,16 +46,14 @@ static char	*get_around_ground(char **map, int x, int y)
 mlx_image_t	*get_mlx_ground(t_game *game, int x, int y)
 {
 	mlx_image_t		*img ;
-	char			*sprite_file ;
+	char			sprite_file[100] ;
 	char			*around;
 
-	sprite_file = ft_calloc(ft_strlen(GRASS_EX) + 1, sizeof(char));
 	ft_strlcpy(sprite_file, GRASS, ft_strlen(GRASS) + 1);
 	around = get_around_ground(game->maps->map, x, y);
 	ft_strlcat(sprite_file, around, ft_strlen(sprite_file) + 9);
 	free(around);
 	ft_strlcat(sprite_file, PNG, ft_strlen(sprite_file) + 5);
 	img = get_mlx_img(game, sprite_file);
-	free(sprite_file);
 	return (img);
 }

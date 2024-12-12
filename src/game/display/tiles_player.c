@@ -6,7 +6,7 @@
 /*   By: anoteris <noterisarthur42@gmail.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/09 23:40:27 by anoteris          #+#    #+#             */
-/*   Updated: 2024/12/10 09:02:03 by anoteris         ###   ########.fr       */
+/*   Updated: 2024/12/12 05:03:17 by anoteris         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,17 +15,17 @@
 static void	player_add_pos(int pose, char *sprite_file)
 {
 	if (pose == STANDING)
-		ft_strlcat(sprite_file, K_STANDIN,
-			ft_strlen(sprite_file) + ft_strlen(K_STANDIN) + 1);
+		ft_strlcat(sprite_file, K_STANDING,
+			ft_strlen(sprite_file) + ft_strlen(K_STANDING) + 1);
 	else if (pose == WALKING1)
-		ft_strlcat(sprite_file, K_WALKIN_1,
-			ft_strlen(sprite_file) + ft_strlen(K_WALKIN_1) + 1);
+		ft_strlcat(sprite_file, K_WALKING_1,
+			ft_strlen(sprite_file) + ft_strlen(K_WALKING_1) + 1);
 	else if (pose == WALKING2)
-		ft_strlcat(sprite_file, K_WALKIN_2,
-			ft_strlen(sprite_file) + ft_strlen(K_WALKIN_2) + 1);
+		ft_strlcat(sprite_file, K_WALKING_2,
+			ft_strlen(sprite_file) + ft_strlen(K_WALKING_2) + 1);
 	else if (pose == SWALLOWING)
-		ft_strlcat(sprite_file, K_SWALLOWIN,
-			ft_strlen(sprite_file) + ft_strlen(K_SWALLOWIN) + 1);
+		ft_strlcat(sprite_file, K_SWALLOWING,
+			ft_strlen(sprite_file) + ft_strlen(K_SWALLOWING) + 1);
 }
 
 static void	player_add_orient(int orient, char *sprite_file)
@@ -47,15 +47,13 @@ static void	player_add_orient(int orient, char *sprite_file)
 mlx_image_t	*get_mlx_player(t_game *game)
 {
 	mlx_image_t		*img ;
-	char			*sprite_file ;
+	char			sprite_file[100] ;
 
-	sprite_file = ft_calloc(ft_strlen(KIRBY_EX) + 1, sizeof(char));
 	ft_strlcpy(sprite_file, KIRBY, ft_strlen(KIRBY) + 1);
 	player_add_pos(game->maps->player->pose, sprite_file);
 	player_add_orient(game->maps->player->orient, sprite_file);
 	ft_strlcat(sprite_file, PNG, ft_strlen(sprite_file) + ft_strlen(PNG) + 1);
 	img = get_mlx_img(game, sprite_file);
-	free(sprite_file);
 	return (img);
 }
 

@@ -6,7 +6,7 @@
 /*   By: anoteris <noterisarthur42@gmail.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/04 22:19:52 by anoteris          #+#    #+#             */
-/*   Updated: 2024/12/10 16:39:01 by anoteris         ###   ########.fr       */
+/*   Updated: 2024/12/12 05:03:46 by anoteris         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,29 +29,26 @@
 
 # define STAR			"textures/ground/star.png"
 
-# define GRASS_EX		"textures/ground/grass/ground00000000.png"
-
 # define GRASS			"textures/ground/grass/ground"
-
-# define KIRBY_EX		"textures/kirby/standing/kirby_standing_rght.png"
 
 # define KIRBY			"textures/kirby/"
 
-# define K_STANDIN		"standing/kirby_standing_"
-# define K_WALKIN_1		"walking/kirby_walking_1_"
-# define K_WALKIN_2		"walking/kirby_walking_2_"
-# define K_SWALLOWIN	"swallowin/kirby_swallow_"
-
-# define ENEMY_EX		"textures/enemies/waddle_doo/waddle_doo_rght.png"
+# define K_STANDING		"standing/kirby_standing_"
+# define K_WALKING_1	"walking/kirby_walking_1_"
+# define K_WALKING_2	"walking/kirby_walking_2_"
+# define K_SWALLOWING	"swallowing/kirby_swallowing_"
 
 # define WADDLE_DOO		"textures/enemies/waddle_doo/waddle_doo_"
 
 # define WADDLE_DEE		"textures/enemies/waddle_dee/waddle_dee_"
 
-# define RIGHT			"rght"
-# define FRONT			"frnt"
+# define RIGHT			"right"
+# define FRONT			"front"
 # define LEFT			"left"
 # define BACK			"back"
+
+# define TOP			"top_"
+# define BOT			"bot_"
 
 # define PNG			".png"
 

@@ -6,7 +6,7 @@
 /*   By: anoteris <noterisarthur42@gmail.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/10 04:20:54 by anoteris          #+#    #+#             */
-/*   Updated: 2024/12/10 16:38:22 by anoteris         ###   ########.fr       */
+/*   Updated: 2024/12/12 07:59:36 by anoteris         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,9 +31,8 @@ static void	enemy_add_orient(int orient, char *sprite_file)
 mlx_image_t	*get_mlx_enemy(t_game *game, t_enemy *enemy)
 {
 	mlx_image_t		*img ;
-	char			*sprite_file ;
+	char			sprite_file[100] ;
 
-	sprite_file = ft_calloc(ft_strlen(ENEMY_EX) + 1, sizeof(char));
 	if (enemy->type == DEE)
 		ft_strlcpy(sprite_file, WADDLE_DEE, ft_strlen(WADDLE_DEE) + 1);
 	else
@@ -41,7 +40,6 @@ mlx_image_t	*get_mlx_enemy(t_game *game, t_enemy *enemy)
 	enemy_add_orient(enemy->orient, sprite_file);
 	ft_strlcat(sprite_file, PNG, ft_strlen(sprite_file) + ft_strlen(PNG) + 1);
 	img = get_mlx_img(game, sprite_file);
-	free(sprite_file);
 	return (img);
 }
 
