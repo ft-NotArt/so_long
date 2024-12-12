@@ -6,7 +6,7 @@
 /*   By: anoteris <noterisarthur42@gmail.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/09 22:45:25 by anoteris          #+#    #+#             */
-/*   Updated: 2024/12/10 16:13:18 by anoteris         ###   ########.fr       */
+/*   Updated: 2024/12/12 08:19:54 by anoteris         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,7 @@ void	keyboard_hook(mlx_key_data_t key_data, void *param)
 		if (key_data.key == MLX_KEY_1 || key_data.key == MLX_KEY_KP_1)
 			player_attack(game, game->maps->player);
 		if (key_data.key == MLX_KEY_P)
-			printf("POYO!\n"); // TODO: Maybe get a space in the window to print it
+			ft_printf("POYO!\n"); // TODO: Maybe get a space in the window to print it
 		if (key_data.key == MLX_KEY_ESCAPE)
 			close_game(game);
 
