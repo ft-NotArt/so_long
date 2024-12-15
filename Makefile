@@ -99,23 +99,48 @@ LFLAGS			=	-ldl -lglfw -lm												\
 # FILES
 
 FILES			=	so_long														\
+\
+\
 					pars/pars													\
-					map/map map/map_pars map/flood_fill map/map_extend			\
-					exit/exit exit/error										\
-					game/game													\
-					game/display/display										\
-					game/display/tiles_player game/display/tiles_enemy			\
-					game/display/tiles_background								\
-					game/display/tiles_panel_back								\
-					game/display/tiles_panel_inside								\
-					game/entities/player										\
-					game/entities/move											\
-					game/entities/status										\
-					game/entities/lst_enemies									\
-					game/entities/check											\
-					game/entities/enemy											\
-					game/hooks/hooks											\
+\
+\
+					map/map														\
+					map/map_pars												\
+					map/flood_fill												\
+					map/map_extend												\
+\
+\
 					init/init													\
+\
+\
+					game/game													\
+\
+					game/display/display										\
+\
+					game/display/entities/tiles_player							\
+					game/display/entities/tiles_enemy							\
+\
+					game/display/background/tiles_background					\
+\
+					game/display/panel/display_panel							\
+					game/display/panel/tiles_panel								\
+					game/display/panel/tiles_inside_panel						\
+\
+					game/entities/move											\
+					game/entities/check											\
+\
+					game/entities/player/player									\
+					game/entities/player/status									\
+\
+					game/entities/enemy/lst_enemies								\
+					game/entities/enemy/enemy									\
+\
+					game/hooks/hooks											\
+\
+\
+					exit/exit													\
+					exit/free													\
+					exit/error													\
 \
 
 SRC				=	$(addprefix src/, $(addsuffix .c, $(FILES)))

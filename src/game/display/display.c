@@ -6,57 +6,21 @@
 /*   By: anoteris <noterisarthur42@gmail.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/05 11:55:57 by anoteris          #+#    #+#             */
-/*   Updated: 2024/12/12 11:44:51 by anoteris         ###   ########.fr       */
+/*   Updated: 2024/12/15 23:33:27 by anoteris         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
 
-void	display_water(t_game *game, int x, int y)
+mlx_image_t	*get_mlx_img(t_game *game, char *sprite_file)
 {
-	mlx_image_t	*water ;
+	mlx_texture_t	*texture ;
+	mlx_image_t		*img ;
 
-	water = get_mlx_img(game, WATER);
-	IMG_WIN(game->mlx, water, BITS * x, BITS * y);
-	mlx_set_instance_depth(water->instances, 0);
-}
-
-static void	display_ground(t_game *game, int x, int y)
-{
-	mlx_image_t	*ground ;
-
-	ground = get_mlx_ground(game, x, y);
-	IMG_WIN(game->mlx, ground, BITS * x, BITS * y);
-	mlx_set_instance_depth(ground->instances, 2);
-}
-
-static void	display_star(t_game *game, int x, int y)
-{
-	mlx_image_t	*star ;
-
-	star = get_mlx_img(game, STAR);
-	IMG_WIN(game->mlx, star, BITS * x, BITS * y);
-	mlx_set_instance_depth(star->instances, 4);
-}
-
-static void	display_player(t_game *game, int x, int y)
-{
-	game->maps->player->image = get_mlx_player(game);
-	IMG_WIN(game->mlx, game->maps->player->image, BITS * x, (BITS * y) - 8);
-	mlx_set_instance_depth(game->maps->player->image->instances, 6);
-}
-
-static void	display_enemy(t_game *game, int x, int y)
-{
-	t_enemy		*enemy ;
-	mlx_image_t	*img ;
-
-	enemy = enemy_init(game->maps, x, y);
-	enemy_add_back(&(game->maps->enemies), enemy);
-	img = get_mlx_enemy(game, enemy);
-	enemy->image = img ;
-	IMG_WIN(game->mlx, img, BITS * x, (BITS * y) - 8);
-	mlx_set_instance_depth(img->instances, 10);
+	texture = mlx_load_png(sprite_file);
+	img = mlx_texture_to_image(game->mlx, texture);
+	mlx_delete_texture(texture);
+	return (img);
 }
 
 void	display_tile(t_game *game, int x, int y)

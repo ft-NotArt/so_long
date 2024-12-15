@@ -6,13 +6,13 @@
 /*   By: anoteris <noterisarthur42@gmail.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/05 13:08:24 by anoteris          #+#    #+#             */
-/*   Updated: 2024/12/10 15:13:34 by anoteris         ###   ########.fr       */
+/*   Updated: 2024/12/15 23:48:28 by anoteris         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
 
-void	move_player(t_game *game, t_player *player, int input_dir)
+static void	move_player(t_game *game, t_player *player, int input_dir)
 {
 	if (input_dir == EAST)
 	{

@@ -1,18 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   tiles_panel_inside.c                               :+:      :+:    :+:   */
+/*   tiles_inside_panel.c                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: anoteris <noterisarthur42@gmail.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/12 14:43:52 by anoteris          #+#    #+#             */
-/*   Updated: 2024/12/12 16:33:08 by anoteris         ###   ########.fr       */
+/*   Updated: 2024/12/15 23:40:08 by anoteris         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
 
-static void	display_boxes(t_game *game)
+void	display_boxes(t_game *game)
 {
 	mlx_image_t	*img ;
 	char		sprite_file[100];
@@ -33,7 +33,7 @@ static void	display_boxes(t_game *game)
 	mlx_set_instance_depth(img->instances, 4);
 }
 
-static void	display_sign(t_game *game)
+void	display_sign(t_game *game)
 {
 	mlx_image_t	*img ;
 	char		sprite_file[100];
@@ -46,7 +46,7 @@ static void	display_sign(t_game *game)
 	mlx_set_instance_depth(img->instances, 4);
 }
 
-static void	init_step_count(t_game *game)
+void	init_step_count(t_game *game)
 {
 	char		*str_step_count ;
 
@@ -76,11 +76,4 @@ void	update_step_count(t_game *game)
 	if (ft_intlen(game->maps->player->step_count)
 		> ft_intlen(game->maps->player->step_count - 1))
 		new_img->instances->x -= 5 ;
-}
-
-void	display_inside_panel(t_game *game)
-{
-	display_boxes(game);
-	display_sign(game);
-	init_step_count(game);
 }

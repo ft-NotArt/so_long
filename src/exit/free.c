@@ -1,34 +1,51 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   game.c                                             :+:      :+:    :+:   */
+/*   free.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: anoteris <noterisarthur42@gmail.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/12/05 06:14:48 by anoteris          #+#    #+#             */
-/*   Updated: 2024/12/15 23:21:05 by anoteris         ###   ########.fr       */
+/*   Created: 2024/12/16 00:13:00 by anoteris          #+#    #+#             */
+/*   Updated: 2024/12/16 00:13:21 by anoteris         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
 
-void	game_loop(t_map *maps)
+void	free_enemies(t_enemy *enemy)
 {
-	t_game	*game ;
+	t_enemy	*next ;
 
-	game = game_init(maps);
-	if (!game->mlx)
+	while (enemy)
 	{
-		free_game(game);
-		return (error_mlx());
+		next = enemy->next ;
+		free(enemy);
+		enemy = next ;
 	}
+}
 
-	
-	display_full_map(game);
+void	free_map(t_map *map)
+{
+	free_str_array(map->map);
+	free_enemies(map->enemies);
+	free(map->player);
+	free(map);
+}
 
+void	free_maps(t_map *maps)
+{
+	t_map	*next ;
 
-	mlx_loop_hook(game->mlx, frame_hook, game);
-	mlx_key_hook(game->mlx, keyboard_hook, game);
-	mlx_close_hook(game->mlx, close_game, game);
-	mlx_loop(game->mlx);
+	while (maps)
+	{
+		next = maps->next ;
+		free_map(maps);
+		maps = next ;
+	}
+}
+
+void	free_game(t_game *game)
+{
+	free_map(game->maps);
+	free(game);
 }

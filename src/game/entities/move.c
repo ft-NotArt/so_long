@@ -6,23 +6,11 @@
 /*   By: anoteris <noterisarthur42@gmail.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/09 23:00:55 by anoteris          #+#    #+#             */
-/*   Updated: 2024/12/12 16:00:16 by anoteris         ###   ########.fr       */
+/*   Updated: 2024/12/15 23:47:39 by anoteris         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
-
-// void	move_east(t_game *game, int player_y, int player_x)
-// {
-// 	if (game->maps->map[player_y][player_x + 1] != '1'
-// 		&& game->maps->map[player_y][player_x + 1] != 'E')
-// 	{
-// 		game->maps->map[player_y][player_x + 1] = 'P' ;
-// 		game->maps->map[player_y][player_x] = '0' ;
-// 		game->maps->player->image->instances->x += BITS ;
-// 		game->maps->player->x++ ;
-// 	}
-// }
 
 void	move_east(t_game *game, t_player *player, t_enemy *enemy)
 {

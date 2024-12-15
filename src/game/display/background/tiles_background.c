@@ -6,22 +6,11 @@
 /*   By: anoteris <noterisarthur42@gmail.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/05 11:46:51 by anoteris          #+#    #+#             */
-/*   Updated: 2024/12/12 16:34:20 by anoteris         ###   ########.fr       */
+/*   Updated: 2024/12/16 00:00:48 by anoteris         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
-
-mlx_image_t	*get_mlx_img(t_game *game, char *sprite_file)
-{
-	mlx_texture_t	*texture ;
-	mlx_image_t		*img ;
-
-	texture = mlx_load_png(sprite_file);
-	img = mlx_texture_to_image(game->mlx, texture);
-	mlx_delete_texture(texture);
-	return (img);
-}
 
 static char	*get_around_ground(char **map, int x, int y)
 {
@@ -43,7 +32,7 @@ static char	*get_around_ground(char **map, int x, int y)
 	return (around);
 }
 
-mlx_image_t	*get_mlx_ground(t_game *game, int x, int y)
+static mlx_image_t	*get_mlx_ground(t_game *game, int x, int y)
 {
 	mlx_image_t		*img ;
 	char			sprite_file[100];
@@ -70,4 +59,31 @@ mlx_image_t	*get_mlx_ground(t_game *game, int x, int y)
 	ft_strlcat(sprite_file, PNG, ft_strlen(sprite_file) + ft_strlen(PNG) + 1);
 	img = get_mlx_img(game, sprite_file);
 	return (img);
+}
+
+void	display_ground(t_game *game, int x, int y)
+{
+	mlx_image_t	*ground ;
+
+	ground = get_mlx_ground(game, x, y);
+	IMG_WIN(game->mlx, ground, BITS * x, BITS * y);
+	mlx_set_instance_depth(ground->instances, 2);
+}
+
+void	display_water(t_game *game, int x, int y)
+{
+	mlx_image_t	*water ;
+
+	water = get_mlx_img(game, WATER);
+	IMG_WIN(game->mlx, water, BITS * x, BITS * y);
+	mlx_set_instance_depth(water->instances, 0);
+}
+
+void	display_star(t_game *game, int x, int y)
+{
+	mlx_image_t	*star ;
+
+	star = get_mlx_img(game, STAR);
+	IMG_WIN(game->mlx, star, BITS * x, BITS * y);
+	mlx_set_instance_depth(star->instances, 4);
 }

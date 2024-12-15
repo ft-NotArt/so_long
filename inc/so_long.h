@@ -6,7 +6,7 @@
 /*   By: anoteris <noterisarthur42@gmail.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/04 22:19:52 by anoteris          #+#    #+#             */
-/*   Updated: 2024/12/12 15:59:27 by anoteris         ###   ########.fr       */
+/*   Updated: 2024/12/16 00:02:33 by anoteris         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -138,6 +138,7 @@ typedef struct s_enemy
 
 void	error_arguments();
 void	error_map();
+void	error_mlx();
 
 void	free_maps(t_map *maps);
 void	free_game(t_game *game);
@@ -159,9 +160,8 @@ void	game_loop(t_map *maps);
 void	display_full_map(t_game *game);
 void	display_tile(t_game *game, int x, int y);
 
-mlx_image_t	*get_mlx_ground(t_game *game, int x, int y);
 mlx_image_t	*get_mlx_img(t_game *game, char *sprite_file);
-mlx_image_t	*get_mlx_player(t_game *game);
+mlx_image_t	*get_mlx_panel(t_game *game, size_t x, size_t y);
 
 void	get_input_dir(keys_t key_press, t_game *game);
 
@@ -182,8 +182,6 @@ void	frame_hook(void *param);
 
 t_enemy	*enemy_init(t_map *map, int x, int y);
 
-mlx_image_t	*get_mlx_enemy(t_game *game, t_enemy *enemy);
-
 t_enemy	*enemy_last(t_enemy *lst);
 void	enemy_add_back(t_enemy **lst, t_enemy *new);
 void	enemy_del_coord(t_game *game, t_enemy **enemy, int y, int x);
@@ -199,11 +197,20 @@ void	enemy_turn(t_game *game, t_enemy *enemy);
 void	display_panel(t_game *game);
 
 void	display_water(t_game *game, int x, int y);
+void	display_star(t_game *game, int x, int y);
 
 void	map_extend(t_map *map);
 
 void	display_inside_panel(t_game *game);
 
 void	update_step_count(t_game *game);
+
+void	display_enemy(t_game *game, int x, int y);
+void	display_player(t_game *game, int x, int y);
+void	display_ground(t_game *game, int x, int y);
+void	init_step_count(t_game *game);
+void	display_boxes(t_game *game);
+void	display_sign(t_game *game);
+
 
 #endif
