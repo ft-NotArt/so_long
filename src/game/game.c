@@ -6,7 +6,7 @@
 /*   By: anoteris <noterisarthur42@gmail.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/05 06:14:48 by anoteris          #+#    #+#             */
-/*   Updated: 2024/12/15 23:21:05 by anoteris         ###   ########.fr       */
+/*   Updated: 2024/12/16 00:23:34 by anoteris         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,8 @@ void	game_loop(t_map *maps)
 	if (!game->mlx)
 	{
 		free_game(game);
-		return (error_mlx());
+		error_mlx();
+		exit(EXIT_FAILURE);
 	}
 
 	
