@@ -6,7 +6,7 @@
 /*   By: anoteris <noterisarthur42@gmail.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/05 06:14:48 by anoteris          #+#    #+#             */
-/*   Updated: 2024/12/16 20:55:29 by anoteris         ###   ########.fr       */
+/*   Updated: 2024/12/16 21:32:57 by anoteris         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,8 @@ void	level_transition(t_game *game)
 
 	mlx_close_window(game->mlx);
 	mlx_terminate(game->mlx);
-	free_game(game);
+	free_map(game->maps);
+	free(game);
 
 
 	next_game = game_init(next_map) ;
