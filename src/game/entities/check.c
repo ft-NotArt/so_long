@@ -6,13 +6,13 @@
 /*   By: anoteris <noterisarthur42@gmail.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/10 05:33:43 by anoteris          #+#    #+#             */
-/*   Updated: 2024/12/16 20:55:02 by anoteris         ###   ########.fr       */
+/*   Updated: 2024/12/16 21:14:00 by anoteris         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
 
-void	check_player_tile(t_game *game, int y, int x)
+void	check_player_mov(t_game *game, int y, int x)
 {
 	t_enemy	*current ;
 
@@ -34,7 +34,7 @@ void	check_player_tile(t_game *game, int y, int x)
 	}
 }
 
-void	check_enemy_tile(t_game *game, int y, int x)
+void	check_enemy_mov(t_game *game, int y, int x)
 {
 	if (game->maps->map[y][x] == 'P')
 	{

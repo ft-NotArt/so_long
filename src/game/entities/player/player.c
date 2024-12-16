@@ -6,7 +6,7 @@
 /*   By: anoteris <noterisarthur42@gmail.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/05 13:08:24 by anoteris          #+#    #+#             */
-/*   Updated: 2024/12/16 14:16:16 by anoteris         ###   ########.fr       */
+/*   Updated: 2024/12/16 21:14:00 by anoteris         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,22 +16,22 @@ static void	move_player(t_game *game, t_player *player, orient input_dir)
 {
 	if (input_dir == EAST)
 	{
-		check_player_tile(game, player->y, player->x + 1);
+		check_player_mov(game, player->y, player->x + 1);
 		move_east(game, PLAYER);
 	}
 	if (input_dir == SOUTH)
 	{
-		check_player_tile(game, player->y + 1, player->x);
+		check_player_mov(game, player->y + 1, player->x);
 		move_south(game, PLAYER);
 	}
 	if (input_dir == WEST)
 	{
-		check_player_tile(game, player->y, player->x - 1);
+		check_player_mov(game, player->y, player->x - 1);
 		move_west(game, PLAYER);
 	}
 	if (input_dir == NORTH)
 	{
-		check_player_tile(game, player->y - 1, player->x);
+		check_player_mov(game, player->y - 1, player->x);
 		move_north(game, PLAYER);
 	}
 	game->maps->player->status = alternate_walking(game->maps->player->status);
