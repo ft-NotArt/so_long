@@ -6,13 +6,13 @@
 /*   By: anoteris <noterisarthur42@gmail.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/10 15:00:20 by anoteris          #+#    #+#             */
-/*   Updated: 2024/12/12 16:30:35 by anoteris         ###   ########.fr       */
+/*   Updated: 2024/12/16 06:30:18 by anoteris         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
 
-void	move_enemy(t_game *game, t_enemy *enemy, int input_dir)
+void	move_enemy(t_game *game, t_enemy *enemy, orient input_dir)
 {
 	if (input_dir == EAST)
 	{
@@ -45,7 +45,22 @@ void	enemy_turn(t_game *game, t_enemy *enemy)
 {
 	if (enemy == NULL)
 		return ;
-	if ((rand_uchar() % 6) == 0)
+	if (enemy->attack != NULL)
+	{
+		update_attack_sprite(game, enemy->attack);
+		if (enemy->attack->frame == 4)
+			(free(enemy->attack), enemy->attack = NULL);
+		else
+			check_attack(game, enemy->attack);
+			// printf("Enemy attacking, frame %d \n", enemy->attack->frame);
+	}
+	else if (player_in_range(game->maps, enemy))
+	{
+		enemy_attack(game, enemy);
+		check_attack(game, enemy->attack);
+		printf("ATTACK !!\n");
+	}
+	else if ((rand_uchar() % 6) == 0)
 		move_enemy(game, enemy, (rand_uchar() % 4));
 	enemy_turn(game, enemy->next);
 }

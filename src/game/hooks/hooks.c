@@ -6,7 +6,7 @@
 /*   By: anoteris <noterisarthur42@gmail.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/09 22:45:25 by anoteris          #+#    #+#             */
-/*   Updated: 2024/12/15 23:21:46 by anoteris         ###   ########.fr       */
+/*   Updated: 2024/12/16 01:17:57 by anoteris         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,13 +52,13 @@ void	frame_hook(void *param)
 
 	game = (t_game *) param ;
 	double time = mlx_get_time();
-	if ((game->maps->player->pose == SWALLOWING
+	if ((game->maps->player->status == SWALLOWING
 		&& game->maps->player->last_action_time + 0.5 < time)
-		|| ((game->maps->player->pose == WALKING1
-		|| game->maps->player->pose == WALKING2)
+		|| ((game->maps->player->status == WALKING1
+		|| game->maps->player->status == WALKING2)
 		&& game->maps->player->last_action_time + 0.35 < time))
 	{
-		game->maps->player->pose = STANDING ;
+		game->maps->player->status = STANDING ;
 		update_player_sprite(game, game->maps->player);
 	}
 	if (fmod(time, 0.50) <= 0.02)

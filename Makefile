@@ -117,6 +117,7 @@ FILES			=	so_long														\
 \
 					game/display/display										\
 \
+					game/display/entities/tiles_entities						\
 					game/display/entities/tiles_player							\
 					game/display/entities/tiles_enemy							\
 \
@@ -141,6 +142,17 @@ FILES			=	so_long														\
 					exit/exit													\
 					exit/free													\
 					exit/error													\
+\
+\
+\
+\
+					game/entities/attack/attack									\
+					game/entities/attack/check_range							\
+					game/entities/attack/check_kill								\
+\
+					game/display/attack/tiles_attack_display					\
+					game/display/attack/tiles_attack_get						\
+					game/display/attack/tiles_attack_update						\
 \
 
 SRC				=	$(addprefix src/, $(addsuffix .c, $(FILES)))

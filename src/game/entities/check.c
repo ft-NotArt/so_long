@@ -6,7 +6,7 @@
 /*   By: anoteris <noterisarthur42@gmail.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/10 05:33:43 by anoteris          #+#    #+#             */
-/*   Updated: 2024/12/12 08:19:57 by anoteris         ###   ########.fr       */
+/*   Updated: 2024/12/16 05:48:30 by anoteris         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,12 +16,12 @@ void	check_player_tile(t_game *game, int y, int x)
 {
 	if (game->maps->map[y][x] == 'E' && game->maps->enemy_number == 0)
 	{
-		ft_printf("GG !\n");
+		ft_putstr_fd("GG !\n", STDOUT_FILENO);
 		close_game(game);
 	}
 	else if (is_enemy(game->maps->map[y][x]))
 	{
-		ft_printf("Game Over !\n");
+		ft_putstr_fd("Game Over !\n", STDOUT_FILENO);
 		close_game(game);
 	}
 }
@@ -30,7 +30,7 @@ void	check_enemy_tile(t_game *game, int y, int x)
 {
 	if (game->maps->map[y][x] == 'P')
 	{
-		ft_printf("Game Over !\n");
+		ft_putstr_fd("Game Over !\n", STDOUT_FILENO);
 		close_game(game);
 	}
 }

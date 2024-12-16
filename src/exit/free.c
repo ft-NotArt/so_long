@@ -6,21 +6,31 @@
 /*   By: anoteris <noterisarthur42@gmail.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/16 00:13:00 by anoteris          #+#    #+#             */
-/*   Updated: 2024/12/16 00:13:21 by anoteris         ###   ########.fr       */
+/*   Updated: 2024/12/16 06:53:08 by anoteris         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
 
-void	free_enemies(t_enemy *enemy)
+void	free_enemy(t_enemy *enemy)
+{
+	if (enemy->attack != NULL)
+	{
+		enemy->attack->image->enabled = false ;
+		free(enemy->attack);
+	}
+	free(enemy);
+}
+
+void	free_enemies(t_enemy *enemies)
 {
 	t_enemy	*next ;
 
-	while (enemy)
+	while (enemies)
 	{
-		next = enemy->next ;
-		free(enemy);
-		enemy = next ;
+		next = enemies->next ;
+		free_enemy(enemies);
+		enemies = next ;
 	}
 }
 
@@ -28,6 +38,7 @@ void	free_map(t_map *map)
 {
 	free_str_array(map->map);
 	free_enemies(map->enemies);
+	free(map->player->attack);
 	free(map->player);
 	free(map);
 }

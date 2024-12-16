@@ -6,7 +6,7 @@
 /*   By: anoteris <noterisarthur42@gmail.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/10 05:46:22 by anoteris          #+#    #+#             */
-/*   Updated: 2024/12/10 08:48:52 by anoteris         ###   ########.fr       */
+/*   Updated: 2024/12/16 06:46:09 by anoteris         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,28 +33,28 @@ void	enemy_add_back(t_enemy **lst, t_enemy *new)
 
 void	enemy_del_coord(t_game *game, t_enemy **enemy, int y, int x)
 {
-	t_enemy	*current ;
-	t_enemy	*next ;
+	t_enemy	*cur ;
+	t_enemy	*nxt ;
 
-	current = *enemy ;
-	if (current->y == y && current->x == x)
+	cur = *enemy ;
+	if (cur->y == y && cur->x == x)
 	{
-		*enemy = current->next ;
+		*enemy = cur->next ;
 		game->maps->map[y][x] = '0' ;
 		game->maps->enemy_number-- ;
-		return (mlx_delete_image(game->mlx, current->image), free(current));
+		return (mlx_delete_image(game->mlx, cur->image), free_enemy(cur));
 	}
-	next = current->next ;
-	while (current)
+	nxt = cur->next ;
+	while (cur)
 	{
-		if (next->y == y && next->x == x)
+		if (nxt->y == y && nxt->x == x)
 		{
-			current->next = next->next ;
+			cur->next = nxt->next ;
 			game->maps->map[y][x] = '0' ;
 			game->maps->enemy_number-- ;
-			return (mlx_delete_image(game->mlx, next->image), free(next));
+			return (mlx_delete_image(game->mlx, nxt->image), free_enemy(nxt));
 		}
-		current = next ;
-		next = current->next ;
+		cur = nxt ;
+		nxt = cur->next ;
 	}
 }

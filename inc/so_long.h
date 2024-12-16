@@ -6,7 +6,7 @@
 /*   By: anoteris <noterisarthur42@gmail.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/04 22:19:52 by anoteris          #+#    #+#             */
-/*   Updated: 2024/12/16 00:02:33 by anoteris         ###   ########.fr       */
+/*   Updated: 2024/12/16 06:44:19 by anoteris         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,6 +58,11 @@
 
 # define WADDLE_DEE		"textures/enemies/waddle_dee/waddle_dee_"
 
+# define ATTACKS		"textures/attacks/"
+
+# define KNIFE			"knife_"
+# define MAGIC_BEAM		"magic_beam_"
+
 # define RIGHT			"right"
 # define FRONT			"front"
 # define LEFT			"left"
@@ -87,10 +92,18 @@ typedef enum position
 	STANDING,
 	WALKING1,
 	WALKING2,
-	SWALLOWING
+	SWALLOWING,
+	ATTACKING
 }			pos ;
 
-typedef enum type
+typedef enum attack_frame
+{
+	FRAME1 = 1,
+	FRAME2 = 2,
+	FRAME3 = 3
+}			att_frame ;
+
+typedef enum enemy_type
 {
 	DEE = 'C',
 	DOO = 'D'
@@ -100,6 +113,7 @@ typedef struct s_game
 {
 	mlx_t			*mlx ;
 	struct s_map	*maps ;
+	bool			player_attack_set[3];
 }			t_game ;
 
 typedef struct s_map
@@ -116,25 +130,37 @@ typedef struct s_map
 
 typedef struct s_player
 {
-	mlx_image_t	*image ;
-	int 		x ;
-	int 		y ;
-	int			orient ;
-	int			pose ;
-	int			step_count ;
-	double		last_action_time ;
+	mlx_image_t		*image ;
+	int 			x ;
+	int 			y ;
+	orient			orient ;
+	pos				status ;
+	int				step_count ;
+	struct s_attack	*attack ;
+	double			last_action_time ;
 }			t_player ;
 
 typedef struct s_enemy
 {
 	mlx_image_t		*image ;
-	char			type ;
+	type			type ;
 	int 			x ;
 	int 			y ;
-	int				orient ;
-	double			last_action_time ;
+	orient			orient ;
+	bool			attack_set[3];
+	struct s_attack	*attack ;
 	struct s_enemy	*next ;
 }			t_enemy ;
+
+typedef struct s_attack
+{
+	mlx_image_t	*image ;
+	att_frame	frame ;
+	type		type ;
+	int			x ;
+	int			y ;
+	orient		orient ;
+}			t_attack ;
 
 void	error_arguments();
 void	error_map();
@@ -212,5 +238,18 @@ void	init_step_count(t_game *game);
 void	display_boxes(t_game *game);
 void	display_sign(t_game *game);
 
+void	add_orient(orient orient, char *sprite_file);
+
+bool	player_in_range(t_map *map, t_enemy *enemy);
+
+mlx_image_t	*get_mlx_attack(t_game *game, t_attack *attack);
+void	display_attack(t_game *game, t_attack *attack);
+void	update_attack_sprite(t_game *game, t_attack *attack);
+
+t_attack	*attack_init(type type, int x, int y, orient orient);
+void	enemy_attack(t_game *game, t_enemy *enemy);
+void	check_attack(t_game *game, t_attack *attack);
+
+void	free_enemy(t_enemy *enemy);
 
 #endif
