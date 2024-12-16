@@ -6,7 +6,7 @@
 /*   By: anoteris <noterisarthur42@gmail.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/05 11:55:57 by anoteris          #+#    #+#             */
-/*   Updated: 2024/12/16 18:18:56 by anoteris         ###   ########.fr       */
+/*   Updated: 2024/12/16 20:45:31 by anoteris         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,5 +55,6 @@ void	display_full_map(t_game *game)
 			display_tile(game, x, y);
 		}
 	}
+
 	display_panel(game);
 }

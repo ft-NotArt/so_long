@@ -6,13 +6,13 @@
 /*   By: anoteris <noterisarthur42@gmail.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/05 02:10:19 by anoteris          #+#    #+#             */
-/*   Updated: 2024/12/16 18:18:41 by anoteris         ###   ########.fr       */
+/*   Updated: 2024/12/16 19:57:58 by anoteris         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
 
-static void	close_game(t_game *game)
+void	close_game(t_game *game)
 {
 	free_enemies(&game->maps->enemies);
 	mlx_close_window(game->mlx);

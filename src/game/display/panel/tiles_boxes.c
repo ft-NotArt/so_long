@@ -6,7 +6,7 @@
 /*   By: anoteris <noterisarthur42@gmail.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/16 11:10:21 by anoteris          #+#    #+#             */
-/*   Updated: 2024/12/16 17:40:52 by anoteris         ###   ########.fr       */
+/*   Updated: 2024/12/16 20:53:21 by anoteris         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,7 +59,7 @@ static void	display_power_knife(t_game *game)
 	IMG_WIN(game->mlx, game->player_attack_set_img[1],
 		56, (game->maps->height * BITS) + 16);
 	mlx_set_instance_depth(game->player_attack_set_img[1]->instances, 16);
-	game->player_attack_set_img[1]->enabled = false ;
+	game->player_attack_set_img[1]->enabled = game->player_attack_set[1] ;
 }
 
 static void	display_power_magic_beam(t_game *game)
@@ -74,7 +74,7 @@ static void	display_power_magic_beam(t_game *game)
 	IMG_WIN(game->mlx, game->player_attack_set_img[2],
 		96, (game->maps->height * BITS) + 16);
 	mlx_set_instance_depth(game->player_attack_set_img[2]->instances, 16);
-	game->player_attack_set_img[2]->enabled = false ;
+	game->player_attack_set_img[2]->enabled = game->player_attack_set[2] ;
 }
 
 void	display_power(t_game *game)

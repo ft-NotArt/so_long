@@ -6,7 +6,7 @@
 /*   By: anoteris <noterisarthur42@gmail.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/10 15:00:20 by anoteris          #+#    #+#             */
-/*   Updated: 2024/12/16 14:57:09 by anoteris         ###   ########.fr       */
+/*   Updated: 2024/12/16 21:00:56 by anoteris         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,6 +34,7 @@ void	move_enemy(t_game *game, t_enemy *enemy, orient input_dir)
 		check_enemy_tile(game, enemy->y - 1, enemy->x);
 		move_north(game, ENEMY);
 	}
+	//TODO: Probably a segfault here
 	if (enemy->orient != input_dir)
 	{
 		enemy->orient = input_dir ;

@@ -6,7 +6,7 @@
 /*   By: anoteris <noterisarthur42@gmail.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/04 22:19:35 by anoteris          #+#    #+#             */
-/*   Updated: 2024/12/10 05:58:26 by anoteris         ###   ########.fr       */
+/*   Updated: 2024/12/16 20:17:00 by anoteris         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,7 @@
 
 int	main(int argc, char *argv[])
 {
+	t_game	*game ;
 	t_map	*maps ;
 
 	if (argc < 2 || !check_ber(argc, argv))
@@ -34,7 +35,15 @@ int	main(int argc, char *argv[])
 		current_map = current_map->next ;
 	}
 
-	game_loop(maps);
+	game = game_init(maps);
+	if (!game->mlx)
+	{
+		free_game(game);
+		error_mlx();
+		return (EXIT_FAILURE);
+	}
+
+	game_loop(game);
 
 	// * pars
 	// * game

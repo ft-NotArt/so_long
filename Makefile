@@ -157,6 +157,8 @@ FILES			=	so_long														\
 					game/display/attack/tiles_attack_get						\
 					game/display/attack/tiles_attack_update						\
 \
+					game/display/transition/display_transition					\
+\
 
 SRC				=	$(addprefix src/, $(addsuffix .c, $(FILES)))
 OBJ				=	$(addprefix src/, $(addsuffix .o, $(FILES)))

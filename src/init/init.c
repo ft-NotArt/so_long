@@ -6,7 +6,7 @@
 /*   By: anoteris <noterisarthur42@gmail.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/09 22:46:43 by anoteris          #+#    #+#             */
-/*   Updated: 2024/12/16 10:55:35 by anoteris         ###   ########.fr       */
+/*   Updated: 2024/12/16 20:06:24 by anoteris         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -102,13 +102,17 @@ t_enemy	*enemy_init(t_map *map, int x, int y)
 
 t_game	*game_init(t_map *maps)
 {
-	t_game	*game ;
+	t_game		*game ;
+	static char	level = '0' ;
+	char		win_name[50];
 
 	game = malloc(sizeof(t_game));
 	game->maps = maps ;
+	level++ ;
+	ft_strlcpy(win_name, LEVEL, ft_strlen(LEVEL) + 1);
+	ft_strlcat(win_name, &level, ft_strlen(LEVEL) + 2);
 	game->mlx = mlx_init(game->maps->width * BITS,
-			(game->maps->height + 2) * BITS,
-			"TEST", false);
+			(game->maps->height + 2) * BITS, win_name, false);
 	game->player_attack_set[0] = 1 ;
 	game->player_attack_set[1] = 0 ;
 	game->player_attack_set[2] = 0 ;

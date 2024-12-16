@@ -6,7 +6,7 @@
 /*   By: anoteris <noterisarthur42@gmail.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/04 22:19:52 by anoteris          #+#    #+#             */
-/*   Updated: 2024/12/16 18:18:14 by anoteris         ###   ########.fr       */
+/*   Updated: 2024/12/16 20:17:31 by anoteris         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,6 +27,8 @@
 # define BITS 32
 
 # define MIN_WIDTH 7
+
+# define LEVEL			"Level "
 
 # define WATER			"textures/ground/water.png"
 
@@ -169,6 +171,7 @@ void	error_arguments();
 void	error_map();
 void	error_mlx();
 
+void	free_map(t_map *map);
 void	free_maps(t_map *maps);
 void	free_game(t_game *game);
 
@@ -184,7 +187,7 @@ char	**read_map(char *map_file);
 t_game	*game_init(t_map *maps);
 t_map	*map_init(char *map_file);
 
-void	game_loop(t_map *maps);
+void	game_loop(t_game *game);
 
 void	display_full_map(t_game *game);
 void	display_tile(t_game *game, int x, int y);
@@ -199,6 +202,7 @@ void	update_enemy_sprite(t_game *game, t_enemy *enemy);
 
 void	keyboard_hook(mlx_key_data_t key_data, void *param);
 
+void	close_game(t_game *game);
 void	close_success(void *param);
 void	close_failure(void *param);
 
@@ -270,5 +274,6 @@ void	update_player_attack(t_game *game, t_player *player);
 
 void	check_player_attack(t_game *game, t_player *player);
 
+void	level_transition(t_game *game);
 
 #endif
