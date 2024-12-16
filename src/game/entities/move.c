@@ -6,7 +6,7 @@
 /*   By: anoteris <noterisarthur42@gmail.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/09 23:00:55 by anoteris          #+#    #+#             */
-/*   Updated: 2024/12/15 23:47:39 by anoteris         ###   ########.fr       */
+/*   Updated: 2024/12/16 16:21:37 by anoteris         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,23 +14,24 @@
 
 void	move_east(t_game *game, t_player *player, t_enemy *enemy)
 {
-	if (player != NULL)
+	if (player != NULL && game->maps->map[player->y][player->x + 1] != '1'
+		&& game->maps->map[player->y][player->x + 1] != 'E')
 	{
-		if (game->maps->map[player->y][player->x + 1] != '1'
-			&& game->maps->map[player->y][player->x + 1] != 'E')
-		{
-			game->maps->map[player->y][player->x + 1] = 'P' ;
-			game->maps->map[player->y][player->x] = '0' ;
-			player->image->instances->x += BITS ;
-			player->x++ ;
-			update_step_count(game);
-		}
+		game->maps->map[player->y][player->x + 1] = 'P' ;
+		game->maps->map[player->y][player->x] = '0' ;
+		player->image->instances->x += BITS ;
+		player->x++ ;
+		update_step_count(game);
 	}
-	else if (enemy != NULL)
+	else if (enemy != NULL && game->maps->map[enemy->y][enemy->x + 1] != '1'
+		&& game->maps->map[enemy->y][enemy->x + 1] != 'E'
+		&& !is_enemy(game->maps->map[enemy->y][enemy->x + 1]))
 	{
-		if (game->maps->map[enemy->y][enemy->x + 1] != '1'
-			&& game->maps->map[enemy->y][enemy->x + 1] != 'E'
-			&& !is_enemy(game->maps->map[enemy->y][enemy->x + 1]))
+		if (game->maps->player->attack != NULL
+			&& enemy->x + 1 == game->maps->player->attack->x
+			&& enemy->y == game->maps->player->attack->y)
+			enemy_del(game, &game->maps->enemies, enemy->y, enemy->x);
+		else
 		{
 			game->maps->map[enemy->y][enemy->x + 1] = enemy->type ;
 			game->maps->map[enemy->y][enemy->x] = '0' ;
@@ -42,23 +43,24 @@ void	move_east(t_game *game, t_player *player, t_enemy *enemy)
 
 void	move_south(t_game *game, t_player *player, t_enemy *enemy)
 {
-	if (player != NULL)
-	{
-		if (game->maps->map[player->y + 1][player->x] != '1'
+	if (player != NULL && game->maps->map[player->y + 1][player->x] != '1'
 			&& game->maps->map[player->y + 1][player->x] != 'E')
-		{
-			game->maps->map[player->y + 1][player->x] = 'P' ;
-			game->maps->map[player->y][player->x] = '0' ;
-			player->image->instances->y += BITS ;
-			player->y++ ;
-			update_step_count(game);
-		}
-	}
-	else if (enemy != NULL)
 	{
-		if (game->maps->map[enemy->y + 1][enemy->x] != '1'
-			&& game->maps->map[enemy->y + 1][enemy->x] != 'E'
-			&& !is_enemy(game->maps->map[enemy->y + 1][enemy->x]))
+		game->maps->map[player->y + 1][player->x] = 'P' ;
+		game->maps->map[player->y][player->x] = '0' ;
+		player->image->instances->y += BITS ;
+		player->y++ ;
+		update_step_count(game);
+	}
+	else if (enemy != NULL && game->maps->map[enemy->y + 1][enemy->x] != '1'
+		&& game->maps->map[enemy->y + 1][enemy->x] != 'E'
+		&& !is_enemy(game->maps->map[enemy->y + 1][enemy->x]))
+	{
+		if (game->maps->player->attack != NULL
+			&& enemy->x == game->maps->player->attack->x
+			&& enemy->y + 1 == game->maps->player->attack->y)
+			enemy_del(game, &game->maps->enemies, enemy->y, enemy->x);
+		else
 		{
 			game->maps->map[enemy->y + 1][enemy->x] = enemy->type ;
 			game->maps->map[enemy->y][enemy->x] = '0' ;
@@ -70,23 +72,24 @@ void	move_south(t_game *game, t_player *player, t_enemy *enemy)
 
 void	move_west(t_game *game, t_player *player, t_enemy *enemy)
 {
-	if (player != NULL)
+	if (player != NULL && game->maps->map[player->y][player->x - 1] != '1'
+		&& game->maps->map[player->y][player->x - 1] != 'E')
 	{
-		if (game->maps->map[player->y][player->x - 1] != '1'
-			&& game->maps->map[player->y][player->x - 1] != 'E')
-		{
-			game->maps->map[player->y][player->x - 1] = 'P' ;
-			game->maps->map[player->y][player->x] = '0' ;
-			player->image->instances->x -= BITS ;
-			player->x-- ;
-			update_step_count(game);
-		}
+		game->maps->map[player->y][player->x - 1] = 'P' ;
+		game->maps->map[player->y][player->x] = '0' ;
+		player->image->instances->x -= BITS ;
+		player->x-- ;
+		update_step_count(game);
 	}
-	else if (enemy != NULL)
+	else if (enemy != NULL && game->maps->map[enemy->y][enemy->x - 1] != '1'
+		&& game->maps->map[enemy->y][enemy->x - 1] != 'E'
+		&& !is_enemy(game->maps->map[enemy->y][enemy->x - 1]))
 	{
-		if (game->maps->map[enemy->y][enemy->x - 1] != '1'
-			&& game->maps->map[enemy->y][enemy->x - 1] != 'E'
-			&& !is_enemy(game->maps->map[enemy->y][enemy->x - 1]))
+		if (game->maps->player->attack != NULL
+			&& enemy->x - 1 == game->maps->player->attack->x
+			&& enemy->y == game->maps->player->attack->y)
+			enemy_del(game, &game->maps->enemies, enemy->y, enemy->x);
+		else
 		{
 			game->maps->map[enemy->y][enemy->x - 1] = enemy->type ;
 			game->maps->map[enemy->y][enemy->x] = '0' ;
@@ -98,23 +101,24 @@ void	move_west(t_game *game, t_player *player, t_enemy *enemy)
 
 void	move_north(t_game *game, t_player *player, t_enemy *enemy)
 {
-	if (player != NULL)
+	if (player != NULL && game->maps->map[player->y - 1][player->x] != '1'
+		&& game->maps->map[player->y - 1][player->x] != 'E')
 	{
-		if (game->maps->map[player->y - 1][player->x] != '1'
-			&& game->maps->map[player->y - 1][player->x] != 'E')
-		{
-			game->maps->map[player->y - 1][player->x] = 'P' ;
-			game->maps->map[player->y][player->x] = '0' ;
-			player->image->instances->y -= BITS ;
-			player->y-- ;
-			update_step_count(game);
-		}
+		game->maps->map[player->y - 1][player->x] = 'P' ;
+		game->maps->map[player->y][player->x] = '0' ;
+		player->image->instances->y -= BITS ;
+		player->y-- ;
+		update_step_count(game);
 	}
-	else if (enemy != NULL)
+	else if (enemy != NULL && game->maps->map[enemy->y - 1][enemy->x] != '1'
+		&& game->maps->map[enemy->y - 1][enemy->x] != 'E'
+		&& !is_enemy(game->maps->map[enemy->y - 1][enemy->x]))
 	{
-		if (game->maps->map[enemy->y - 1][enemy->x] != '1'
-			&& game->maps->map[enemy->y - 1][enemy->x] != 'E'
-			&& !is_enemy(game->maps->map[enemy->y - 1][enemy->x]))
+		if (game->maps->player->attack != NULL
+			&& enemy->x == game->maps->player->attack->x
+			&& enemy->y - 1 == game->maps->player->attack->y)
+			enemy_del(game, &game->maps->enemies, enemy->y, enemy->x);
+		else
 		{
 			game->maps->map[enemy->y - 1][enemy->x] = enemy->type ;
 			game->maps->map[enemy->y][enemy->x] = '0' ;

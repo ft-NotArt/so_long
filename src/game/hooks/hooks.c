@@ -6,7 +6,7 @@
 /*   By: anoteris <noterisarthur42@gmail.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/09 22:45:25 by anoteris          #+#    #+#             */
-/*   Updated: 2024/12/16 15:31:55 by anoteris         ###   ########.fr       */
+/*   Updated: 2024/12/16 16:18:26 by anoteris         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,6 +49,8 @@ void	keyboard_hook(mlx_key_data_t key_data, void *param)
 		}
 		if (key_data.key == MLX_KEY_C)
 			game->maps->enemy_number = 0 ;
+		if (key_data.key == MLX_KEY_4)
+			move_west(game, NULL, game->maps->enemies) ;
 		if (key_data.key == MLX_KEY_C)
 			enemy_del(game, &game->maps->enemies, game->maps->enemies->y, game->maps->enemies->x);
 		if (key_data.key == MLX_KEY_V)
