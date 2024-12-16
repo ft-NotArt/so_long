@@ -6,7 +6,7 @@
 /*   By: anoteris <noterisarthur42@gmail.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/04 22:19:52 by anoteris          #+#    #+#             */
-/*   Updated: 2024/12/16 11:16:22 by anoteris         ###   ########.fr       */
+/*   Updated: 2024/12/16 12:30:28 by anoteris         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -213,13 +213,13 @@ t_enemy	*enemy_init(t_map *map, int x, int y);
 
 t_enemy	*enemy_last(t_enemy *lst);
 void	enemy_add_back(t_enemy **lst, t_enemy *new);
-void	enemy_del_coord(t_game *game, t_enemy **enemy, int y, int x);
+void	enemy_del(t_game *game, t_enemy **enemy, int y, int x);
 
 void	check_player_tile(t_game *game, int y, int x);
 void	check_enemy_tile(t_game *game, int y, int x);
 bool	is_enemy(char c);
 
-void	player_attack(t_game *game, t_player *player);
+void	player_attack(t_game *game, char **map, t_player *player);
 
 void	enemy_turn(t_game *game, t_enemy *enemy);
 
@@ -258,5 +258,7 @@ void	free_enemy(t_enemy *enemy);
 void	game_over(t_game *game, t_enemy *enemy);
 
 void	display_power(t_game *game);
+
+t_enemy	*get_enemy(t_enemy **enemy, int y, int x);
 
 #endif

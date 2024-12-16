@@ -6,7 +6,7 @@
 /*   By: anoteris <noterisarthur42@gmail.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/09 22:45:25 by anoteris          #+#    #+#             */
-/*   Updated: 2024/12/16 11:21:11 by anoteris         ###   ########.fr       */
+/*   Updated: 2024/12/16 12:24:46 by anoteris         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ void	keyboard_hook(mlx_key_data_t key_data, void *param)
 			|| key_data.key == MLX_KEY_D || key_data.key == MLX_KEY_RIGHT)
 			get_input_dir(key_data.key, game);
 		if (key_data.key == MLX_KEY_1 || key_data.key == MLX_KEY_KP_1)
-			player_attack(game, game->maps->player);
+			player_attack(game, game->maps->map, game->maps->player);
 		if (key_data.key == MLX_KEY_P)
 			ft_printf("POYO!\n"); // TODO: Maybe get a space in the window to print it
 		if (key_data.key == MLX_KEY_ESCAPE)
@@ -42,9 +42,9 @@ void	keyboard_hook(mlx_key_data_t key_data, void *param)
 		if (key_data.key == MLX_KEY_C)
 			game->maps->enemy_number = 0 ;
 		if (key_data.key == MLX_KEY_C)
-			enemy_del_coord(game, &game->maps->enemies, game->maps->enemies->y, game->maps->enemies->x);
+			enemy_del(game, &game->maps->enemies, game->maps->enemies->y, game->maps->enemies->x);
 		if (key_data.key == MLX_KEY_V)
-			enemy_del_coord(game, &game->maps->enemies->next, game->maps->enemies->next->y, game->maps->enemies->next->x);
+			enemy_del(game, &game->maps->enemies->next, game->maps->enemies->next->y, game->maps->enemies->next->x);
 		// if (key_data.key == MLX_KEY_E)
 		// {
 		// 	check_enemy_tile(game, game->maps->enemies->y, game->maps->enemies->x + 1);
