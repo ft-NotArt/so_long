@@ -6,7 +6,7 @@
 /*   By: anoteris <noterisarthur42@gmail.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/04 22:19:52 by anoteris          #+#    #+#             */
-/*   Updated: 2024/12/16 15:30:59 by anoteris         ###   ########.fr       */
+/*   Updated: 2024/12/16 16:56:08 by anoteris         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -252,6 +252,7 @@ void	update_attack_sprite(t_game *game, t_attack *attack);
 t_attack	*attack_init(type type, int x, int y, orient orient);
 void	check_enemy_attack(t_game *game, t_enemy *enemy);
 
+void	free_enemies(t_enemy **enemies);
 void	free_enemy(t_enemy *enemy);
 
 void	game_over(t_game *game, t_enemy *enemy);

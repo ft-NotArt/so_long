@@ -6,7 +6,7 @@
 /*   By: anoteris <noterisarthur42@gmail.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/16 00:13:00 by anoteris          #+#    #+#             */
-/*   Updated: 2024/12/16 08:27:23 by anoteris         ###   ########.fr       */
+/*   Updated: 2024/12/16 16:58:33 by anoteris         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,22 +22,25 @@ void	free_enemy(t_enemy *enemy)
 	free(enemy);
 }
 
-void	free_enemies(t_enemy *enemies)
+void	free_enemies(t_enemy **enemies)
 {
+	t_enemy	*current ;
 	t_enemy	*next ;
 
-	while (enemies)
+	current = (*enemies);
+	while (current)
 	{
-		next = enemies->next ;
-		free_enemy(enemies);
-		enemies = next ;
+		next = (current)->next ;
+		free_enemy(current);
+		(current) = next ;
 	}
+	(*enemies) = NULL ;
 }
 
 void	free_map(t_map *map)
 {
 	free_str_array(map->map);
-	free_enemies(map->enemies);
+	free_enemies(&map->enemies);
 	free(map->player->attack);
 	free(map->player);
 	free(map);
