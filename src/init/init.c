@@ -6,7 +6,7 @@
 /*   By: anoteris <noterisarthur42@gmail.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/09 22:46:43 by anoteris          #+#    #+#             */
-/*   Updated: 2024/12/16 04:47:58 by anoteris         ###   ########.fr       */
+/*   Updated: 2024/12/16 10:55:35 by anoteris         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -109,8 +109,11 @@ t_game	*game_init(t_map *maps)
 	game->mlx = mlx_init(game->maps->width * BITS,
 			(game->maps->height + 2) * BITS,
 			"TEST", false);
-	game->player_attack_set[0] = 1;
-	game->player_attack_set[1] = 0;
-	game->player_attack_set[2] = 0;
+	game->player_attack_set[0] = 1 ;
+	game->player_attack_set[1] = 0 ;
+	game->player_attack_set[2] = 0 ;
+	game->player_attack_set_img[0] = NULL ;
+	game->player_attack_set_img[1] = NULL ;
+	game->player_attack_set_img[2] = NULL ;
 	return (game);
 }

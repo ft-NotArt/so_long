@@ -6,7 +6,7 @@
 /*   By: anoteris <noterisarthur42@gmail.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/16 04:33:06 by anoteris          #+#    #+#             */
-/*   Updated: 2024/12/16 06:55:46 by anoteris         ###   ########.fr       */
+/*   Updated: 2024/12/16 11:01:17 by anoteris         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,7 @@ static mlx_image_t	*get_mlx_knife(t_game *game, t_attack *attack)
 	ft_strlcpy(sprite_file, ATTACKS, ft_strlen(ATTACKS) + 1);
 	ft_strlcat(sprite_file, KNIFE,
 		ft_strlen(sprite_file) + ft_strlen(KNIFE) + 1);
+	ft_strlcat(sprite_file, "_", ft_strlen(sprite_file) + 2);
 	add_orient(attack->orient, sprite_file);
 	ft_strlcat(sprite_file, PNG, ft_strlen(sprite_file) + ft_strlen(PNG) + 1);
 	img = get_mlx_img(game, sprite_file);
@@ -35,6 +36,7 @@ static mlx_image_t	*get_mlx_magic_beam(t_game *game, t_attack *attack)
 	ft_strlcpy(sprite_file, ATTACKS, ft_strlen(ATTACKS) + 1);
 	ft_strlcat(sprite_file, MAGIC_BEAM,
 		ft_strlen(sprite_file) + ft_strlen(MAGIC_BEAM) + 1);
+	ft_strlcat(sprite_file, "_", ft_strlen(sprite_file) + 2);
 	add_orient(attack->orient, sprite_file);
 	ft_strlcat(sprite_file, "_", ft_strlen(sprite_file) + 2);
 	frame_number = ft_itoa(attack->frame);

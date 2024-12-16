@@ -6,7 +6,7 @@
 /*   By: anoteris <noterisarthur42@gmail.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/04 22:19:52 by anoteris          #+#    #+#             */
-/*   Updated: 2024/12/16 09:26:48 by anoteris         ###   ########.fr       */
+/*   Updated: 2024/12/16 11:16:22 by anoteris         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,6 +44,7 @@
 # define BORDER			"border_"
 
 # define BOX			"textures/panel/box_power_"
+# define POWER			"textures/panel/power_"
 
 # define SIGN			"textures/panel/sign"
 
@@ -60,8 +61,9 @@
 
 # define ATTACKS		"textures/attacks/"
 
-# define KNIFE			"knife_"
-# define MAGIC_BEAM		"magic_beam_"
+# define SWALLOW		"swallowing"
+# define KNIFE			"knife"
+# define MAGIC_BEAM		"magic_beam"
 
 # define RIGHT			"right"
 # define FRONT			"front"
@@ -114,6 +116,7 @@ typedef struct s_game
 	mlx_t			*mlx ;
 	struct s_map	*maps ;
 	bool			player_attack_set[3];
+	mlx_image_t		*player_attack_set_img[3];
 }			t_game ;
 
 typedef struct s_map
@@ -253,5 +256,7 @@ void	check_attack(t_game *game, t_enemy *enemy);
 void	free_enemy(t_enemy *enemy);
 
 void	game_over(t_game *game, t_enemy *enemy);
+
+void	display_power(t_game *game);
 
 #endif

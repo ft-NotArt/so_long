@@ -6,7 +6,7 @@
 /*   By: anoteris <noterisarthur42@gmail.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/09 22:45:25 by anoteris          #+#    #+#             */
-/*   Updated: 2024/12/16 01:17:57 by anoteris         ###   ########.fr       */
+/*   Updated: 2024/12/16 11:21:11 by anoteris         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,6 +32,13 @@ void	keyboard_hook(mlx_key_data_t key_data, void *param)
 			close_game(game);
 
 		// TODO: RM this dev mode
+		if (key_data.key == MLX_KEY_F)
+		{
+			game->player_attack_set[1] = 1 ;
+			game->player_attack_set_img[1]->enabled = true ;
+			game->player_attack_set[2] = 1 ;
+			game->player_attack_set_img[2]->enabled = true ;
+		}
 		if (key_data.key == MLX_KEY_C)
 			game->maps->enemy_number = 0 ;
 		if (key_data.key == MLX_KEY_C)

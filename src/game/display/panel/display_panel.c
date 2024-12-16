@@ -6,7 +6,7 @@
 /*   By: anoteris <noterisarthur42@gmail.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/15 23:35:22 by anoteris          #+#    #+#             */
-/*   Updated: 2024/12/15 23:36:07 by anoteris         ###   ########.fr       */
+/*   Updated: 2024/12/16 11:16:37 by anoteris         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,6 +39,7 @@ void	display_panel(t_game *game)
 void	display_inside_panel(t_game *game)
 {
 	display_boxes(game);
+	display_power(game);
 	display_sign(game);
 	init_step_count(game);
 }

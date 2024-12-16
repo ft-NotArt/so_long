@@ -6,7 +6,7 @@
 /*   By: anoteris <noterisarthur42@gmail.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/10 15:00:20 by anoteris          #+#    #+#             */
-/*   Updated: 2024/12/16 09:25:39 by anoteris         ###   ########.fr       */
+/*   Updated: 2024/12/16 11:02:15 by anoteris         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,7 +58,6 @@ void	enemy_turn(t_game *game, t_enemy *enemy)
 	{
 		enemy_attack(game, enemy);
 		check_attack(game, enemy);
-		printf("ATTACK !!\n");
 	}
 	else if ((rand_uchar() % 6) == 0)
 		move_enemy(game, enemy, (rand_uchar() % 4));

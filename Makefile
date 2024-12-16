@@ -125,7 +125,8 @@ FILES			=	so_long														\
 \
 					game/display/panel/display_panel							\
 					game/display/panel/tiles_panel								\
-					game/display/panel/tiles_inside_panel						\
+					game/display/panel/tiles_sign								\
+					game/display/panel/tiles_boxes								\
 \
 					game/entities/move											\
 					game/entities/check											\
