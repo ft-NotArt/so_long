@@ -6,7 +6,7 @@
 /*   By: anoteris <noterisarthur42@gmail.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/16 04:30:19 by anoteris          #+#    #+#             */
-/*   Updated: 2024/12/16 17:45:47 by anoteris         ###   ########.fr       */
+/*   Updated: 2024/12/16 18:20:56 by anoteris         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,8 +14,6 @@
 
 static void	update_dee_attack(t_attack *attack)
 {
-	mlx_set_instance_depth(attack->image->instances, 10);
-	printf("couteau | x=%d y=%d z=%d \n", attack->image->instances->x, attack->image->instances->y, attack->image->instances->z);
 	if (attack->orient == EAST)
 	{
 		attack->x++ ;

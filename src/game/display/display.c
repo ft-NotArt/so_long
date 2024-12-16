@@ -6,7 +6,7 @@
 /*   By: anoteris <noterisarthur42@gmail.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/05 11:55:57 by anoteris          #+#    #+#             */
-/*   Updated: 2024/12/16 11:46:09 by anoteris         ###   ########.fr       */
+/*   Updated: 2024/12/16 18:18:56 by anoteris         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,11 @@ mlx_image_t	*get_mlx_img(t_game *game, char *sprite_file)
 	mlx_image_t		*img ;
 
 	texture = mlx_load_png(sprite_file);
+	if (!texture)
+	{
+		error_mlx();
+		close_failure(game);
+	}
 	img = mlx_texture_to_image(game->mlx, texture);
 	mlx_delete_texture(texture);
 	return (img);

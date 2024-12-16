@@ -6,7 +6,7 @@
 /*   By: anoteris <noterisarthur42@gmail.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/04 22:19:52 by anoteris          #+#    #+#             */
-/*   Updated: 2024/12/16 16:56:08 by anoteris         ###   ########.fr       */
+/*   Updated: 2024/12/16 18:18:14 by anoteris         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -198,7 +198,9 @@ void	update_player_sprite(t_game *game, t_player *player);
 void	update_enemy_sprite(t_game *game, t_enemy *enemy);
 
 void	keyboard_hook(mlx_key_data_t key_data, void *param);
-void	close_game(void *param);
+
+void	close_success(void *param);
+void	close_failure(void *param);
 
 int		alternate_walking(int current_pose);
 
@@ -255,7 +257,7 @@ void	check_enemy_attack(t_game *game, t_enemy *enemy);
 void	free_enemies(t_enemy **enemies);
 void	free_enemy(t_enemy *enemy);
 
-void	game_over(t_game *game, t_enemy *enemy);
+void	game_over(t_game *game);
 
 void	display_power(t_game *game);
 

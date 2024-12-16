@@ -6,7 +6,7 @@
 /*   By: anoteris <noterisarthur42@gmail.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/16 00:13:00 by anoteris          #+#    #+#             */
-/*   Updated: 2024/12/16 16:58:33 by anoteris         ###   ########.fr       */
+/*   Updated: 2024/12/16 18:26:43 by anoteris         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,8 @@ void	free_enemy(t_enemy *enemy)
 {
 	if (enemy->attack != NULL)
 	{
-		enemy->attack->image->enabled = false ;
+		if (enemy->attack->image != NULL)
+			enemy->attack->image->enabled = false ;
 		free(enemy->attack);
 	}
 	free(enemy);

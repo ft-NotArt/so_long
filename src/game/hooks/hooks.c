@@ -6,7 +6,7 @@
 /*   By: anoteris <noterisarthur42@gmail.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/09 22:45:25 by anoteris          #+#    #+#             */
-/*   Updated: 2024/12/16 16:18:26 by anoteris         ###   ########.fr       */
+/*   Updated: 2024/12/16 18:19:11 by anoteris         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,7 @@ void	keyboard_hook(mlx_key_data_t key_data, void *param)
 		if (key_data.key == MLX_KEY_P)
 			ft_printf("POYO!\n"); // TODO: Maybe get a space in the window to print it
 		if (key_data.key == MLX_KEY_ESCAPE)
-			close_game(game);
+			close_success(game);
 
 		// TODO: RM this dev mode
 		if (key_data.key == MLX_KEY_F)
