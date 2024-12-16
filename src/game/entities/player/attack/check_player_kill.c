@@ -6,7 +6,7 @@
 /*   By: anoteris <noterisarthur42@gmail.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/16 15:00:40 by anoteris          #+#    #+#             */
-/*   Updated: 2024/12/16 15:44:38 by anoteris         ###   ########.fr       */
+/*   Updated: 2024/12/16 17:33:08 by anoteris         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,21 +78,21 @@ static void	check_doo_attack_north(t_game *game, t_player *player)
 
 void	check_player_attack(t_game *game, t_player *player)
 {
+	if (player->attack->x <= 0 || player->attack->y <= 0
+		|| (size_t) player->attack->x >= game->maps->width
+		|| (size_t) player->attack->y >= game->maps->height)
+		return ;
 	if (player->attack->type == DEE)
 	{
 		if (is_enemy(game->maps->map[player->attack->y][player->attack->x]))
-		{
 			enemy_del(game, &game->maps->enemies,
 				player->attack->y, player->attack->x);
-		}
 	}
 	else
 	{
 		if (is_enemy(game->maps->map[player->attack->y][player->attack->x]))
-		{
 			enemy_del(game, &game->maps->enemies,
 				player->attack->y, player->attack->x);
-		}
 		if (player->attack->orient == EAST)
 			check_doo_attack_east(game, player);
 		if (player->attack->orient == SOUTH)
