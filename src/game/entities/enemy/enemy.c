@@ -6,7 +6,7 @@
 /*   By: anoteris <noterisarthur42@gmail.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/10 15:00:20 by anoteris          #+#    #+#             */
-/*   Updated: 2024/12/16 11:02:15 by anoteris         ###   ########.fr       */
+/*   Updated: 2024/12/16 14:57:09 by anoteris         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,13 +51,14 @@ void	enemy_turn(t_game *game, t_enemy *enemy)
 		if (enemy->attack->frame == 4)
 			(free(enemy->attack), enemy->attack = NULL);
 		else
-			check_attack(game, enemy);
-			// printf("Enemy attacking, frame %d \n", enemy->attack->frame);
+			check_enemy_attack(game, enemy);
 	}
 	else if (player_in_range(game->maps, enemy))
 	{
-		enemy_attack(game, enemy);
-		check_attack(game, enemy);
+		enemy->attack = attack_init(enemy->type,
+			enemy->x, enemy->y, enemy->orient);
+		display_attack(game, enemy->attack);
+		check_enemy_attack(game, enemy);
 	}
 	else if ((rand_uchar() % 6) == 0)
 		move_enemy(game, enemy, (rand_uchar() % 4));

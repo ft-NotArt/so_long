@@ -6,7 +6,7 @@
 /*   By: anoteris <noterisarthur42@gmail.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/05 13:08:24 by anoteris          #+#    #+#             */
-/*   Updated: 2024/12/16 12:33:51 by anoteris         ###   ########.fr       */
+/*   Updated: 2024/12/16 14:16:16 by anoteris         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,48 +60,4 @@ void	get_input_dir(keys_t key_press, t_game *game)
 		align_or_move(game, game->maps->player, WEST);
 	else if (key_press == MLX_KEY_W || key_press == MLX_KEY_UP)
 		align_or_move(game, game->maps->player, NORTH);
-}
-
-static void	absorb_attack(t_game *game, t_enemy *enemy)
-{
-	int	i ;
-
-	if (!enemy)
-		return ;
-	i = -1 ;
-	while (++i < 3)
-	{
-		if (enemy->attack_set[i] == 1)
-		{
-			game->player_attack_set[i] = 1 ;
-			game->player_attack_set_img[i]->enabled = true ;
-		}
-	}
-}
-
-void	player_attack(t_game *game, char **map, t_player *player)
-{
-	if (player->orient == EAST && is_enemy(map[player->y][player->x + 1]))
-	{
-		absorb_attack(game, get_enemy(&game->maps->enemies, player->y, player->x + 1));
-		enemy_del(game, &game->maps->enemies, player->y, player->x + 1);
-	}
-	if (player->orient == SOUTH && is_enemy(map[player->y + 1][player->x]))
-	{
-		absorb_attack(game, get_enemy(&game->maps->enemies, player->y + 1, player->x));
-		enemy_del(game, &game->maps->enemies, player->y + 1, player->x);
-	}
-	if (player->orient == WEST && is_enemy(map[player->y][player->x - 1]))
-	{
-		absorb_attack(game, get_enemy(&game->maps->enemies, player->y, player->x - 1));
-		enemy_del(game, &game->maps->enemies, player->y, player->x - 1);
-	}
-	if (player->orient == NORTH && is_enemy(map[player->y - 1][player->x]))
-	{
-		absorb_attack(game, get_enemy(&game->maps->enemies, player->y - 1, player->x));
-		enemy_del(game, &game->maps->enemies, player->y - 1, player->x);
-	}
-	player->status = SWALLOWING ;
-	player->last_action_time = mlx_get_time();
-	update_player_sprite(game, player);
 }

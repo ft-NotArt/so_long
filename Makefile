@@ -147,9 +147,11 @@ FILES			=	so_long														\
 \
 \
 \
-					game/entities/attack/attack									\
-					game/entities/attack/check_range							\
-					game/entities/attack/check_kill								\
+					game/entities/enemy/attack/check_range						\
+					game/entities/enemy/attack/check_enemy_kill					\
+					game/entities/player/attack/player_attack					\
+\
+					game/entities/player/attack/check_player_kill				\
 \
 					game/display/attack/tiles_attack_display					\
 					game/display/attack/tiles_attack_get						\

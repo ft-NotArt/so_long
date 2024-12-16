@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   check_kill.c                                       :+:      :+:    :+:   */
+/*   check_enemy_kill.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: anoteris <noterisarthur42@gmail.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/16 05:50:50 by anoteris          #+#    #+#             */
-/*   Updated: 2024/12/16 09:25:06 by anoteris         ###   ########.fr       */
+/*   Updated: 2024/12/16 14:58:10 by anoteris         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,7 +76,7 @@ static void	check_doo_attack_north(t_game *game, t_enemy *enemy)
 			game_over(game, enemy);
 }
 
-void	check_attack(t_game *game, t_enemy *enemy)
+void	check_enemy_attack(t_game *game, t_enemy *enemy)
 {
 	if (enemy->attack->type == DEE)
 	{

@@ -6,7 +6,7 @@
 /*   By: anoteris <noterisarthur42@gmail.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/04 22:19:52 by anoteris          #+#    #+#             */
-/*   Updated: 2024/12/16 12:30:28 by anoteris         ###   ########.fr       */
+/*   Updated: 2024/12/16 15:30:59 by anoteris         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -219,7 +219,7 @@ void	check_player_tile(t_game *game, int y, int x);
 void	check_enemy_tile(t_game *game, int y, int x);
 bool	is_enemy(char c);
 
-void	player_attack(t_game *game, char **map, t_player *player);
+void	player_swallow(t_game *game, t_map *maps, char **map, t_player *player);
 
 void	enemy_turn(t_game *game, t_enemy *enemy);
 
@@ -250,8 +250,7 @@ void	display_attack(t_game *game, t_attack *attack);
 void	update_attack_sprite(t_game *game, t_attack *attack);
 
 t_attack	*attack_init(type type, int x, int y, orient orient);
-void	enemy_attack(t_game *game, t_enemy *enemy);
-void	check_attack(t_game *game, t_enemy *enemy);
+void	check_enemy_attack(t_game *game, t_enemy *enemy);
 
 void	free_enemy(t_enemy *enemy);
 
@@ -259,6 +258,14 @@ void	game_over(t_game *game, t_enemy *enemy);
 
 void	display_power(t_game *game);
 
-t_enemy	*get_enemy(t_enemy **enemy, int y, int x);
+t_enemy	*get_enemy(t_enemy *enemy, int y, int x);
+
+void	player_knife(t_game *game, t_player *player);
+void	player_magic_beam(t_game *game, t_player *player);
+
+void	update_player_attack(t_game *game, t_player *player);
+
+void	check_player_attack(t_game *game, t_player *player);
+
 
 #endif

@@ -6,7 +6,7 @@
 /*   By: anoteris <noterisarthur42@gmail.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/09 22:45:25 by anoteris          #+#    #+#             */
-/*   Updated: 2024/12/16 12:24:46 by anoteris         ###   ########.fr       */
+/*   Updated: 2024/12/16 15:31:55 by anoteris         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,8 +24,16 @@ void	keyboard_hook(mlx_key_data_t key_data, void *param)
 			|| key_data.key == MLX_KEY_S || key_data.key == MLX_KEY_DOWN
 			|| key_data.key == MLX_KEY_D || key_data.key == MLX_KEY_RIGHT)
 			get_input_dir(key_data.key, game);
-		if (key_data.key == MLX_KEY_1 || key_data.key == MLX_KEY_KP_1)
-			player_attack(game, game->maps->map, game->maps->player);
+		if ((key_data.key == MLX_KEY_1 || key_data.key == MLX_KEY_KP_1)
+			&& game->maps->player->attack == NULL)
+			player_swallow(game, game->maps, game->maps->map,
+				game->maps->player);
+		if ((key_data.key == MLX_KEY_2 || key_data.key == MLX_KEY_KP_2)
+			&& game->player_attack_set[1] && game->maps->player->attack == NULL)
+			player_knife(game, game->maps->player);
+		if ((key_data.key == MLX_KEY_3 || key_data.key == MLX_KEY_KP_3)
+			&& game->player_attack_set[2] && game->maps->player->attack == NULL)
+			player_magic_beam(game, game->maps->player);
 		if (key_data.key == MLX_KEY_P)
 			ft_printf("POYO!\n"); // TODO: Maybe get a space in the window to print it
 		if (key_data.key == MLX_KEY_ESCAPE)
@@ -45,11 +53,6 @@ void	keyboard_hook(mlx_key_data_t key_data, void *param)
 			enemy_del(game, &game->maps->enemies, game->maps->enemies->y, game->maps->enemies->x);
 		if (key_data.key == MLX_KEY_V)
 			enemy_del(game, &game->maps->enemies->next, game->maps->enemies->next->y, game->maps->enemies->next->x);
-		// if (key_data.key == MLX_KEY_E)
-		// {
-		// 	check_enemy_tile(game, game->maps->enemies->y, game->maps->enemies->x + 1);
-		// 	move_east(game, ENEMY);
-		// }
 	}
 }
 
@@ -69,5 +72,9 @@ void	frame_hook(void *param)
 		update_player_sprite(game, game->maps->player);
 	}
 	if (fmod(time, 0.50) <= 0.02)
+	{
 		enemy_turn(game, game->maps->enemies);
+		if (game->maps->player->attack != NULL)
+			update_player_attack(game, game->maps->player);
+	}
 }
