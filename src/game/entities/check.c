@@ -6,7 +6,7 @@
 /*   By: anoteris <noterisarthur42@gmail.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/10 05:33:43 by anoteris          #+#    #+#             */
-/*   Updated: 2024/12/16 05:48:30 by anoteris         ###   ########.fr       */
+/*   Updated: 2024/12/16 10:46:00 by anoteris         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,15 +14,23 @@
 
 void	check_player_tile(t_game *game, int y, int x)
 {
+	t_enemy	*current ;
+
 	if (game->maps->map[y][x] == 'E' && game->maps->enemy_number == 0)
+		(ft_putstr_fd("GG !\n", STDOUT_FILENO), close_game(game));
+	if (is_enemy(game->maps->map[y][x]))
+		(ft_putstr_fd("Game Over !\n", STDOUT_FILENO), close_game(game));
+	current = game->maps->enemies ;
+	while (current)
 	{
-		ft_putstr_fd("GG !\n", STDOUT_FILENO);
-		close_game(game);
-	}
-	else if (is_enemy(game->maps->map[y][x]))
-	{
-		ft_putstr_fd("Game Over !\n", STDOUT_FILENO);
-		close_game(game);
+		if (current->attack != NULL)
+		{
+			if (current->attack->x == x && current->attack->y == y)
+			{
+				game_over(game, current);
+			}
+		}
+		current = current->next ;
 	}
 }
 

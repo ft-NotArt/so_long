@@ -6,98 +6,98 @@
 /*   By: anoteris <noterisarthur42@gmail.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/16 05:50:50 by anoteris          #+#    #+#             */
-/*   Updated: 2024/12/16 06:29:12 by anoteris         ###   ########.fr       */
+/*   Updated: 2024/12/16 09:25:06 by anoteris         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
 
-static void	check_doo_attack_east(t_game *game, t_attack *attack)
+static void	check_doo_attack_east(t_game *game, t_enemy *enemy)
 {
-	if (attack->frame == FRAME1
-		&& game->maps->player->x == attack->x
-		&& game->maps->player->y == attack->y - 1)
-		(ft_putstr_fd("Game Over !\n", STDOUT_FILENO), close_game(game));
-	else if (attack->frame == FRAME2
-		&& game->maps->player->x == attack->x + 1
-		&& game->maps->player->y == attack->y)
-		(ft_putstr_fd("Game Over !\n", STDOUT_FILENO), close_game(game));
-	else if (attack->frame == FRAME3
-		&& game->maps->player->x == attack->x
-		&& game->maps->player->y == attack->y + 1)
-			(ft_putstr_fd("Game Over !\n", STDOUT_FILENO), close_game(game));
+	if (enemy->attack->frame == FRAME1
+		&& game->maps->player->x == enemy->attack->x
+		&& game->maps->player->y == enemy->attack->y - 1)
+		game_over(game, enemy);
+	else if (enemy->attack->frame == FRAME2
+		&& game->maps->player->x == enemy->attack->x + 1
+		&& game->maps->player->y == enemy->attack->y)
+		game_over(game, enemy);
+	else if (enemy->attack->frame == FRAME3
+		&& game->maps->player->x == enemy->attack->x
+		&& game->maps->player->y == enemy->attack->y + 1)
+			game_over(game, enemy);
 }
 
-static void	check_doo_attack_south(t_game *game, t_attack *attack)
+static void	check_doo_attack_south(t_game *game, t_enemy *enemy)
 {
-	if (attack->frame == FRAME1
-		&& game->maps->player->x == attack->x + 1
-		&& game->maps->player->y == attack->y)
-		(ft_putstr_fd("Game Over !\n", STDOUT_FILENO), close_game(game));
-	else if (attack->frame == FRAME2
-		&& game->maps->player->x == attack->x
-		&& game->maps->player->y == attack->y + 1)
-		(ft_putstr_fd("Game Over !\n", STDOUT_FILENO), close_game(game));
-	else if (attack->frame == FRAME3
-		&& game->maps->player->x == attack->x - 1
-		&& game->maps->player->y == attack->y)
-			(ft_putstr_fd("Game Over !\n", STDOUT_FILENO), close_game(game));
+	if (enemy->attack->frame == FRAME1
+		&& game->maps->player->x == enemy->attack->x + 1
+		&& game->maps->player->y == enemy->attack->y)
+		game_over(game, enemy);
+	else if (enemy->attack->frame == FRAME2
+		&& game->maps->player->x == enemy->attack->x
+		&& game->maps->player->y == enemy->attack->y + 1)
+		game_over(game, enemy);
+	else if (enemy->attack->frame == FRAME3
+		&& game->maps->player->x == enemy->attack->x - 1
+		&& game->maps->player->y == enemy->attack->y)
+			game_over(game, enemy);
 }
 
-static void	check_doo_attack_west(t_game *game, t_attack *attack)
+static void	check_doo_attack_west(t_game *game, t_enemy *enemy)
 {
-	if (attack->frame == FRAME1
-		&& game->maps->player->x == attack->x
-		&& game->maps->player->y == attack->y + 1)
-		(ft_putstr_fd("Game Over !\n", STDOUT_FILENO), close_game(game));
-	else if (attack->frame == FRAME2
-		&& game->maps->player->x == attack->x - 1
-		&& game->maps->player->y == attack->y)
-		(ft_putstr_fd("Game Over !\n", STDOUT_FILENO), close_game(game));
-	else if (attack->frame == FRAME3
-		&& game->maps->player->x == attack->x
-		&& game->maps->player->y == attack->y - 1)
-			(ft_putstr_fd("Game Over !\n", STDOUT_FILENO), close_game(game));
+	if (enemy->attack->frame == FRAME1
+		&& game->maps->player->x == enemy->attack->x
+		&& game->maps->player->y == enemy->attack->y + 1)
+		game_over(game, enemy);
+	else if (enemy->attack->frame == FRAME2
+		&& game->maps->player->x == enemy->attack->x - 1
+		&& game->maps->player->y == enemy->attack->y)
+		game_over(game, enemy);
+	else if (enemy->attack->frame == FRAME3
+		&& game->maps->player->x == enemy->attack->x
+		&& game->maps->player->y == enemy->attack->y - 1)
+			game_over(game, enemy);
 }
 
-static void	check_doo_attack_north(t_game *game, t_attack *attack)
+static void	check_doo_attack_north(t_game *game, t_enemy *enemy)
 {
-	if (attack->frame == FRAME1
-		&& game->maps->player->x == attack->x - 1
-		&& game->maps->player->y == attack->y)
-		(ft_putstr_fd("Game Over !\n", STDOUT_FILENO), close_game(game));
-	else if (attack->frame == FRAME2
-		&& game->maps->player->x == attack->x
-		&& game->maps->player->y == attack->y - 1)
-		(ft_putstr_fd("Game Over !\n", STDOUT_FILENO), close_game(game));
-	else if (attack->frame == FRAME3
-		&& game->maps->player->x == attack->x + 1
-		&& game->maps->player->y == attack->y)
-			(ft_putstr_fd("Game Over !\n", STDOUT_FILENO), close_game(game));
+	if (enemy->attack->frame == FRAME1
+		&& game->maps->player->x == enemy->attack->x - 1
+		&& game->maps->player->y == enemy->attack->y)
+		game_over(game, enemy);
+	else if (enemy->attack->frame == FRAME2
+		&& game->maps->player->x == enemy->attack->x
+		&& game->maps->player->y == enemy->attack->y - 1)
+		game_over(game, enemy);
+	else if (enemy->attack->frame == FRAME3
+		&& game->maps->player->x == enemy->attack->x + 1
+		&& game->maps->player->y == enemy->attack->y)
+			game_over(game, enemy);
 }
 
-void	check_attack(t_game *game, t_attack *attack)
+void	check_attack(t_game *game, t_enemy *enemy)
 {
-	if (attack->type == DEE)
+	if (enemy->attack->type == DEE)
 	{
-		if (attack->x == game->maps->player->x
-			&& attack->y == game->maps->player->y)
-			(ft_putstr_fd("Game Over !\n", STDOUT_FILENO), close_game(game));
+		if (enemy->attack->x == game->maps->player->x
+			&& enemy->attack->y == game->maps->player->y)
+			game_over(game, enemy);
 	}
 	else
 	{
-		if (attack->x == game->maps->player->x
-			&& attack->y == game->maps->player->y)
+		if (enemy->attack->x == game->maps->player->x
+			&& enemy->attack->y == game->maps->player->y)
 		{
-			(ft_putstr_fd("Game Over !\n", STDOUT_FILENO), close_game(game));
+			game_over(game, enemy);
 		}
-		if (attack->orient == EAST)
-			check_doo_attack_east(game, attack);
-		if (attack->orient == SOUTH)
-			check_doo_attack_south(game, attack);
-		if (attack->orient == WEST)
-			check_doo_attack_west(game, attack);
-		if (attack->orient == NORTH)
-			check_doo_attack_north(game, attack);
+		if (enemy->attack->orient == EAST)
+			check_doo_attack_east(game, enemy);
+		if (enemy->attack->orient == SOUTH)
+			check_doo_attack_south(game, enemy);
+		if (enemy->attack->orient == WEST)
+			check_doo_attack_west(game, enemy);
+		if (enemy->attack->orient == NORTH)
+			check_doo_attack_north(game, enemy);
 	}
 }

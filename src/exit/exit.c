@@ -6,7 +6,7 @@
 /*   By: anoteris <noterisarthur42@gmail.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/05 02:10:19 by anoteris          #+#    #+#             */
-/*   Updated: 2024/12/16 00:13:44 by anoteris         ###   ########.fr       */
+/*   Updated: 2024/12/16 09:23:06 by anoteris         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,4 +21,11 @@ void	close_game(void *param)
 	mlx_terminate(game->mlx);
 	free_game(game);
 	exit(EXIT_SUCCESS);
+}
+
+void	game_over(t_game *game, t_enemy *enemy)
+{
+	ft_putstr_fd("Game Over !\n", STDOUT_FILENO);
+	enemy_del_coord(game, &game->maps->enemies, enemy->y, enemy->x);
+	close_game(game);
 }
