@@ -6,7 +6,7 @@
 /*   By: anoteris <noterisarthur42@gmail.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/16 15:00:40 by anoteris          #+#    #+#             */
-/*   Updated: 2024/12/16 17:33:08 by anoteris         ###   ########.fr       */
+/*   Updated: 2024/12/17 03:18:15 by anoteris         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,6 +35,7 @@ static void	check_doo_attack_south(t_game *game, t_player *player)
 		enemy_del(game, &game->maps->enemies,
 			player->attack->y, player->attack->x + 1);
 	else if (player->attack->frame == FRAME2
+		&& (size_t) player->attack->y + 1 < game->maps->height
 		&& is_enemy(game->maps->map[player->attack->y + 1][player->attack->x]))
 		enemy_del(game, &game->maps->enemies,
 			player->attack->y + 1, player->attack->x);
