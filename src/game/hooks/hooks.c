@@ -6,7 +6,7 @@
 /*   By: anoteris <noterisarthur42@gmail.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/09 22:45:25 by anoteris          #+#    #+#             */
-/*   Updated: 2024/12/17 02:55:09 by anoteris         ###   ########.fr       */
+/*   Updated: 2024/12/17 03:03:07 by anoteris         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,8 @@ void	keyboard_hook(mlx_key_data_t key_data, void *param)
 	game = (t_game *) param ;
 	if (key_data.action == MLX_PRESS || key_data.action == MLX_REPEAT)
 	{
-		if (is_movement_key(key_data.key))
+		if (is_movement_key(key_data.key)
+			&& game->maps->player->status != ATTACKING)
 			get_input_dir(key_data.key, game); // TODO: shouldn't move when magic beam
 		if ((key_data.key == MLX_KEY_1 || key_data.key == MLX_KEY_KP_1)
 			&& game->maps->player->attack == NULL)
