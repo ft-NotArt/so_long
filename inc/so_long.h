@@ -6,7 +6,7 @@
 /*   By: anoteris <noterisarthur42@gmail.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/04 22:19:52 by anoteris          #+#    #+#             */
-/*   Updated: 2024/12/16 23:53:45 by anoteris         ###   ########.fr       */
+/*   Updated: 2024/12/17 01:52:28 by anoteris         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -281,5 +281,8 @@ void	start_transition(t_game *game);
 void	end_transition(t_game *game);
 
 void	display_transition(t_game *game);
+
+void	set_attack_coord(t_attack *attack, int x, int y);
+void	enemy_set_attacks(t_enemy *enemy, t_map *map, int x, int y);
 
 #endif

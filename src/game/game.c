@@ -6,7 +6,7 @@
 /*   By: anoteris <noterisarthur42@gmail.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/05 06:14:48 by anoteris          #+#    #+#             */
-/*   Updated: 2024/12/17 01:47:57 by anoteris         ###   ########.fr       */
+/*   Updated: 2024/12/17 02:08:27 by anoteris         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,7 @@ void	end_transition(t_game *game)
 	mlx_terminate(game->mlx);
 	free_map(game->maps);
 	free(game);
-	next_game = game_init(next_map) ;
+	next_game = game_init(next_map);
 	if (!next_game->mlx)
 	{
 		free_game(next_game);

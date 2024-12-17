@@ -6,7 +6,7 @@
 /*   By: anoteris <noterisarthur42@gmail.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/16 01:33:39 by anoteris          #+#    #+#             */
-/*   Updated: 2024/12/16 01:56:49 by anoteris         ###   ########.fr       */
+/*   Updated: 2024/12/17 02:05:53 by anoteris         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,18 +18,18 @@ static bool	in_range_east(t_player *player, t_enemy *enemy)
 	{
 		if (enemy->y == player->y
 			&& (enemy->x + 1 == player->x
-			|| enemy->x + 2 == player->x
-			|| enemy->x + 3 == player->x))
+				|| enemy->x + 2 == player->x
+				|| enemy->x + 3 == player->x))
 			return (true);
 	}
 	if (enemy->type == DOO)
 	{
 		if ((enemy->y == player->y
-			&& (enemy->x + 1 == player->x
-			|| enemy->x + 2 == player->x))
+				&& (enemy->x + 1 == player->x
+					|| enemy->x + 2 == player->x))
 			|| (enemy->x + 1 == player->x
-			&& (enemy->y - 1 == player->y
-			|| enemy->y + 1 == player->y)))
+				&& (enemy->y - 1 == player->y
+					|| enemy->y + 1 == player->y)))
 			return (true);
 	}
 	return (false);
@@ -41,18 +41,18 @@ static bool	in_range_south(t_player *player, t_enemy *enemy)
 	{
 		if (enemy->x == player->x
 			&& (enemy->y + 1 == player->y
-			|| enemy->y + 2 == player->y
-			|| enemy->y + 3 == player->y))
+				|| enemy->y + 2 == player->y
+				|| enemy->y + 3 == player->y))
 			return (true);
 	}
 	if (enemy->type == DOO)
 	{
 		if ((enemy->x == player->x
-			&& (enemy->y + 1 == player->y
-			|| enemy->y + 2 == player->y))
+				&& (enemy->y + 1 == player->y
+					|| enemy->y + 2 == player->y))
 			|| (enemy->y + 1 == player->y
-			&& (enemy->x - 1 == player->x
-			|| enemy->x + 1 == player->x)))
+				&& (enemy->x - 1 == player->x
+					|| enemy->x + 1 == player->x)))
 			return (true);
 	}
 	return (false);
@@ -64,18 +64,18 @@ static bool	in_range_west(t_player *player, t_enemy *enemy)
 	{
 		if (enemy->y == player->y
 			&& (enemy->x - 1 == player->x
-			|| enemy->x - 2 == player->x
-			|| enemy->x - 3 == player->x))
+				|| enemy->x - 2 == player->x
+				|| enemy->x - 3 == player->x))
 			return (true);
 	}
 	if (enemy->type == DOO)
 	{
 		if ((enemy->y == player->y
-			&& (enemy->x - 1 == player->x
-			|| enemy->x - 2 == player->x))
+				&& (enemy->x - 1 == player->x
+					|| enemy->x - 2 == player->x))
 			|| (enemy->x - 1 == player->x
-			&& (enemy->y - 1 == player->y
-			|| enemy->y + 1 == player->y)))
+				&& (enemy->y - 1 == player->y
+					|| enemy->y + 1 == player->y)))
 			return (true);
 	}
 	return (false);
@@ -87,18 +87,18 @@ static bool	in_range_north(t_player *player, t_enemy *enemy)
 	{
 		if (enemy->x == player->x
 			&& (enemy->y - 1 == player->y
-			|| enemy->y - 2 == player->y
-			|| enemy->y - 3 == player->y))
+				|| enemy->y - 2 == player->y
+				|| enemy->y - 3 == player->y))
 			return (true);
 	}
 	if (enemy->type == DOO)
 	{
 		if ((enemy->x == player->x
-			&& (enemy->y - 1 == player->y
-			|| enemy->y - 2 == player->y))
+				&& (enemy->y - 1 == player->y
+					|| enemy->y - 2 == player->y))
 			|| (enemy->y - 1 == player->y
-			&& (enemy->x - 1 == player->x
-			|| enemy->x + 1 == player->x)))
+				&& (enemy->x - 1 == player->x
+					|| enemy->x + 1 == player->x)))
 			return (true);
 	}
 	return (false);

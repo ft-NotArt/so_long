@@ -159,6 +159,8 @@ FILES			=	so_long														\
 \
 					game/display/transition/display_transition					\
 \
+					init/init_setter											\
+\
 
 SRC				=	$(addprefix src/, $(addsuffix .c, $(FILES)))
 OBJ				=	$(addprefix src/, $(addsuffix .o, $(FILES)))

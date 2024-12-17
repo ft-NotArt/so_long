@@ -6,7 +6,7 @@
 /*   By: anoteris <noterisarthur42@gmail.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/12 14:43:52 by anoteris          #+#    #+#             */
-/*   Updated: 2024/12/16 17:41:09 by anoteris         ###   ########.fr       */
+/*   Updated: 2024/12/17 02:07:05 by anoteris         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,7 @@ void	init_step_count(t_game *game)
 
 	str_step_count = ft_itoa(game->maps->player->step_count);
 	game->maps->step_count_img = mlx_put_string(game->mlx, str_step_count,
-		(game->maps->width * BITS) - 55, (game->maps->height * BITS) + 18);
+			(game->maps->width * BITS) - 55, (game->maps->height * BITS) + 18);
 	free(str_step_count);
 	mlx_set_instance_depth(game->maps->step_count_img->instances, 16);
 }

@@ -6,7 +6,7 @@
 /*   By: anoteris <noterisarthur42@gmail.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/12 09:59:48 by anoteris          #+#    #+#             */
-/*   Updated: 2024/12/15 23:38:26 by anoteris         ###   ########.fr       */
+/*   Updated: 2024/12/17 02:07:57 by anoteris         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,4 +71,3 @@ mlx_image_t	*get_mlx_panel(t_game *game, size_t x, size_t y)
 }
 //TODO: is it necessary to keep track of the image instead of
 // returning it immediately ?
-

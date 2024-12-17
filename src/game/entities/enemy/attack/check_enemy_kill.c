@@ -6,7 +6,7 @@
 /*   By: anoteris <noterisarthur42@gmail.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/16 05:50:50 by anoteris          #+#    #+#             */
-/*   Updated: 2024/12/16 18:14:33 by anoteris         ###   ########.fr       */
+/*   Updated: 2024/12/17 02:06:09 by anoteris         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ static void	check_doo_attack_east(t_game *game, t_enemy *enemy)
 	else if (enemy->attack->frame == FRAME3
 		&& game->maps->player->x == enemy->attack->x
 		&& game->maps->player->y == enemy->attack->y + 1)
-			game_over(game);
+		game_over(game);
 }
 
 static void	check_doo_attack_south(t_game *game, t_enemy *enemy)
@@ -41,7 +41,7 @@ static void	check_doo_attack_south(t_game *game, t_enemy *enemy)
 	else if (enemy->attack->frame == FRAME3
 		&& game->maps->player->x == enemy->attack->x - 1
 		&& game->maps->player->y == enemy->attack->y)
-			game_over(game);
+		game_over(game);
 }
 
 static void	check_doo_attack_west(t_game *game, t_enemy *enemy)
@@ -57,7 +57,7 @@ static void	check_doo_attack_west(t_game *game, t_enemy *enemy)
 	else if (enemy->attack->frame == FRAME3
 		&& game->maps->player->x == enemy->attack->x
 		&& game->maps->player->y == enemy->attack->y - 1)
-			game_over(game);
+		game_over(game);
 }
 
 static void	check_doo_attack_north(t_game *game, t_enemy *enemy)
@@ -73,7 +73,7 @@ static void	check_doo_attack_north(t_game *game, t_enemy *enemy)
 	else if (enemy->attack->frame == FRAME3
 		&& game->maps->player->x == enemy->attack->x + 1
 		&& game->maps->player->y == enemy->attack->y)
-			game_over(game);
+		game_over(game);
 }
 
 void	check_enemy_attack(t_game *game, t_enemy *enemy)
