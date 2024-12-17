@@ -106,60 +106,54 @@ FILES			=	so_long														\
 \
 					map/map														\
 					map/map_pars												\
-					map/flood_fill												\
 					map/map_extend												\
+					map/flood_fill												\
 \
 \
 					init/init													\
+					init/init_setter											\
 \
 \
 					game/game													\
 \
-					game/display/display										\
-\
-					game/display/entities/tiles_entities						\
-					game/display/entities/tiles_player							\
-					game/display/entities/tiles_enemy							\
-\
-					game/display/background/tiles_background					\
-\
-					game/display/panel/display_panel							\
-					game/display/panel/tiles_panel								\
-					game/display/panel/tiles_sign								\
-					game/display/panel/tiles_boxes								\
+					game/hooks/hooks											\
 \
 					game/entities/move											\
 					game/entities/check											\
 \
 					game/entities/player/player									\
 					game/entities/player/status									\
+					game/entities/player/attack/player_attack					\
+					game/entities/player/attack/check_player_kill				\
 \
-					game/entities/enemy/lst_enemies								\
 					game/entities/enemy/enemy									\
-\
-					game/hooks/hooks											\
-\
-\
-					exit/exit													\
-					exit/free													\
-					exit/error													\
-\
-\
-\
-\
+					game/entities/enemy/lst_enemies								\
 					game/entities/enemy/attack/check_range						\
 					game/entities/enemy/attack/check_enemy_kill					\
-					game/entities/player/attack/player_attack					\
 \
-					game/entities/player/attack/check_player_kill				\
+					game/display/display										\
+\
+					game/display/transition/display_transition					\
+\
+					game/display/panel/display_panel							\
+					game/display/panel/tiles_panel								\
+					game/display/panel/tiles_boxes								\
+					game/display/panel/tiles_sign								\
+\
+					game/display/entities/tiles_player							\
+					game/display/entities/tiles_enemy							\
+					game/display/entities/tiles_entities						\
+\
+					game/display/background/tiles_background					\
 \
 					game/display/attack/tiles_attack_display					\
 					game/display/attack/tiles_attack_get						\
 					game/display/attack/tiles_attack_update						\
 \
-					game/display/transition/display_transition					\
 \
-					init/init_setter											\
+					exit/exit													\
+					exit/free													\
+					exit/error													\
 \
 
 SRC				=	$(addprefix src/, $(addsuffix .c, $(FILES)))
