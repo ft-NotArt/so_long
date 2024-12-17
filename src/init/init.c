@@ -6,7 +6,7 @@
 /*   By: anoteris <noterisarthur42@gmail.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/09 22:46:43 by anoteris          #+#    #+#             */
-/*   Updated: 2024/12/16 20:06:24 by anoteris         ###   ########.fr       */
+/*   Updated: 2024/12/16 23:50:19 by anoteris         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -119,5 +119,6 @@ t_game	*game_init(t_map *maps)
 	game->player_attack_set_img[0] = NULL ;
 	game->player_attack_set_img[1] = NULL ;
 	game->player_attack_set_img[2] = NULL ;
+	game->time_from_transition = 0 ;
 	return (game);
 }

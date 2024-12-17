@@ -6,7 +6,7 @@
 /*   By: anoteris <noterisarthur42@gmail.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/04 22:19:52 by anoteris          #+#    #+#             */
-/*   Updated: 2024/12/16 21:14:00 by anoteris         ###   ########.fr       */
+/*   Updated: 2024/12/16 23:53:45 by anoteris         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,6 +75,8 @@
 # define TOP			"top"
 # define BOT			"bot"
 
+# define TRANSITION		"textures/transition/kirby_on_warpstar"
+
 # define PNG			".png"
 
 # define PLAYER			game->maps->player, NULL
@@ -119,6 +121,7 @@ typedef struct s_game
 	struct s_map	*maps ;
 	bool			player_attack_set[3];
 	mlx_image_t		*player_attack_set_img[3];
+	double			time_from_transition;
 }			t_game ;
 
 typedef struct s_map
@@ -274,6 +277,9 @@ void	update_player_attack(t_game *game, t_player *player);
 
 void	check_player_attack(t_game *game, t_player *player);
 
-void	level_transition(t_game *game);
+void	start_transition(t_game *game);
+void	end_transition(t_game *game);
+
+void	display_transition(t_game *game);
 
 #endif

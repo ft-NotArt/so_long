@@ -6,7 +6,7 @@
 /*   By: anoteris <noterisarthur42@gmail.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/10 05:33:43 by anoteris          #+#    #+#             */
-/*   Updated: 2024/12/16 21:14:00 by anoteris         ###   ########.fr       */
+/*   Updated: 2024/12/16 23:53:01 by anoteris         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ void	check_player_mov(t_game *game, int y, int x)
 	t_enemy	*current ;
 
 	if (game->maps->map[y][x] == 'E' && game->maps->enemy_number == 0)
-		level_transition(game);
+		start_transition(game);
 	if (is_enemy(game->maps->map[y][x]))
 		game_over(game);
 	current = game->maps->enemies ;

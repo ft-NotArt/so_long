@@ -6,7 +6,7 @@
 /*   By: anoteris <noterisarthur42@gmail.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/09 22:45:25 by anoteris          #+#    #+#             */
-/*   Updated: 2024/12/16 19:48:11 by anoteris         ###   ########.fr       */
+/*   Updated: 2024/12/16 23:55:28 by anoteris         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,7 +48,7 @@ void	keyboard_hook(mlx_key_data_t key_data, void *param)
 			game->player_attack_set_img[2]->enabled = true ;
 		}
 		if (key_data.key == MLX_KEY_T)
-			level_transition(game);
+			start_transition(game);
 		if (key_data.key == MLX_KEY_C)
 			game->maps->enemy_number = 0 ;
 		if (key_data.key == MLX_KEY_4)
@@ -63,9 +63,13 @@ void	keyboard_hook(mlx_key_data_t key_data, void *param)
 void	frame_hook(void *param)
 {
 	t_game	*game ;
+	double	time ;
 
 	game = (t_game *) param ;
-	double time = mlx_get_time();
+	time = mlx_get_time();
+	if (game->time_from_transition != 0
+		&& game->time_from_transition + 2 < mlx_get_time())
+		end_transition(game);
 	if ((game->maps->player->status == SWALLOWING
 		&& game->maps->player->last_action_time + 0.5 < time)
 		|| ((game->maps->player->status == WALKING1
