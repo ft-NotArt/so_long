@@ -6,7 +6,7 @@
 /*   By: anoteris <noterisarthur42@gmail.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/09 22:45:25 by anoteris          #+#    #+#             */
-/*   Updated: 2024/12/17 02:00:31 by anoteris         ###   ########.fr       */
+/*   Updated: 2024/12/17 02:55:09 by anoteris         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,8 @@ void	keyboard_hook(mlx_key_data_t key_data, void *param)
 			&& game->player_attack_set[2] && game->maps->player->attack == NULL)
 			player_magic_beam(game, game->maps->player);
 		if (key_data.key == MLX_KEY_P)
-			ft_printf("POYO!\n"); // TODO: Maybe get space in window to print it
+			mlx_put_string(game->mlx, "POYO!",
+				game->maps->player->x * BITS, game->maps->player->y * BITS);
 		if (key_data.key == MLX_KEY_ESCAPE)
 			close_success(game);
 	}
