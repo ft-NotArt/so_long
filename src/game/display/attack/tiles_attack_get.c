@@ -6,7 +6,7 @@
 /*   By: anoteris <noterisarthur42@gmail.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/16 04:33:06 by anoteris          #+#    #+#             */
-/*   Updated: 2024/12/17 02:06:49 by anoteris         ###   ########.fr       */
+/*   Updated: 2024/12/17 02:49:01 by anoteris         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,8 +14,7 @@
 
 static mlx_image_t	*get_mlx_knife(t_game *game, t_attack *attack)
 {
-	mlx_image_t	*img ;
-	char		sprite_file[100];
+	char	sprite_file[100];
 
 	ft_strlcpy(sprite_file, ATTACKS, ft_strlen(ATTACKS) + 1);
 	ft_strlcat(sprite_file, KNIFE,
@@ -23,15 +22,13 @@ static mlx_image_t	*get_mlx_knife(t_game *game, t_attack *attack)
 	ft_strlcat(sprite_file, "_", ft_strlen(sprite_file) + 2);
 	add_orient(attack->orient, sprite_file);
 	ft_strlcat(sprite_file, PNG, ft_strlen(sprite_file) + ft_strlen(PNG) + 1);
-	img = get_mlx_img(game, sprite_file);
-	return (img);
+	return (get_mlx_img(game, sprite_file));
 }
 
 static mlx_image_t	*get_mlx_magic_beam(t_game *game, t_attack *attack)
 {
-	mlx_image_t	*img ;
-	char		sprite_file[100];
-	char		*frame_number ;
+	char	sprite_file[100];
+	char	*frame_number ;
 
 	ft_strlcpy(sprite_file, ATTACKS, ft_strlen(ATTACKS) + 1);
 	ft_strlcat(sprite_file, MAGIC_BEAM,
@@ -43,8 +40,7 @@ static mlx_image_t	*get_mlx_magic_beam(t_game *game, t_attack *attack)
 	ft_strlcat(sprite_file, frame_number, ft_strlen(sprite_file) + 2);
 	free(frame_number);
 	ft_strlcat(sprite_file, PNG, ft_strlen(sprite_file) + ft_strlen(PNG) + 1);
-	img = get_mlx_img(game, sprite_file);
-	return (img);
+	return (get_mlx_img(game, sprite_file));
 }
 
 mlx_image_t	*get_mlx_attack(t_game *game, t_attack *attack)

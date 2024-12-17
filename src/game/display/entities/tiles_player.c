@@ -6,7 +6,7 @@
 /*   By: anoteris <noterisarthur42@gmail.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/09 23:40:27 by anoteris          #+#    #+#             */
-/*   Updated: 2024/12/16 03:49:04 by anoteris         ###   ########.fr       */
+/*   Updated: 2024/12/17 02:50:39 by anoteris         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,21 +30,20 @@ static void	player_add_status(pos status, char *sprite_file)
 
 static mlx_image_t	*get_mlx_player(t_game *game)
 {
-	mlx_image_t		*img ;
-	char			sprite_file[100];
+	char	sprite_file[100];
 
 	ft_strlcpy(sprite_file, KIRBY, ft_strlen(KIRBY) + 1);
 	player_add_status(game->maps->player->status, sprite_file);
 	add_orient(game->maps->player->orient, sprite_file);
 	ft_strlcat(sprite_file, PNG, ft_strlen(sprite_file) + ft_strlen(PNG) + 1);
-	img = get_mlx_img(game, sprite_file);
-	return (img);
+	return (get_mlx_img(game, sprite_file));
 }
 
 void	display_player(t_game *game, int x, int y)
 {
 	game->maps->player->image = get_mlx_player(game);
-	IMG_WIN(game->mlx, game->maps->player->image, BITS * x, (BITS * y) - 8);
+	mlx_image_to_window(game->mlx, game->maps->player->image,
+		BITS * x, (BITS * y) - 8);
 	mlx_set_instance_depth(game->maps->player->image->instances, 6);
 }
 

@@ -6,7 +6,7 @@
 /*   By: anoteris <noterisarthur42@gmail.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/12 09:59:48 by anoteris          #+#    #+#             */
-/*   Updated: 2024/12/17 02:07:57 by anoteris         ###   ########.fr       */
+/*   Updated: 2024/12/17 02:49:42 by anoteris         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,8 +56,7 @@ static void	panel_add_side(t_game *game, size_t x, char *sprite_file)
 
 mlx_image_t	*get_mlx_panel(t_game *game, size_t x, size_t y)
 {
-	mlx_image_t	*img ;
-	char		sprite_file[100];
+	char	sprite_file[100];
 
 	ft_strlcpy(sprite_file, PANEL, ft_strlen(PANEL) + 1);
 	panel_add_type(game, x, sprite_file);
@@ -66,8 +65,5 @@ mlx_image_t	*get_mlx_panel(t_game *game, size_t x, size_t y)
 		ft_strlcat(sprite_file, "_", ft_strlen(sprite_file) + 2);
 	panel_add_side(game, x, sprite_file);
 	ft_strlcat(sprite_file, PNG, ft_strlen(sprite_file) + ft_strlen(PNG) + 1);
-	img = get_mlx_img(game, sprite_file);
-	return (img);
+	return (get_mlx_img(game, sprite_file));
 }
-//TODO: is it necessary to keep track of the image instead of
-// returning it immediately ?

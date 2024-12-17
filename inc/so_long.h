@@ -6,7 +6,7 @@
 /*   By: anoteris <noterisarthur42@gmail.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/04 22:19:52 by anoteris          #+#    #+#             */
-/*   Updated: 2024/12/17 01:52:28 by anoteris         ###   ########.fr       */
+/*   Updated: 2024/12/17 02:46:36 by anoteris         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,8 +82,6 @@
 # define PLAYER			game->maps->player, NULL
 # define ENEMY			NULL, enemy
 
-// TODO: is it possible despite the norm to rm ?
-# define IMG_WIN mlx_image_to_window
 
 typedef enum orientation
 {

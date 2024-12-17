@@ -6,7 +6,7 @@
 /*   By: anoteris <noterisarthur42@gmail.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/15 23:35:22 by anoteris          #+#    #+#             */
-/*   Updated: 2024/12/16 17:40:35 by anoteris         ###   ########.fr       */
+/*   Updated: 2024/12/17 02:46:00 by anoteris         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ void	display_panel(t_game *game)
 		{
 			display_water(game, x, (game->maps->height + y));
 			panel = get_mlx_panel(game, x, y);
-			IMG_WIN(game->mlx, panel,
+			mlx_image_to_window(game->mlx, panel,
 				x * BITS, (game->maps->height + y) * BITS);
 			mlx_set_instance_depth(panel->instances, 12);
 			x++ ;

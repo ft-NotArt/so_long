@@ -6,7 +6,7 @@
 /*   By: anoteris <noterisarthur42@gmail.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/12 14:43:52 by anoteris          #+#    #+#             */
-/*   Updated: 2024/12/17 02:07:05 by anoteris         ###   ########.fr       */
+/*   Updated: 2024/12/17 02:46:00 by anoteris         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ void	display_sign(t_game *game)
 	ft_strlcpy(sprite_file, SIGN, ft_strlen(SIGN) + 1);
 	ft_strlcat(sprite_file, PNG, ft_strlen(sprite_file) + ft_strlen(PNG) + 1);
 	img = get_mlx_img(game, sprite_file);
-	IMG_WIN(game->mlx, img,
+	mlx_image_to_window(game->mlx, img,
 		(game->maps->width * BITS) - 80, (game->maps->height * BITS));
 	mlx_set_instance_depth(img->instances, 14);
 }

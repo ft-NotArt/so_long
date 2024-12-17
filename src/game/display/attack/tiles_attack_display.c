@@ -6,7 +6,7 @@
 /*   By: anoteris <noterisarthur42@gmail.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/16 03:24:38 by anoteris          #+#    #+#             */
-/*   Updated: 2024/12/16 17:47:12 by anoteris         ###   ########.fr       */
+/*   Updated: 2024/12/17 02:46:00 by anoteris         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,7 +47,7 @@ static int	get_attack_img_y(t_attack *attack)
 void	display_attack(t_game *game, t_attack *attack)
 {
 	attack->image = get_mlx_attack(game, attack);
-	IMG_WIN(game->mlx, attack->image,
+	mlx_image_to_window(game->mlx, attack->image,
 		get_attack_img_x(attack), get_attack_img_y(attack));
 	mlx_set_instance_depth(attack->image->instances, 10);
 }
