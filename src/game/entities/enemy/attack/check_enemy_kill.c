@@ -6,7 +6,7 @@
 /*   By: anoteris <noterisarthur42@gmail.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/16 05:50:50 by anoteris          #+#    #+#             */
-/*   Updated: 2024/12/17 02:06:09 by anoteris         ###   ########.fr       */
+/*   Updated: 2024/12/18 06:00:57 by anoteris         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,6 +76,7 @@ static void	check_doo_attack_north(t_game *game, t_enemy *enemy)
 		game_over(game);
 }
 
+//TODO: same anti segfault as player version
 void	check_enemy_attack(t_game *game, t_enemy *enemy)
 {
 	if (enemy->attack->type == DEE)

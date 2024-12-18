@@ -6,7 +6,7 @@
 /*   By: anoteris <noterisarthur42@gmail.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/04 22:19:52 by anoteris          #+#    #+#             */
-/*   Updated: 2024/12/18 03:13:58 by anoteris         ###   ########.fr       */
+/*   Updated: 2024/12/18 06:10:44 by anoteris         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,14 +14,16 @@
 # define SO_LONG_H
 
 # include <MLX42/MLX42.h>
-# include <math.h>
+# include <unistd.h>
+# include <stdlib.h>
+# include <stdio.h>
+# include <string.h>
 # include <fcntl.h>
 # include <errno.h>
-# include <string.h>
+# include <math.h>
 # include <stdbool.h>
 
 # include "libft.h"
-# include "ft_printf.h"
 # include "get_next_line.h"
 
 # define BITS 32
@@ -162,120 +164,109 @@ typedef struct s_attack
 	t_orient	orient ;
 }			t_attack;
 
-void		error_arguments(void);
-void		error_map(void);
-void		error_mlx(void);
-
-void		free_map(t_map *map);
-void		free_maps(t_map *maps);
-void		free_game(t_game *game);
-
-bool		check_flood_fill(t_map *map);
-
-bool		pars_map(t_map *map);
+//	('') Pars ('')
 
 bool		check_ber(int argc, char *argv[]);
+bool		pars_map(t_map *map);
+bool		check_flood_fill(t_map *map);
+
+//	('') Init ('')
 
 t_map		*maps_init(int argc, char *argv[]);
-char		**read_map(char *map_file);
-
-t_game		*game_init(t_map *maps);
 t_map		*map_init(char *map_file);
+void		map_extend(t_map *map);
+char		**read_map(char *map_file);
+t_game		*game_init(t_map *maps);
+t_enemy		*enemy_init(t_map *map, int x, int y);
+void		enemy_set_attacks(t_enemy *enemy, t_map *map, int x, int y);
+t_attack	*attack_init(t_ype type, int x, int y, t_orient orient);
+void		set_attack_coord(t_attack *attack, int x, int y);
+
+//	('') Game ('')
 
 void		game_loop(t_game *game);
+void		frame_hook(void *param);
+void		keyboard_hook(mlx_key_data_t key_data, void *param);
+void		game_over(t_game *game);
+void		start_transition(t_game *game);
+void		end_transition(t_game *game);
 
-void		display_full_map(t_game *game);
-void		display_tile(t_game *game, int x, int y);
-
-mlx_image_t	*get_mlx_img(t_game *game, char *sprite_file);
-mlx_image_t	*get_mlx_panel(t_game *game, size_t x, size_t y);
+//	('') Player & Enemy ('')
 
 void		get_input_dir(keys_t key_press, t_game *game);
-
-void		update_player_sprite(t_game *game, t_player *player);
-void		update_enemy_sprite(t_game *game, t_enemy *enemy);
-
-void		keyboard_hook(mlx_key_data_t key_data, void *param);
-
-void		close_game(t_game *game);
-void		close_success(void *param);
-void		close_failure(void *param);
-
 int			alternate_walking(int current_pose);
+void		player_swallow(t_game *game, t_map *maps,
+				char **map, t_player *player);
+void		player_knife(t_game *game, t_player *player);
+void		player_magic_beam(t_game *game, t_player *player);
+void		update_player_attack(t_game *game, t_player *player);
+void		check_player_attack(t_game *game, t_player *player);
 
+void		enemy_turn(t_game *game, t_enemy *enemy);
+bool		player_in_range(t_map *map, t_enemy *enemy);
+void		check_enemy_attack(t_game *game, t_enemy *enemy);
+t_enemy		*enemy_last(t_enemy *lst);
+void		enemy_add_back(t_enemy **lst, t_enemy *new);
+t_enemy		*get_enemy(t_enemy *enemy, int y, int x);
+void		del_enemy(t_game *game, t_enemy **enemy, int y, int x);
+
+void		check_player_mov(t_game *game, int y, int x);
+void		check_enemy_mov(t_game *game, int y, int x);
+bool		is_enemy(char c);
 void		move_east(t_game *game, t_player *player, t_enemy *enemy);
 void		move_south(t_game *game, t_player *player, t_enemy *enemy);
 void		move_west(t_game *game, t_player *player, t_enemy *enemy);
 void		move_north(t_game *game, t_player *player, t_enemy *enemy);
 
-void		frame_hook(void *param);
+//	('') Display ('')
 
-t_enemy		*enemy_init(t_map *map, int x, int y);
+mlx_image_t	*get_mlx_img(t_game *game, char *sprite_file);
 
-t_enemy		*enemy_last(t_enemy *lst);
-void		enemy_add_back(t_enemy **lst, t_enemy *new);
-void		enemy_del(t_game *game, t_enemy **enemy, int y, int x);
-
-void		check_player_mov(t_game *game, int y, int x);
-void		check_enemy_mov(t_game *game, int y, int x);
-bool		is_enemy(char c);
-
-void		player_swallow(t_game *game, t_map *maps,
-				char **map, t_player *player);
-
-void		enemy_turn(t_game *game, t_enemy *enemy);
-
-void		display_panel(t_game *game);
-
+void		display_full_map(t_game *game);
+void		display_tile(t_game *game, int x, int y);
 void		display_water(t_game *game, int x, int y);
+void		display_ground(t_game *game, int x, int y);
 void		display_star(t_game *game, int x, int y);
 
-void		map_extend(t_map *map);
-
-void		display_inside_panel(t_game *game);
-
-void		update_step_count(t_game *game);
-
-void		display_enemy(t_game *game, int x, int y);
 void		display_player(t_game *game, int x, int y);
-void		display_ground(t_game *game, int x, int y);
-void		init_step_count(t_game *game);
-void		display_boxes(t_game *game);
-void		display_sign(t_game *game);
-
+void		update_player_sprite(t_game *game, t_player *player);
+void		display_enemy(t_game *game, int x, int y);
+void		update_enemy_sprite(t_game *game, t_enemy *enemy);
 void		add_orient(t_orient orient, char *sprite_file);
 
-bool		player_in_range(t_map *map, t_enemy *enemy);
-
-mlx_image_t	*get_mlx_attack(t_game *game, t_attack *attack);
 void		display_attack(t_game *game, t_attack *attack);
+mlx_image_t	*get_mlx_attack(t_game *game, t_attack *attack);
 void		update_attack_sprite(t_game *game, t_attack *attack);
 
-t_attack	*attack_init(t_ype type, int x, int y, t_orient orient);
-void		check_enemy_attack(t_game *game, t_enemy *enemy);
-
-void		free_enemies(t_enemy **enemies);
-void		free_enemy(t_enemy *enemy);
-
-void		game_over(t_game *game);
-
-void		display_power(t_game *game);
-
-t_enemy		*get_enemy(t_enemy *enemy, int y, int x);
-
-void		player_knife(t_game *game, t_player *player);
-void		player_magic_beam(t_game *game, t_player *player);
-
-void		update_player_attack(t_game *game, t_player *player);
-
-void		check_player_attack(t_game *game, t_player *player);
-
-void		start_transition(t_game *game);
-void		end_transition(t_game *game);
+void		display_panel(t_game *game);
+mlx_image_t	*get_mlx_panel(t_game *game, size_t x, size_t y);
+void		display_inside_panel(t_game *game);
+void		display_boxes(t_game *game);
+void		display_powers(t_game *game);
+void		display_sign(t_game *game);
+void		init_step_count(t_game *game);
+void		update_step_count(t_game *game);
 
 void		display_transition(t_game *game);
 
-void		set_attack_coord(t_attack *attack, int x, int y);
-void		enemy_set_attacks(t_enemy *enemy, t_map *map, int x, int y);
+//	('') Free ('')
+
+void		free_game(t_game *game);
+void		free_maps(t_map *maps);
+void		free_map(t_map *map);
+void		free_enemies(t_enemy **enemies);
+void		free_enemy(t_enemy *enemy);
+
+//	('') Error ('')
+
+void		error_arguments(void);
+void		error_map(void);
+void		error_mlx(void);
+
+//	('') Close ('')
+
+void		close_game(t_game *game);
+void		close_success(void *param);
+void		close_failure(void *param);
 
 #endif

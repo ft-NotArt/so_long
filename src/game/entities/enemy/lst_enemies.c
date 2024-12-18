@@ -6,7 +6,7 @@
 /*   By: anoteris <noterisarthur42@gmail.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/10 05:46:22 by anoteris          #+#    #+#             */
-/*   Updated: 2024/12/16 16:12:10 by anoteris         ###   ########.fr       */
+/*   Updated: 2024/12/18 06:06:22 by anoteris         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,7 +45,7 @@ t_enemy	*get_enemy(t_enemy *enemy, int y, int x)
 	return (NULL);
 }
 
-void	enemy_del(t_game *game, t_enemy **enemy, int y, int x)
+void	del_enemy(t_game *game, t_enemy **enemy, int y, int x)
 {
 	t_enemy	*cur ;
 	t_enemy	*nxt ;

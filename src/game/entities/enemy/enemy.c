@@ -6,7 +6,7 @@
 /*   By: anoteris <noterisarthur42@gmail.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/10 15:00:20 by anoteris          #+#    #+#             */
-/*   Updated: 2024/12/18 01:31:36 by anoteris         ###   ########.fr       */
+/*   Updated: 2024/12/18 06:09:59 by anoteris         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ static void	after_enemy_move(t_game *game, t_enemy *enemy, t_orient input_dir)
 	if (game->maps->player->attack != NULL
 		&& enemy->x + 1 == game->maps->player->attack->x
 		&& enemy->y == game->maps->player->attack->y)
-		enemy_del(game, &game->maps->enemies, enemy->y, enemy->x);
+		del_enemy(game, &game->maps->enemies, enemy->y, enemy->x);
 	else if (enemy->orient != input_dir)
 	{
 		enemy->orient = input_dir ;
@@ -56,6 +56,7 @@ void	enemy_turn(t_game *game, t_enemy *enemy)
 		return ;
 	if (enemy->attack != NULL)
 	{
+		//TODO: put this part in a function
 		update_attack_sprite(game, enemy->attack);
 		if (enemy->attack->frame == 4)
 			(free(enemy->attack), enemy->attack = NULL);

@@ -6,7 +6,7 @@
 /*   By: anoteris <noterisarthur42@gmail.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/16 11:10:21 by anoteris          #+#    #+#             */
-/*   Updated: 2024/12/17 02:46:00 by anoteris         ###   ########.fr       */
+/*   Updated: 2024/12/18 06:03:53 by anoteris         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,7 +77,7 @@ static void	display_power_magic_beam(t_game *game)
 	game->player_attack_set_img[2]->enabled = game->player_attack_set[2];
 }
 
-void	display_power(t_game *game)
+void	display_powers(t_game *game)
 {
 	display_power_swallow(game);
 	display_power_knife(game);
