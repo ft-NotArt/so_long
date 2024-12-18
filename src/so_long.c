@@ -6,7 +6,7 @@
 /*   By: anoteris <noterisarthur42@gmail.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/04 22:19:35 by anoteris          #+#    #+#             */
-/*   Updated: 2024/12/17 23:56:21 by anoteris         ###   ########.fr       */
+/*   Updated: 2024/12/18 07:13:40 by anoteris         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ int	main(int argc, char *argv[])
 	t_game	*game ;
 	t_map	*maps ;
 
-	if (argc < 2 || !check_ber(argc, argv))
+	if (argc < 2 || argc > 6 || !check_ber(argc, argv))
 		return (error_arguments(), EXIT_FAILURE);
 	maps = maps_init(argc, argv);
 	if (!maps)
