@@ -6,7 +6,7 @@
 /*   By: anoteris <noterisarthur42@gmail.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/09 23:00:55 by anoteris          #+#    #+#             */
-/*   Updated: 2024/12/16 21:16:39 by anoteris         ###   ########.fr       */
+/*   Updated: 2024/12/18 15:54:50 by anoteris         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,8 +14,7 @@
 
 void	move_east(t_game *game, t_player *player, t_enemy *enemy)
 {
-	if (player != NULL && game->maps->map[player->y][player->x + 1] != '1'
-		&& game->maps->map[player->y][player->x + 1] != 'E')
+	if (player != NULL && !is_wall(game->maps->map[player->y][player->x + 1]))
 	{
 		game->maps->map[player->y][player->x + 1] = 'P' ;
 		game->maps->map[player->y][player->x] = '0' ;
@@ -23,8 +22,7 @@ void	move_east(t_game *game, t_player *player, t_enemy *enemy)
 		player->x++ ;
 		update_step_count(game);
 	}
-	else if (enemy != NULL && game->maps->map[enemy->y][enemy->x + 1] != '1'
-		&& game->maps->map[enemy->y][enemy->x + 1] != 'E'
+	else if (enemy != NULL && !is_wall(game->maps->map[enemy->y][enemy->x + 1])
 		&& !is_enemy(game->maps->map[enemy->y][enemy->x + 1]))
 	{
 		game->maps->map[enemy->y][enemy->x + 1] = enemy->type ;
@@ -36,8 +34,7 @@ void	move_east(t_game *game, t_player *player, t_enemy *enemy)
 
 void	move_south(t_game *game, t_player *player, t_enemy *enemy)
 {
-	if (player != NULL && game->maps->map[player->y + 1][player->x] != '1'
-			&& game->maps->map[player->y + 1][player->x] != 'E')
+	if (player != NULL && !is_wall(game->maps->map[player->y + 1][player->x]))
 	{
 		game->maps->map[player->y + 1][player->x] = 'P' ;
 		game->maps->map[player->y][player->x] = '0' ;
@@ -45,8 +42,7 @@ void	move_south(t_game *game, t_player *player, t_enemy *enemy)
 		player->y++ ;
 		update_step_count(game);
 	}
-	else if (enemy != NULL && game->maps->map[enemy->y + 1][enemy->x] != '1'
-		&& game->maps->map[enemy->y + 1][enemy->x] != 'E'
+	else if (enemy != NULL && !is_wall(game->maps->map[enemy->y + 1][enemy->x])
 		&& !is_enemy(game->maps->map[enemy->y + 1][enemy->x]))
 	{
 		game->maps->map[enemy->y + 1][enemy->x] = enemy->type ;
@@ -58,8 +54,7 @@ void	move_south(t_game *game, t_player *player, t_enemy *enemy)
 
 void	move_west(t_game *game, t_player *player, t_enemy *enemy)
 {
-	if (player != NULL && game->maps->map[player->y][player->x - 1] != '1'
-		&& game->maps->map[player->y][player->x - 1] != 'E')
+	if (player != NULL && !is_wall(game->maps->map[player->y][player->x - 1]))
 	{
 		game->maps->map[player->y][player->x - 1] = 'P' ;
 		game->maps->map[player->y][player->x] = '0' ;
@@ -67,8 +62,7 @@ void	move_west(t_game *game, t_player *player, t_enemy *enemy)
 		player->x-- ;
 		update_step_count(game);
 	}
-	else if (enemy != NULL && game->maps->map[enemy->y][enemy->x - 1] != '1'
-		&& game->maps->map[enemy->y][enemy->x - 1] != 'E'
+	else if (enemy != NULL && !is_wall(game->maps->map[enemy->y][enemy->x - 1])
 		&& !is_enemy(game->maps->map[enemy->y][enemy->x - 1]))
 	{
 		game->maps->map[enemy->y][enemy->x - 1] = enemy->type ;
@@ -80,8 +74,7 @@ void	move_west(t_game *game, t_player *player, t_enemy *enemy)
 
 void	move_north(t_game *game, t_player *player, t_enemy *enemy)
 {
-	if (player != NULL && game->maps->map[player->y - 1][player->x] != '1'
-		&& game->maps->map[player->y - 1][player->x] != 'E')
+	if (player != NULL && !is_wall(game->maps->map[player->y - 1][player->x]))
 	{
 		game->maps->map[player->y - 1][player->x] = 'P' ;
 		game->maps->map[player->y][player->x] = '0' ;
@@ -89,8 +82,7 @@ void	move_north(t_game *game, t_player *player, t_enemy *enemy)
 		player->y-- ;
 		update_step_count(game);
 	}
-	else if (enemy != NULL && game->maps->map[enemy->y - 1][enemy->x] != '1'
-		&& game->maps->map[enemy->y - 1][enemy->x] != 'E'
+	else if (enemy != NULL && !is_wall(game->maps->map[enemy->y - 1][enemy->x])
 		&& !is_enemy(game->maps->map[enemy->y - 1][enemy->x]))
 	{
 		game->maps->map[enemy->y - 1][enemy->x] = enemy->type ;

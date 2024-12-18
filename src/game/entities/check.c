@@ -6,7 +6,7 @@
 /*   By: anoteris <noterisarthur42@gmail.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/10 05:33:43 by anoteris          #+#    #+#             */
-/*   Updated: 2024/12/16 23:53:01 by anoteris         ###   ########.fr       */
+/*   Updated: 2024/12/18 15:48:33 by anoteris         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,4 +45,9 @@ void	check_enemy_mov(t_game *game, int y, int x)
 bool	is_enemy(char c)
 {
 	return (c == 'C' || c == 'D' || c == 'B');
+}
+
+bool	is_wall(char c)
+{
+	return (c == '1' || c == 'E');
 }

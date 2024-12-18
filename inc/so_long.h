@@ -6,7 +6,7 @@
 /*   By: anoteris <noterisarthur42@gmail.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/04 22:19:52 by anoteris          #+#    #+#             */
-/*   Updated: 2024/12/18 15:34:30 by anoteris         ###   ########.fr       */
+/*   Updated: 2024/12/18 15:49:09 by anoteris         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -241,6 +241,7 @@ void		del_boss(t_game *game, t_boss **boss, int y, int x);
 void		check_player_mov(t_game *game, int y, int x);
 void		check_enemy_mov(t_game *game, int y, int x);
 bool		is_enemy(char c);
+bool		is_wall(char c);
 void		move_east(t_game *game, t_player *player, t_enemy *enemy);
 void		move_south(t_game *game, t_player *player, t_enemy *enemy);
 void		move_west(t_game *game, t_player *player, t_enemy *enemy);
