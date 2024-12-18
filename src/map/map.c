@@ -6,7 +6,7 @@
 /*   By: anoteris <noterisarthur42@gmail.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/04 22:24:48 by anoteris          #+#    #+#             */
-/*   Updated: 2024/12/18 07:26:45 by anoteris         ###   ########.fr       */
+/*   Updated: 2024/12/18 07:40:14 by anoteris         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,9 @@
 
 static bool	map_has_empty_line(char *map_in_line)
 {
-	if (ft_strnstr(map_in_line, "\n\n", ft_strlen(map_in_line)))
+	if (ft_strnstr(map_in_line, "\n\n", ft_strlen(map_in_line))
+		|| map_in_line[0] == '\n'
+		|| map_in_line[ft_strlen(map_in_line) - 1] == '\n')
 		return (true);
 	return (false);
 }
@@ -40,7 +42,7 @@ char	**read_map(char *map_file)
 		line = get_next_line(fd);
 	}
 	close(fd);
-	if (map_has_empty_line(map_in_line) || !ft_strcmp(map_in_line, ""))
+	if (map_in_line[0] == '\0' || map_has_empty_line(map_in_line))
 		return (free(map_in_line), NULL);
 	res = ft_split(map_in_line, '\n');
 	free(map_in_line);
