@@ -182,7 +182,7 @@ $(NAME)			:	$(OBJ) $(LIBFT_PATH) $(LIBMLX)
 					echo -e '$(LIGHT_PINK) \tCompiled$(DARK_PINK) $@'
 
 hard			:	CFLAGS += -D PLAYER_TYPE='"yoshi/yoshi_"'
-hard			:	clean $(NAME)
+hard			:	$(NAME)
 
 clean			:
 					$(RM) $(OBJ)
