@@ -6,7 +6,7 @@
 /*   By: anoteris <noterisarthur42@gmail.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/10 15:00:20 by anoteris          #+#    #+#             */
-/*   Updated: 2024/12/18 06:09:59 by anoteris         ###   ########.fr       */
+/*   Updated: 2024/12/18 06:57:31 by anoteris         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,19 +50,21 @@ void	move_enemy(t_game *game, t_enemy *enemy, t_orient input_dir)
 	after_enemy_move(game, enemy, input_dir);
 }
 
+static void	update_enemy_attack(t_game *game, t_enemy *enemy)
+{
+	update_attack_sprite(game, enemy->attack);
+	if (enemy->attack->frame == 4)
+		(free(enemy->attack), enemy->attack = NULL);
+	else
+		check_enemy_attack(game, enemy);
+}
+
 void	enemy_turn(t_game *game, t_enemy *enemy)
 {
 	if (enemy == NULL)
 		return ;
 	if (enemy->attack != NULL)
-	{
-		//TODO: put this part in a function
-		update_attack_sprite(game, enemy->attack);
-		if (enemy->attack->frame == 4)
-			(free(enemy->attack), enemy->attack = NULL);
-		else
-			check_enemy_attack(game, enemy);
-	}
+		update_enemy_attack(game, enemy);
 	else if (player_in_range(game->maps, enemy))
 	{
 		enemy->attack = attack_init(enemy->type,

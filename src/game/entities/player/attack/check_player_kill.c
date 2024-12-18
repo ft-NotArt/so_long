@@ -6,13 +6,13 @@
 /*   By: anoteris <noterisarthur42@gmail.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/16 15:00:40 by anoteris          #+#    #+#             */
-/*   Updated: 2024/12/18 06:06:22 by anoteris         ###   ########.fr       */
+/*   Updated: 2024/12/18 07:04:11 by anoteris         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
 
-static void	check_doo_attack_east(t_game *game, t_player *player)
+static void	check_doo_att_east_player(t_game *game, t_player *player)
 {
 	if (player->attack->frame == FRAME1
 		&& is_enemy(game->maps->map[player->attack->y - 1][player->attack->x]))
@@ -28,14 +28,13 @@ static void	check_doo_attack_east(t_game *game, t_player *player)
 			player->attack->y + 1, player->attack->x);
 }
 
-static void	check_doo_attack_south(t_game *game, t_player *player)
+static void	check_doo_att_south_player(t_game *game, t_player *player)
 {
 	if (player->attack->frame == FRAME1
 		&& is_enemy(game->maps->map[player->attack->y][player->attack->x + 1]))
 		del_enemy(game, &game->maps->enemies,
 			player->attack->y, player->attack->x + 1);
 	else if (player->attack->frame == FRAME2
-		&& (size_t) player->attack->y + 1 < game->maps->height
 		&& is_enemy(game->maps->map[player->attack->y + 1][player->attack->x]))
 		del_enemy(game, &game->maps->enemies,
 			player->attack->y + 1, player->attack->x);
@@ -45,7 +44,7 @@ static void	check_doo_attack_south(t_game *game, t_player *player)
 			player->attack->y, player->attack->x - 1);
 }
 
-static void	check_doo_attack_west(t_game *game, t_player *player)
+static void	check_doo_att_west_player(t_game *game, t_player *player)
 {
 	if (player->attack->frame == FRAME1
 		&& is_enemy(game->maps->map[player->attack->y + 1][player->attack->x]))
@@ -61,7 +60,7 @@ static void	check_doo_attack_west(t_game *game, t_player *player)
 			player->attack->y - 1, player->attack->x);
 }
 
-static void	check_doo_attack_north(t_game *game, t_player *player)
+static void	check_doo_att_north_player(t_game *game, t_player *player)
 {
 	if (player->attack->frame == FRAME1
 		&& is_enemy(game->maps->map[player->attack->y][player->attack->x - 1]))
@@ -80,8 +79,8 @@ static void	check_doo_attack_north(t_game *game, t_player *player)
 void	check_player_attack(t_game *game, t_player *player)
 {
 	if (player->attack->x <= 0 || player->attack->y <= 0
-		|| (size_t) player->attack->x >= game->maps->width
-		|| (size_t) player->attack->y >= game->maps->height)
+		|| (size_t) player->attack->x >= game->maps->width - 1
+		|| (size_t) player->attack->y >= game->maps->height - 1)
 		return ;
 	if (player->attack->type == DEE)
 	{
@@ -95,12 +94,12 @@ void	check_player_attack(t_game *game, t_player *player)
 			del_enemy(game, &game->maps->enemies,
 				player->attack->y, player->attack->x);
 		if (player->attack->orient == EAST)
-			check_doo_attack_east(game, player);
+			check_doo_att_east_player(game, player);
 		if (player->attack->orient == SOUTH)
-			check_doo_attack_south(game, player);
+			check_doo_att_south_player(game, player);
 		if (player->attack->orient == WEST)
-			check_doo_attack_west(game, player);
+			check_doo_att_west_player(game, player);
 		if (player->attack->orient == NORTH)
-			check_doo_attack_north(game, player);
+			check_doo_att_north_player(game, player);
 	}
 }

@@ -6,13 +6,13 @@
 /*   By: anoteris <noterisarthur42@gmail.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/16 05:50:50 by anoteris          #+#    #+#             */
-/*   Updated: 2024/12/18 06:00:57 by anoteris         ###   ########.fr       */
+/*   Updated: 2024/12/18 07:04:53 by anoteris         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
 
-static void	check_doo_attack_east(t_game *game, t_enemy *enemy)
+static void	check_doo_att_east_enemy(t_game *game, t_enemy *enemy)
 {
 	if (enemy->attack->frame == FRAME1
 		&& game->maps->player->x == enemy->attack->x
@@ -28,7 +28,7 @@ static void	check_doo_attack_east(t_game *game, t_enemy *enemy)
 		game_over(game);
 }
 
-static void	check_doo_attack_south(t_game *game, t_enemy *enemy)
+static void	check_doo_att_south_enemy(t_game *game, t_enemy *enemy)
 {
 	if (enemy->attack->frame == FRAME1
 		&& game->maps->player->x == enemy->attack->x + 1
@@ -44,7 +44,7 @@ static void	check_doo_attack_south(t_game *game, t_enemy *enemy)
 		game_over(game);
 }
 
-static void	check_doo_attack_west(t_game *game, t_enemy *enemy)
+static void	check_doo_att_west_enemy(t_game *game, t_enemy *enemy)
 {
 	if (enemy->attack->frame == FRAME1
 		&& game->maps->player->x == enemy->attack->x
@@ -60,7 +60,7 @@ static void	check_doo_attack_west(t_game *game, t_enemy *enemy)
 		game_over(game);
 }
 
-static void	check_doo_attack_north(t_game *game, t_enemy *enemy)
+static void	check_doo_att_north_enemy(t_game *game, t_enemy *enemy)
 {
 	if (enemy->attack->frame == FRAME1
 		&& game->maps->player->x == enemy->attack->x - 1
@@ -79,6 +79,10 @@ static void	check_doo_attack_north(t_game *game, t_enemy *enemy)
 //TODO: same anti segfault as player version
 void	check_enemy_attack(t_game *game, t_enemy *enemy)
 {
+	if (enemy->attack->x <= 0 || enemy->attack->y <= 0
+		|| (size_t) enemy->attack->x >= game->maps->width - 1
+		|| (size_t) enemy->attack->y >= game->maps->height - 1)
+		return ;
 	if (enemy->attack->type == DEE)
 	{
 		if (enemy->attack->x == game->maps->player->x
@@ -89,16 +93,14 @@ void	check_enemy_attack(t_game *game, t_enemy *enemy)
 	{
 		if (enemy->attack->x == game->maps->player->x
 			&& enemy->attack->y == game->maps->player->y)
-		{
 			game_over(game);
-		}
 		if (enemy->attack->orient == EAST)
-			check_doo_attack_east(game, enemy);
+			check_doo_att_east_enemy(game, enemy);
 		if (enemy->attack->orient == SOUTH)
-			check_doo_attack_south(game, enemy);
+			check_doo_att_south_enemy(game, enemy);
 		if (enemy->attack->orient == WEST)
-			check_doo_attack_west(game, enemy);
+			check_doo_att_west_enemy(game, enemy);
 		if (enemy->attack->orient == NORTH)
-			check_doo_attack_north(game, enemy);
+			check_doo_att_north_enemy(game, enemy);
 	}
 }
