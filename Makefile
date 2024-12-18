@@ -55,6 +55,7 @@ FILES			=	so_long														\
 					game/entities/enemy/attack/check_range						\
 					game/entities/enemy/attack/check_enemy_kill					\
 \
+					game/entities/boss/boss										\
 					game/entities/boss/lst_boss									\
 \
 					game/display/display										\

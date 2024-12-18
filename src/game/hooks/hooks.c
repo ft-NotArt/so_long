@@ -6,7 +6,7 @@
 /*   By: anoteris <noterisarthur42@gmail.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/09 22:45:25 by anoteris          #+#    #+#             */
-/*   Updated: 2024/12/17 23:58:15 by anoteris         ###   ########.fr       */
+/*   Updated: 2024/12/18 16:22:10 by anoteris         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,6 +70,7 @@ void	frame_hook(void *param)
 	if (fmod(time, 0.50) <= 0.02)
 	{
 		enemy_turn(game, game->maps->enemies);
+		boss_turn(game, game->maps->bosses);
 		if (game->maps->player->attack != NULL)
 			update_player_attack(game, game->maps->player);
 	}

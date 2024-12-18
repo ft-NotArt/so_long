@@ -6,7 +6,7 @@
 /*   By: anoteris <noterisarthur42@gmail.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/10 15:00:20 by anoteris          #+#    #+#             */
-/*   Updated: 2024/12/18 12:54:12 by anoteris         ###   ########.fr       */
+/*   Updated: 2024/12/18 16:18:00 by anoteris         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,22 +30,22 @@ static void	move_enemy(t_game *game, t_enemy *enemy, t_orient input_dir)
 	if (input_dir == EAST)
 	{
 		check_enemy_mov(game, enemy->y, enemy->x + 1);
-		move_east(game, NULL, enemy);
+		move_east(game, NULL, enemy, NULL);
 	}
 	else if (input_dir == SOUTH)
 	{
 		check_enemy_mov(game, enemy->y + 1, enemy->x);
-		move_south(game, NULL, enemy);
+		move_south(game, NULL, enemy, NULL);
 	}
 	else if (input_dir == WEST)
 	{
 		check_enemy_mov(game, enemy->y, enemy->x - 1);
-		move_west(game, NULL, enemy);
+		move_west(game, NULL, enemy, NULL);
 	}
 	else if (input_dir == NORTH)
 	{
 		check_enemy_mov(game, enemy->y - 1, enemy->x);
-		move_north(game, NULL, enemy);
+		move_north(game, NULL, enemy, NULL);
 	}
 	after_enemy_move(game, enemy, input_dir);
 }

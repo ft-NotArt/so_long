@@ -6,13 +6,13 @@
 /*   By: anoteris <noterisarthur42@gmail.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/09 23:00:55 by anoteris          #+#    #+#             */
-/*   Updated: 2024/12/18 15:54:50 by anoteris         ###   ########.fr       */
+/*   Updated: 2024/12/18 16:16:15 by anoteris         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
 
-void	move_east(t_game *game, t_player *player, t_enemy *enemy)
+void	move_east(t_game *game, t_player *player, t_enemy *enemy, t_boss *boss)
 {
 	if (player != NULL && !is_wall(game->maps->map[player->y][player->x + 1]))
 	{
@@ -30,9 +30,17 @@ void	move_east(t_game *game, t_player *player, t_enemy *enemy)
 		enemy->image->instances->x += BITS ;
 		enemy->x++ ;
 	}
+	else if (boss != NULL && !is_wall(game->maps->map[boss->y][boss->x + 1])
+		&& !is_enemy(game->maps->map[boss->y][boss->x + 1]))
+	{
+		game->maps->map[boss->y][boss->x + 1] = 'B' ;
+		game->maps->map[boss->y][boss->x] = '0' ;
+		boss->image->instances->x += BITS ;
+		boss->x++ ;
+	}
 }
 
-void	move_south(t_game *game, t_player *player, t_enemy *enemy)
+void	move_south(t_game *game, t_player *player, t_enemy *enemy, t_boss *boss)
 {
 	if (player != NULL && !is_wall(game->maps->map[player->y + 1][player->x]))
 	{
@@ -50,9 +58,17 @@ void	move_south(t_game *game, t_player *player, t_enemy *enemy)
 		enemy->image->instances->y += BITS ;
 		enemy->y++ ;
 	}
+	else if (boss != NULL && !is_wall(game->maps->map[boss->y + 1][boss->x])
+		&& !is_enemy(game->maps->map[boss->y + 1][boss->x]))
+	{
+		game->maps->map[boss->y + 1][boss->x] = 'B' ;
+		game->maps->map[boss->y][boss->x] = '0' ;
+		boss->image->instances->y += BITS ;
+		boss->y++ ;
+	}
 }
 
-void	move_west(t_game *game, t_player *player, t_enemy *enemy)
+void	move_west(t_game *game, t_player *player, t_enemy *enemy, t_boss *boss)
 {
 	if (player != NULL && !is_wall(game->maps->map[player->y][player->x - 1]))
 	{
@@ -70,9 +86,17 @@ void	move_west(t_game *game, t_player *player, t_enemy *enemy)
 		enemy->image->instances->x -= BITS ;
 		enemy->x-- ;
 	}
+	else if (boss != NULL && !is_wall(game->maps->map[boss->y][boss->x - 1])
+		&& !is_enemy(game->maps->map[boss->y][boss->x - 1]))
+	{
+		game->maps->map[boss->y][boss->x - 1] = 'B' ;
+		game->maps->map[boss->y][boss->x] = '0' ;
+		boss->image->instances->x -= BITS ;
+		boss->x-- ;
+	}
 }
 
-void	move_north(t_game *game, t_player *player, t_enemy *enemy)
+void	move_north(t_game *game, t_player *player, t_enemy *enemy, t_boss *boss)
 {
 	if (player != NULL && !is_wall(game->maps->map[player->y - 1][player->x]))
 	{
@@ -89,5 +113,13 @@ void	move_north(t_game *game, t_player *player, t_enemy *enemy)
 		game->maps->map[enemy->y][enemy->x] = '0' ;
 		enemy->image->instances->y -= BITS ;
 		enemy->y-- ;
+	}
+	else if (boss != NULL && !is_wall(game->maps->map[boss->y - 1][boss->x])
+		&& !is_enemy(game->maps->map[boss->y - 1][boss->x]))
+	{
+		game->maps->map[boss->y - 1][boss->x] = 'B' ;
+		game->maps->map[boss->y][boss->x] = '0' ;
+		boss->image->instances->y -= BITS ;
+		boss->y-- ;
 	}
 }
