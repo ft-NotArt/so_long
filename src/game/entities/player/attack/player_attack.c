@@ -6,7 +6,7 @@
 /*   By: anoteris <noterisarthur42@gmail.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/16 14:15:59 by anoteris          #+#    #+#             */
-/*   Updated: 2024/12/18 06:06:22 by anoteris         ###   ########.fr       */
+/*   Updated: 2024/12/18 12:46:18 by anoteris         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,7 +60,7 @@ void	player_knife(t_game *game, t_player *player)
 {
 	player->attack = attack_init(DEE, player->x, player->y, player->orient);
 	display_attack(game, player->attack);
-	check_player_attack(game, player);
+	check_player_attack(game, player->attack);
 }
 
 void	player_magic_beam(t_game *game, t_player *player)
@@ -70,7 +70,7 @@ void	player_magic_beam(t_game *game, t_player *player)
 	player->status = ATTACKING ;
 	player->attack = attack_init(DOO, player->x, player->y, player->orient);
 	display_attack(game, player->attack);
-	check_player_attack(game, player);
+	check_player_attack(game, player->attack);
 }
 
 void	update_player_attack(t_game *game, t_player *player)
@@ -83,5 +83,5 @@ void	update_player_attack(t_game *game, t_player *player)
 			player->status = STANDING ;
 	}
 	else
-		check_player_attack(game, player);
+		check_player_attack(game, player->attack);
 }

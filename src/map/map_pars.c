@@ -6,7 +6,7 @@
 /*   By: anoteris <noterisarthur42@gmail.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/05 00:40:37 by anoteris          #+#    #+#             */
-/*   Updated: 2024/12/10 14:25:37 by anoteris         ###   ########.fr       */
+/*   Updated: 2024/12/18 08:04:53 by anoteris         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,25 +45,24 @@ static bool	map_is_rectangle(t_map *map)
 	return (true);
 }
 
-static bool	map_is_close(char **map)
+static bool	map_is_closed(t_map *map)
 {
-	int	height ;
-	int	width ;
-	int	i ;
+	size_t	i ;
 
 	i = 0 ;
-	height = 0 ;
-	while (map[i++])
-		height++;
-	width = ft_strlen(map[0]);
-	i = -1 ;
-	while (++i < width)
-		if (map[0][i] != '1' || map[height - 1][i] != '1')
+	while (i < map->width)
+	{
+		if (map->map[0][i] != '1' || map->map[map->height - 1][i] != '1')
 			return (false);
-	i = -1 ;
-	while (++i < height)
-		if (map[i][0] != '1' || map[i][width - 1] != '1')
+		i++ ;
+	}
+	i = 0 ;
+	while (i < map->height)
+	{
+		if (map->map[i][0] != '1' || map->map[i][map->width - 1] != '1')
 			return (false);
+		i++ ;
+	}
 	return (true);
 }
 
@@ -97,9 +96,9 @@ static bool	map_content(t_map *map)
 
 bool	pars_map(t_map *map)
 {
-	if (!check_map_char(map->map, "01PEBCD")
+	if (!check_map_char(map->map, MAP_CHARSET)
 		|| !map_is_rectangle(map)
-		|| !map_is_close(map->map)
+		|| !map_is_closed(map)
 		|| !map_content(map)
 		|| !check_flood_fill(map))
 		return (false);

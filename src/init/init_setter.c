@@ -6,7 +6,7 @@
 /*   By: anoteris <noterisarthur42@gmail.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/17 01:51:00 by anoteris          #+#    #+#             */
-/*   Updated: 2024/12/17 01:51:49 by anoteris         ###   ########.fr       */
+/*   Updated: 2024/12/18 10:27:12 by anoteris         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,12 +26,10 @@ void	set_attack_coord(t_attack *attack, int x, int y)
 		attack->y-- ;
 }
 
-void	enemy_set_attacks(t_enemy *enemy, t_map *map, int x, int y)
+void	enemy_set_attacks(t_enemy *enemy)
 {
-	enemy->attack_set[0] = 0 ;
-	enemy->attack_set[1] = 0 ;
-	enemy->attack_set[2] = 0 ;
-	if (map->map[y][x] == DEE)
+	ft_bzero(enemy->attack_set, 3 * sizeof(bool));
+	if (enemy->type == DEE)
 		enemy->attack_set[1] = 1;
 	else
 		enemy->attack_set[2] = 1;

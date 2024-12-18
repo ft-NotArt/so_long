@@ -6,16 +6,16 @@
 /*   By: anoteris <noterisarthur42@gmail.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/09 23:02:16 by anoteris          #+#    #+#             */
-/*   Updated: 2024/12/10 02:04:11 by anoteris         ###   ########.fr       */
+/*   Updated: 2024/12/18 10:46:32 by anoteris         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
 
-int	alternate_walking(int current_pose)
+void	alternate_walking(t_player *player)
 {
-	if (current_pose == STANDING || current_pose == WALKING2)
-		return (WALKING1);
+	if (player->status != WALKING1)
+		player->status = WALKING1 ;
 	else
-		return (WALKING2);
+		player->status = WALKING2 ;
 }

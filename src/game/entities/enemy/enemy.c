@@ -6,7 +6,7 @@
 /*   By: anoteris <noterisarthur42@gmail.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/10 15:00:20 by anoteris          #+#    #+#             */
-/*   Updated: 2024/12/18 06:57:31 by anoteris         ###   ########.fr       */
+/*   Updated: 2024/12/18 12:54:12 by anoteris         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ static void	after_enemy_move(t_game *game, t_enemy *enemy, t_orient input_dir)
 	}
 }
 
-void	move_enemy(t_game *game, t_enemy *enemy, t_orient input_dir)
+static void	move_enemy(t_game *game, t_enemy *enemy, t_orient input_dir)
 {
 	if (input_dir == EAST)
 	{

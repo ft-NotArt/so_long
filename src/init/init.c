@@ -6,7 +6,7 @@
 /*   By: anoteris <noterisarthur42@gmail.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/09 22:46:43 by anoteris          #+#    #+#             */
-/*   Updated: 2024/12/18 00:49:22 by anoteris         ###   ########.fr       */
+/*   Updated: 2024/12/18 10:27:37 by anoteris         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,7 +69,7 @@ t_enemy	*enemy_init(t_map *map, int x, int y)
 	enemy->y = y ;
 	enemy->orient = (orient % 4);
 	orient++ ;
-	enemy_set_attacks(enemy, map, x, y);
+	enemy_set_attacks(enemy);
 	enemy->attack = NULL ;
 	enemy->next = NULL ;
 	return (enemy);
@@ -88,9 +88,7 @@ t_game	*game_init(t_map *maps)
 	ft_strlcat(win_name, &level, ft_strlen(LEVEL) + 2);
 	game->mlx = mlx_init(game->maps->width * BITS,
 			(game->maps->height + 2) * BITS, win_name, false);
-	game->player_attack_set[0] = 1 ;
-	game->player_attack_set[1] = 0 ;
-	game->player_attack_set[2] = 0 ;
+	ft_bzero(game->player_attack_set, 3 * sizeof(bool));
 	game->player_attack_set_img[0] = NULL ;
 	game->player_attack_set_img[1] = NULL ;
 	game->player_attack_set_img[2] = NULL ;

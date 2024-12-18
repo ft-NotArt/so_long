@@ -6,7 +6,7 @@
 /*   By: anoteris <noterisarthur42@gmail.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/04 22:19:52 by anoteris          #+#    #+#             */
-/*   Updated: 2024/12/18 06:10:44 by anoteris         ###   ########.fr       */
+/*   Updated: 2024/12/18 12:45:53 by anoteris         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,6 +29,8 @@
 # define BITS 32
 
 # define MIN_WIDTH 7
+
+# define MAP_CHARSET "01PEBCD"
 
 # define LEVEL			"Level "
 
@@ -178,7 +180,7 @@ void		map_extend(t_map *map);
 char		**read_map(char *map_file);
 t_game		*game_init(t_map *maps);
 t_enemy		*enemy_init(t_map *map, int x, int y);
-void		enemy_set_attacks(t_enemy *enemy, t_map *map, int x, int y);
+void		enemy_set_attacks(t_enemy *enemy);
 t_attack	*attack_init(t_ype type, int x, int y, t_orient orient);
 void		set_attack_coord(t_attack *attack, int x, int y);
 
@@ -194,13 +196,13 @@ void		end_transition(t_game *game);
 //	('') Player & Enemy ('')
 
 void		get_input_dir(keys_t key_press, t_game *game);
-int			alternate_walking(int current_pose);
+void		alternate_walking(t_player *player);
 void		player_swallow(t_game *game, t_map *maps,
 				char **map, t_player *player);
 void		player_knife(t_game *game, t_player *player);
 void		player_magic_beam(t_game *game, t_player *player);
 void		update_player_attack(t_game *game, t_player *player);
-void		check_player_attack(t_game *game, t_player *player);
+void		check_player_attack(t_game *game, t_attack *attack);
 
 void		enemy_turn(t_game *game, t_enemy *enemy);
 bool		player_in_range(t_map *map, t_enemy *enemy);

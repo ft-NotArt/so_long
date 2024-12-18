@@ -6,7 +6,7 @@
 /*   By: anoteris <noterisarthur42@gmail.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/05 13:08:24 by anoteris          #+#    #+#             */
-/*   Updated: 2024/12/18 01:19:12 by anoteris         ###   ########.fr       */
+/*   Updated: 2024/12/18 10:47:02 by anoteris         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,7 @@ static void	move_player(t_game *game, t_player *player, t_orient input_dir)
 		check_player_mov(game, player->y - 1, player->x);
 		move_north(game, game->maps->player, NULL);
 	}
-	game->maps->player->status = alternate_walking(game->maps->player->status);
+	alternate_walking(player);
 }
 
 static void	align_or_move(t_game *game, t_player *player, t_orient input_dir)
