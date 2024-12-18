@@ -6,7 +6,7 @@
 /*   By: anoteris <noterisarthur42@gmail.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/10 05:46:22 by anoteris          #+#    #+#             */
-/*   Updated: 2024/12/18 06:06:22 by anoteris         ###   ########.fr       */
+/*   Updated: 2024/12/18 15:03:55 by anoteris         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,14 +33,11 @@ void	enemy_add_back(t_enemy **lst, t_enemy *new)
 
 t_enemy	*get_enemy(t_enemy *enemy, int y, int x)
 {
-	t_enemy	*cur ;
-
-	cur = enemy ;
-	while (cur)
+	while (enemy)
 	{
-		if (cur->y == y && cur->x == x)
-			return (cur);
-		cur = cur->next ;
+		if (enemy->y == y && enemy->x == x)
+			return (enemy);
+		enemy = enemy->next ;
 	}
 	return (NULL);
 }
