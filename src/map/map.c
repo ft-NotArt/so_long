@@ -6,7 +6,7 @@
 /*   By: anoteris <noterisarthur42@gmail.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/04 22:24:48 by anoteris          #+#    #+#             */
-/*   Updated: 2024/12/12 16:36:22 by anoteris         ###   ########.fr       */
+/*   Updated: 2024/12/18 07:26:45 by anoteris         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,7 +51,6 @@ t_map	*maps_init(int argc, char *argv[])
 {
 	t_map	*maps ;
 	t_map	*current ;
-	t_map	*next ;
 	int		i ;
 
 	i = 1 ;
@@ -63,12 +62,11 @@ t_map	*maps_init(int argc, char *argv[])
 	current = maps ;
 	while (++i < argc)
 	{
-		next = map_init(argv[i]);
-		current->next = next ;
-		if (!next->map || !pars_map(next))
+		current->next = map_init(argv[i]);
+		if (!current->next->map || !pars_map(current->next))
 			return (free_maps(maps), NULL);
-		if (maps->width < MIN_WIDTH)
-			map_extend(maps);
+		if (current->next->width < MIN_WIDTH)
+			map_extend(current->next);
 		current = current->next ;
 	}
 	return (maps);
