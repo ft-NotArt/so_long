@@ -161,7 +161,7 @@ OBJ				=	$(addprefix src/, $(addsuffix .o, $(FILES)))
 
 # RULES
 
-all				:	$(LIBFT_PATH) $(LIBMLX) $(NAME)
+all				:	$(NAME)
 
 $(LIBFT_PATH)	:
 					$(MAKE) -C $(LIBFT_DIR) $(LIBFT) -j $$(nproc)
@@ -177,9 +177,12 @@ $(LIBMLX)		:
 					cmake -S $(MLX) -B $(MLX)/build
 					cmake --build $(MLX)/build
 
-$(NAME)			:	$(OBJ)
-					$(CC) $(CFLAGS) $(LFLAGS) $^ $(LIBFT_PATH) $(LIBMLX) -o $@
+$(NAME)			:	$(OBJ) $(LIBFT_PATH) $(LIBMLX)
+					$(CC) $(CFLAGS) $(LFLAGS) $^ -o $@
 					echo -e '$(LIGHT_PINK) \tCompiled$(DARK_PINK) $@'
+
+hard			:	CFLAGS += -D PLAYER_TYPE='"yoshi/yoshi_"'
+hard			:	clean $(NAME)
 
 clean			:
 					$(RM) $(OBJ)
