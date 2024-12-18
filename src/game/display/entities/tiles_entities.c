@@ -6,13 +6,13 @@
 /*   By: anoteris <noterisarthur42@gmail.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/16 03:45:56 by anoteris          #+#    #+#             */
-/*   Updated: 2024/12/16 03:49:12 by anoteris         ###   ########.fr       */
+/*   Updated: 2024/12/18 00:17:24 by anoteris         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
 
-void	add_orient(orient orient, char *sprite_file)
+void	add_orient(t_orient orient, char *sprite_file)
 {
 	if (orient == EAST)
 		ft_strlcat(sprite_file, RIGHT,

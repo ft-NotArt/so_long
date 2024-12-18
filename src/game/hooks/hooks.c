@@ -6,7 +6,7 @@
 /*   By: anoteris <noterisarthur42@gmail.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/09 22:45:25 by anoteris          #+#    #+#             */
-/*   Updated: 2024/12/17 03:03:07 by anoteris         ###   ########.fr       */
+/*   Updated: 2024/12/17 23:58:15 by anoteris         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@ void	keyboard_hook(mlx_key_data_t key_data, void *param)
 	{
 		if (is_movement_key(key_data.key)
 			&& game->maps->player->status != ATTACKING)
-			get_input_dir(key_data.key, game); // TODO: shouldn't move when magic beam
+			get_input_dir(key_data.key, game);
 		if ((key_data.key == MLX_KEY_1 || key_data.key == MLX_KEY_KP_1)
 			&& game->maps->player->attack == NULL)
 			player_swallow(game, game->maps, game->maps->map,
@@ -56,7 +56,7 @@ void	frame_hook(void *param)
 	game = (t_game *) param ;
 	time = mlx_get_time();
 	if (game->time_from_transition != 0
-		&& game->time_from_transition + 2 < mlx_get_time())
+		&& game->time_from_transition + 2 < time)
 		end_transition(game);
 	if ((game->maps->player->status == SWALLOWING
 			&& game->maps->player->last_action_time + 0.5 < time)

@@ -6,13 +6,13 @@
 /*   By: anoteris <noterisarthur42@gmail.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/09 22:46:43 by anoteris          #+#    #+#             */
-/*   Updated: 2024/12/17 01:51:55 by anoteris         ###   ########.fr       */
+/*   Updated: 2024/12/18 00:49:22 by anoteris         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
 
-t_attack	*attack_init(type type, int x, int y, orient orient)
+t_attack	*attack_init(t_ype type, int x, int y, t_orient orient)
 {
 	t_attack	*attack ;
 

@@ -6,7 +6,7 @@
 /*   By: anoteris <noterisarthur42@gmail.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/04 22:19:52 by anoteris          #+#    #+#             */
-/*   Updated: 2024/12/17 02:46:36 by anoteris         ###   ########.fr       */
+/*   Updated: 2024/12/18 01:23:36 by anoteris         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,23 +31,18 @@
 # define LEVEL			"Level "
 
 # define WATER			"textures/ground/water.png"
-
 # define STAR			"textures/ground/star.png"
 
 # define GRASS			"textures/ground/grass/"
-
 # define GROUND			"ground"
-
 # define DECO			"deco/deco_"
 
 # define PANEL			"textures/panel/panel_"
-
 # define CORNER			"corner_"
 # define BORDER			"border_"
 
 # define BOX			"textures/panel/box_power_"
 # define POWER			"textures/panel/power_"
-
 # define SIGN			"textures/panel/sign"
 
 # define KIRBY			"textures/kirby/"
@@ -58,7 +53,6 @@
 # define K_SWALLOWING	"swallowing/kirby_swallowing_"
 
 # define WADDLE_DOO		"textures/enemies/waddle_doo/waddle_doo_"
-
 # define WADDLE_DEE		"textures/enemies/waddle_dee/waddle_dee_"
 
 # define ATTACKS		"textures/attacks/"
@@ -79,17 +73,13 @@
 
 # define PNG			".png"
 
-# define PLAYER			game->maps->player, NULL
-# define ENEMY			NULL, enemy
-
-
 typedef enum orientation
 {
 	EAST,
 	SOUTH,
 	WEST,
 	NORTH
-}			orient ;
+}			t_orient;
 
 typedef enum position
 {
@@ -98,20 +88,20 @@ typedef enum position
 	WALKING2,
 	SWALLOWING,
 	ATTACKING
-}			pos ;
+}			t_pos;
 
 typedef enum attack_frame
 {
 	FRAME1 = 1,
 	FRAME2 = 2,
 	FRAME3 = 3
-}			att_frame ;
+}			t_att_frame;
 
 typedef enum enemy_type
 {
 	DEE = 'C',
 	DOO = 'D'
-}			type ;
+}			t_ype;
 
 typedef struct s_game
 {
@@ -119,8 +109,8 @@ typedef struct s_game
 	struct s_map	*maps ;
 	bool			player_attack_set[3];
 	mlx_image_t		*player_attack_set_img[3];
-	double			time_from_transition;
-}			t_game ;
+	double			time_from_transition ;
+}			t_game;
 
 typedef struct s_map
 {
@@ -132,155 +122,156 @@ typedef struct s_map
 	mlx_image_t		*step_count_img ;
 	struct s_enemy	*enemies ;
 	struct s_map	*next ;
-}			t_map ;
+}			t_map;
 
 typedef struct s_player
 {
 	mlx_image_t		*image ;
-	int 			x ;
-	int 			y ;
-	orient			orient ;
-	pos				status ;
+	int				x ;
+	int				y ;
+	t_orient		orient ;
+	t_pos			status ;
 	int				step_count ;
 	struct s_attack	*attack ;
 	double			last_action_time ;
-}			t_player ;
+}			t_player;
 
 typedef struct s_enemy
 {
 	mlx_image_t		*image ;
-	type			type ;
-	int 			x ;
-	int 			y ;
-	orient			orient ;
+	t_ype			type ;
+	int				x ;
+	int				y ;
+	t_orient		orient ;
 	bool			attack_set[3];
 	struct s_attack	*attack ;
 	struct s_enemy	*next ;
-}			t_enemy ;
+}			t_enemy;
 
 typedef struct s_attack
 {
 	mlx_image_t	*image ;
-	att_frame	frame ;
-	type		type ;
+	t_att_frame	frame ;
+	t_ype		type ;
 	int			x ;
 	int			y ;
-	orient		orient ;
-}			t_attack ;
+	t_orient	orient ;
+}			t_attack;
 
-void	error_arguments();
-void	error_map();
-void	error_mlx();
+void		error_arguments(void);
+void		error_map(void);
+void		error_mlx(void);
 
-void	free_map(t_map *map);
-void	free_maps(t_map *maps);
-void	free_game(t_game *game);
+void		free_map(t_map *map);
+void		free_maps(t_map *maps);
+void		free_game(t_game *game);
 
-bool	check_flood_fill(t_map *map);
+bool		check_flood_fill(t_map *map);
 
-bool	pars_map(t_map *map);
+bool		pars_map(t_map *map);
 
-bool	check_ber(int argc, char *argv[]);
+bool		check_ber(int argc, char *argv[]);
 
-t_map	*maps_init(int argc, char *argv[]);
-char	**read_map(char *map_file);
+t_map		*maps_init(int argc, char *argv[]);
+char		**read_map(char *map_file);
 
-t_game	*game_init(t_map *maps);
-t_map	*map_init(char *map_file);
+t_game		*game_init(t_map *maps);
+t_map		*map_init(char *map_file);
 
-void	game_loop(t_game *game);
+void		game_loop(t_game *game);
 
-void	display_full_map(t_game *game);
-void	display_tile(t_game *game, int x, int y);
+void		display_full_map(t_game *game);
+void		display_tile(t_game *game, int x, int y);
 
 mlx_image_t	*get_mlx_img(t_game *game, char *sprite_file);
 mlx_image_t	*get_mlx_panel(t_game *game, size_t x, size_t y);
 
-void	get_input_dir(keys_t key_press, t_game *game);
+void		get_input_dir(keys_t key_press, t_game *game);
 
-void	update_player_sprite(t_game *game, t_player *player);
-void	update_enemy_sprite(t_game *game, t_enemy *enemy);
+void		update_player_sprite(t_game *game, t_player *player);
+void		update_enemy_sprite(t_game *game, t_enemy *enemy);
 
-void	keyboard_hook(mlx_key_data_t key_data, void *param);
+void		keyboard_hook(mlx_key_data_t key_data, void *param);
 
-void	close_game(t_game *game);
-void	close_success(void *param);
-void	close_failure(void *param);
+void		close_game(t_game *game);
+void		close_success(void *param);
+void		close_failure(void *param);
 
-int		alternate_walking(int current_pose);
+int			alternate_walking(int current_pose);
 
-void	move_east(t_game *game, t_player *player, t_enemy *enemy);
-void	move_south(t_game *game, t_player *player, t_enemy *enemy);
-void	move_west(t_game *game, t_player *player, t_enemy *enemy);
-void	move_north(t_game *game, t_player *player, t_enemy *enemy);
+void		move_east(t_game *game, t_player *player, t_enemy *enemy);
+void		move_south(t_game *game, t_player *player, t_enemy *enemy);
+void		move_west(t_game *game, t_player *player, t_enemy *enemy);
+void		move_north(t_game *game, t_player *player, t_enemy *enemy);
 
-void	frame_hook(void *param);
+void		frame_hook(void *param);
 
-t_enemy	*enemy_init(t_map *map, int x, int y);
+t_enemy		*enemy_init(t_map *map, int x, int y);
 
-t_enemy	*enemy_last(t_enemy *lst);
-void	enemy_add_back(t_enemy **lst, t_enemy *new);
-void	enemy_del(t_game *game, t_enemy **enemy, int y, int x);
+t_enemy		*enemy_last(t_enemy *lst);
+void		enemy_add_back(t_enemy **lst, t_enemy *new);
+void		enemy_del(t_game *game, t_enemy **enemy, int y, int x);
 
-void	check_player_mov(t_game *game, int y, int x);
-void	check_enemy_mov(t_game *game, int y, int x);
-bool	is_enemy(char c);
+void		check_player_mov(t_game *game, int y, int x);
+void		check_enemy_mov(t_game *game, int y, int x);
+bool		is_enemy(char c);
 
-void	player_swallow(t_game *game, t_map *maps, char **map, t_player *player);
+void		player_swallow(t_game *game, t_map *maps,
+				char **map, t_player *player);
 
-void	enemy_turn(t_game *game, t_enemy *enemy);
+void		enemy_turn(t_game *game, t_enemy *enemy);
 
-void	display_panel(t_game *game);
+void		display_panel(t_game *game);
 
-void	display_water(t_game *game, int x, int y);
-void	display_star(t_game *game, int x, int y);
+void		display_water(t_game *game, int x, int y);
+void		display_star(t_game *game, int x, int y);
 
-void	map_extend(t_map *map);
+void		map_extend(t_map *map);
 
-void	display_inside_panel(t_game *game);
+void		display_inside_panel(t_game *game);
 
-void	update_step_count(t_game *game);
+void		update_step_count(t_game *game);
 
-void	display_enemy(t_game *game, int x, int y);
-void	display_player(t_game *game, int x, int y);
-void	display_ground(t_game *game, int x, int y);
-void	init_step_count(t_game *game);
-void	display_boxes(t_game *game);
-void	display_sign(t_game *game);
+void		display_enemy(t_game *game, int x, int y);
+void		display_player(t_game *game, int x, int y);
+void		display_ground(t_game *game, int x, int y);
+void		init_step_count(t_game *game);
+void		display_boxes(t_game *game);
+void		display_sign(t_game *game);
 
-void	add_orient(orient orient, char *sprite_file);
+void		add_orient(t_orient orient, char *sprite_file);
 
-bool	player_in_range(t_map *map, t_enemy *enemy);
+bool		player_in_range(t_map *map, t_enemy *enemy);
 
 mlx_image_t	*get_mlx_attack(t_game *game, t_attack *attack);
-void	display_attack(t_game *game, t_attack *attack);
-void	update_attack_sprite(t_game *game, t_attack *attack);
+void		display_attack(t_game *game, t_attack *attack);
+void		update_attack_sprite(t_game *game, t_attack *attack);
 
-t_attack	*attack_init(type type, int x, int y, orient orient);
-void	check_enemy_attack(t_game *game, t_enemy *enemy);
+t_attack	*attack_init(t_ype type, int x, int y, t_orient orient);
+void		check_enemy_attack(t_game *game, t_enemy *enemy);
 
-void	free_enemies(t_enemy **enemies);
-void	free_enemy(t_enemy *enemy);
+void		free_enemies(t_enemy **enemies);
+void		free_enemy(t_enemy *enemy);
 
-void	game_over(t_game *game);
+void		game_over(t_game *game);
 
-void	display_power(t_game *game);
+void		display_power(t_game *game);
 
-t_enemy	*get_enemy(t_enemy *enemy, int y, int x);
+t_enemy		*get_enemy(t_enemy *enemy, int y, int x);
 
-void	player_knife(t_game *game, t_player *player);
-void	player_magic_beam(t_game *game, t_player *player);
+void		player_knife(t_game *game, t_player *player);
+void		player_magic_beam(t_game *game, t_player *player);
 
-void	update_player_attack(t_game *game, t_player *player);
+void		update_player_attack(t_game *game, t_player *player);
 
-void	check_player_attack(t_game *game, t_player *player);
+void		check_player_attack(t_game *game, t_player *player);
 
-void	start_transition(t_game *game);
-void	end_transition(t_game *game);
+void		start_transition(t_game *game);
+void		end_transition(t_game *game);
 
-void	display_transition(t_game *game);
+void		display_transition(t_game *game);
 
-void	set_attack_coord(t_attack *attack, int x, int y);
-void	enemy_set_attacks(t_enemy *enemy, t_map *map, int x, int y);
+void		set_attack_coord(t_attack *attack, int x, int y);
+void		enemy_set_attacks(t_enemy *enemy, t_map *map, int x, int y);
 
 #endif

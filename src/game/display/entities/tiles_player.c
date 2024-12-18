@@ -6,13 +6,13 @@
 /*   By: anoteris <noterisarthur42@gmail.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/09 23:40:27 by anoteris          #+#    #+#             */
-/*   Updated: 2024/12/17 02:50:39 by anoteris         ###   ########.fr       */
+/*   Updated: 2024/12/18 00:46:42 by anoteris         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
 
-static void	player_add_status(pos status, char *sprite_file)
+static void	player_add_status(t_pos status, char *sprite_file)
 {
 	if (status == STANDING)
 		ft_strlcat(sprite_file, K_STANDING,

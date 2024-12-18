@@ -6,38 +6,38 @@
 /*   By: anoteris <noterisarthur42@gmail.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/05 13:08:24 by anoteris          #+#    #+#             */
-/*   Updated: 2024/12/16 21:14:00 by anoteris         ###   ########.fr       */
+/*   Updated: 2024/12/18 01:19:12 by anoteris         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
 
-static void	move_player(t_game *game, t_player *player, orient input_dir)
+static void	move_player(t_game *game, t_player *player, t_orient input_dir)
 {
 	if (input_dir == EAST)
 	{
 		check_player_mov(game, player->y, player->x + 1);
-		move_east(game, PLAYER);
+		move_east(game, game->maps->player, NULL);
 	}
 	if (input_dir == SOUTH)
 	{
 		check_player_mov(game, player->y + 1, player->x);
-		move_south(game, PLAYER);
+		move_south(game, game->maps->player, NULL);
 	}
 	if (input_dir == WEST)
 	{
 		check_player_mov(game, player->y, player->x - 1);
-		move_west(game, PLAYER);
+		move_west(game, game->maps->player, NULL);
 	}
 	if (input_dir == NORTH)
 	{
 		check_player_mov(game, player->y - 1, player->x);
-		move_north(game, PLAYER);
+		move_north(game, game->maps->player, NULL);
 	}
 	game->maps->player->status = alternate_walking(game->maps->player->status);
 }
 
-static void	align_or_move(t_game *game, t_player *player, orient input_dir)
+static void	align_or_move(t_game *game, t_player *player, t_orient input_dir)
 {
 	if (player->orient != input_dir)
 	{

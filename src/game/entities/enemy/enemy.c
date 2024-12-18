@@ -6,22 +6,14 @@
 /*   By: anoteris <noterisarthur42@gmail.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/10 15:00:20 by anoteris          #+#    #+#             */
-/*   Updated: 2024/12/16 21:25:43 by anoteris         ###   ########.fr       */
+/*   Updated: 2024/12/18 01:31:36 by anoteris         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
 
-void	move_enemy(t_game *game, t_enemy *enemy, orient input_dir)
+static void	after_enemy_move(t_game *game, t_enemy *enemy, t_orient input_dir)
 {
-	if (input_dir == EAST)
-		(check_enemy_mov(game, enemy->y, enemy->x +1), move_east(game, ENEMY));
-	if (input_dir == SOUTH)
-		(check_enemy_mov(game, enemy->y +1, enemy->x), move_south(game, ENEMY));
-	if (input_dir == WEST)
-		(check_enemy_mov(game, enemy->y, enemy->x -1), move_west(game, ENEMY));
-	if (input_dir == NORTH)
-		(check_enemy_mov(game, enemy->y -1, enemy->x), move_north(game, ENEMY));
 	if (game->maps->player->attack != NULL
 		&& enemy->x + 1 == game->maps->player->attack->x
 		&& enemy->y == game->maps->player->attack->y)
@@ -31,6 +23,31 @@ void	move_enemy(t_game *game, t_enemy *enemy, orient input_dir)
 		enemy->orient = input_dir ;
 		update_enemy_sprite(game, enemy);
 	}
+}
+
+void	move_enemy(t_game *game, t_enemy *enemy, t_orient input_dir)
+{
+	if (input_dir == EAST)
+	{
+		check_enemy_mov(game, enemy->y, enemy->x + 1);
+		move_east(game, NULL, enemy);
+	}
+	else if (input_dir == SOUTH)
+	{
+		check_enemy_mov(game, enemy->y + 1, enemy->x);
+		move_south(game, NULL, enemy);
+	}
+	else if (input_dir == WEST)
+	{
+		check_enemy_mov(game, enemy->y, enemy->x - 1);
+		move_west(game, NULL, enemy);
+	}
+	else if (input_dir == NORTH)
+	{
+		check_enemy_mov(game, enemy->y - 1, enemy->x);
+		move_north(game, NULL, enemy);
+	}
+	after_enemy_move(game, enemy, input_dir);
 }
 
 void	enemy_turn(t_game *game, t_enemy *enemy)
