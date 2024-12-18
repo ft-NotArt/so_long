@@ -6,7 +6,7 @@
 /*   By: anoteris <noterisarthur42@gmail.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/09 22:46:43 by anoteris          #+#    #+#             */
-/*   Updated: 2024/12/18 10:27:37 by anoteris         ###   ########.fr       */
+/*   Updated: 2024/12/18 15:13:01 by anoteris         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,22 +25,6 @@ t_attack	*attack_init(t_ype type, int x, int y, t_orient orient)
 	return (attack);
 }
 
-t_player	*player_init(void)
-{
-	t_player	*player ;
-
-	player = malloc(sizeof(t_player));
-	player->image = NULL ;
-	player->x = 0 ;
-	player->y = 0 ;
-	player->orient = EAST ;
-	player->status = STANDING ;
-	player->step_count = 0 ;
-	player->attack = NULL ;
-	player->last_action_time = 0 ;
-	return (player);
-}
-
 t_map	*map_init(char *map_file)
 {
 	t_map	*map ;
@@ -53,26 +37,9 @@ t_map	*map_init(char *map_file)
 	map->player = player_init();
 	map->step_count_img = NULL ;
 	map->enemies = NULL ;
+	map->bosses = NULL ;
 	map->next = NULL ;
 	return (map);
-}
-
-t_enemy	*enemy_init(t_map *map, int x, int y)
-{
-	t_enemy		*enemy ;
-	static int	orient = 0 ;
-
-	enemy = malloc(sizeof(t_enemy));
-	enemy->image = NULL ;
-	enemy->type = map->map[y][x];
-	enemy->x = x ;
-	enemy->y = y ;
-	enemy->orient = (orient % 4);
-	orient++ ;
-	enemy_set_attacks(enemy);
-	enemy->attack = NULL ;
-	enemy->next = NULL ;
-	return (enemy);
 }
 
 t_game	*game_init(t_map *maps)

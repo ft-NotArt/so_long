@@ -35,7 +35,7 @@ FILES			=	so_long														\
 					map/map map/map_pars map/map_extend map/flood_fill			\
 \
 \
-					init/init init/init_setter									\
+					init/init init/init_entities init/init_setter				\
 \
 \
 					game/game													\
@@ -75,7 +75,7 @@ FILES			=	so_long														\
 					game/display/attack/tiles_attack_update						\
 \
 \
-					exit/exit exit/free exit/error								\
+					exit/exit exit/free_game exit/free_entities exit/error		\
 \
 
 SRC				=	$(addprefix src/, $(addsuffix .c, $(FILES)))

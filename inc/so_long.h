@@ -6,7 +6,7 @@
 /*   By: anoteris <noterisarthur42@gmail.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/04 22:19:52 by anoteris          #+#    #+#             */
-/*   Updated: 2024/12/18 12:45:53 by anoteris         ###   ########.fr       */
+/*   Updated: 2024/12/18 15:20:35 by anoteris         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -95,7 +95,12 @@ typedef enum position
 	WALKING1,
 	WALKING2,
 	SWALLOWING,
-	ATTACKING
+	ATTACKING,
+	LOADING1,
+	LOADING2,
+	LOADING3,
+	LOADING4,
+	LOADING5
 }			t_pos;
 
 typedef enum attack_frame
@@ -107,6 +112,7 @@ typedef enum attack_frame
 
 typedef enum enemy_type
 {
+	BOSS = 'B',
 	DEE = 'C',
 	DOO = 'D'
 }			t_ype;
@@ -129,6 +135,7 @@ typedef struct s_map
 	struct s_player	*player ;
 	mlx_image_t		*step_count_img ;
 	struct s_enemy	*enemies ;
+	struct s_boss	*bosses ;
 	struct s_map	*next ;
 }			t_map;
 
@@ -156,6 +163,17 @@ typedef struct s_enemy
 	struct s_enemy	*next ;
 }			t_enemy;
 
+typedef struct s_boss
+{
+	mlx_image_t		*image ;
+	int				x ;
+	int				y ;
+	t_orient		orient ;
+	t_pos			status ;
+	struct s_attack	*attack ;
+	struct s_boss	*next ;
+}			t_boss;
+
 typedef struct s_attack
 {
 	mlx_image_t	*image ;
@@ -179,8 +197,10 @@ t_map		*map_init(char *map_file);
 void		map_extend(t_map *map);
 char		**read_map(char *map_file);
 t_game		*game_init(t_map *maps);
+t_player	*player_init(void);
 t_enemy		*enemy_init(t_map *map, int x, int y);
 void		enemy_set_attacks(t_enemy *enemy);
+t_boss		*boss_init(int x, int y);
 t_attack	*attack_init(t_ype type, int x, int y, t_orient orient);
 void		set_attack_coord(t_attack *attack, int x, int y);
 
@@ -258,6 +278,8 @@ void		free_maps(t_map *maps);
 void		free_map(t_map *map);
 void		free_enemies(t_enemy **enemies);
 void		free_enemy(t_enemy *enemy);
+void		free_bosses(t_boss **bosses);
+void		free_boss(t_boss *boss);
 
 //	('') Error ('')
 
