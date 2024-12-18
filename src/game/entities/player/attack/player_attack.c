@@ -6,7 +6,7 @@
 /*   By: anoteris <noterisarthur42@gmail.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/16 14:15:59 by anoteris          #+#    #+#             */
-/*   Updated: 2024/12/17 03:06:20 by anoteris         ###   ########.fr       */
+/*   Updated: 2024/12/18 04:25:06 by anoteris         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@ static void	absorb_attack(t_game *game, t_enemy *enemy)
 {
 	int	i ;
 
-	if (!enemy)
+	if (!enemy || ft_strcmp(PLAYER_TYPE, "yoshi/yoshi_") == 0)
 		return ;
 	i = -1 ;
 	while (++i < 3)
