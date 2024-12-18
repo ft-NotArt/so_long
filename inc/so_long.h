@@ -6,7 +6,7 @@
 /*   By: anoteris <noterisarthur42@gmail.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/04 22:19:52 by anoteris          #+#    #+#             */
-/*   Updated: 2024/12/18 01:23:36 by anoteris         ###   ########.fr       */
+/*   Updated: 2024/12/18 03:13:58 by anoteris         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,12 +45,16 @@
 # define POWER			"textures/panel/power_"
 # define SIGN			"textures/panel/sign"
 
-# define KIRBY			"textures/kirby/"
+# define PLAYER			"textures/player/"
 
-# define K_STANDING		"standing/kirby_standing_"
-# define K_WALKING_1	"walking/kirby_walking_1_"
-# define K_WALKING_2	"walking/kirby_walking_2_"
-# define K_SWALLOWING	"swallowing/kirby_swallowing_"
+# ifndef PLAYER_TYPE
+#  define PLAYER_TYPE	"kirby/kirby_"
+# endif
+
+# define P_STANDING		"standing_"
+# define P_WALKING_1	"walking_1_"
+# define P_WALKING_2	"walking_2_"
+# define P_SWALLOWING	"swallowing_"
 
 # define WADDLE_DOO		"textures/enemies/waddle_doo/waddle_doo_"
 # define WADDLE_DEE		"textures/enemies/waddle_dee/waddle_dee_"

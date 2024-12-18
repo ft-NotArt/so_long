@@ -6,7 +6,7 @@
 /*   By: anoteris <noterisarthur42@gmail.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/09 23:40:27 by anoteris          #+#    #+#             */
-/*   Updated: 2024/12/18 00:46:42 by anoteris         ###   ########.fr       */
+/*   Updated: 2024/12/18 03:16:29 by anoteris         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,24 +15,26 @@
 static void	player_add_status(t_pos status, char *sprite_file)
 {
 	if (status == STANDING)
-		ft_strlcat(sprite_file, K_STANDING,
-			ft_strlen(sprite_file) + ft_strlen(K_STANDING) + 1);
+		ft_strlcat(sprite_file, P_STANDING,
+			ft_strlen(sprite_file) + ft_strlen(P_STANDING) + 1);
 	else if (status == WALKING1)
-		ft_strlcat(sprite_file, K_WALKING_1,
-			ft_strlen(sprite_file) + ft_strlen(K_WALKING_1) + 1);
+		ft_strlcat(sprite_file, P_WALKING_1,
+			ft_strlen(sprite_file) + ft_strlen(P_WALKING_1) + 1);
 	else if (status == WALKING2)
-		ft_strlcat(sprite_file, K_WALKING_2,
-			ft_strlen(sprite_file) + ft_strlen(K_WALKING_2) + 1);
+		ft_strlcat(sprite_file, P_WALKING_2,
+			ft_strlen(sprite_file) + ft_strlen(P_WALKING_2) + 1);
 	else if (status == SWALLOWING)
-		ft_strlcat(sprite_file, K_SWALLOWING,
-			ft_strlen(sprite_file) + ft_strlen(K_SWALLOWING) + 1);
+		ft_strlcat(sprite_file, P_SWALLOWING,
+			ft_strlen(sprite_file) + ft_strlen(P_SWALLOWING) + 1);
 }
 
 static mlx_image_t	*get_mlx_player(t_game *game)
 {
 	char	sprite_file[100];
 
-	ft_strlcpy(sprite_file, KIRBY, ft_strlen(KIRBY) + 1);
+	ft_strlcpy(sprite_file, PLAYER, ft_strlen(PLAYER) + 1);
+	ft_strlcat(sprite_file, PLAYER_TYPE,
+		ft_strlen(sprite_file) + ft_strlen(PLAYER_TYPE) + 1);
 	player_add_status(game->maps->player->status, sprite_file);
 	add_orient(game->maps->player->orient, sprite_file);
 	ft_strlcat(sprite_file, PNG, ft_strlen(sprite_file) + ft_strlen(PNG) + 1);
