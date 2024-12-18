@@ -6,7 +6,7 @@
 /*   By: anoteris <noterisarthur42@gmail.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/16 04:30:19 by anoteris          #+#    #+#             */
-/*   Updated: 2024/12/16 18:20:56 by anoteris         ###   ########.fr       */
+/*   Updated: 2024/12/18 17:23:01 by anoteris         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,7 +56,7 @@ void	update_attack_sprite(t_game *game, t_attack *attack)
 	{
 		if (attack->type == DEE)
 			update_dee_attack(attack);
-		else
+		else if (attack->type == DOO)
 			update_doo_attack(game, attack);
 	}
 }

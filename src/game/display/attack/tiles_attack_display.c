@@ -6,12 +6,12 @@
 /*   By: anoteris <noterisarthur42@gmail.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/16 03:24:38 by anoteris          #+#    #+#             */
-/*   Updated: 2024/12/17 02:46:00 by anoteris         ###   ########.fr       */
+/*   Updated: 2024/12/18 17:30:05 by anoteris         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
-
+//TODO: kamehameha not displayed on right place
 static int	get_attack_img_x(t_attack *attack)
 {
 	if (attack->type == DOO)

@@ -52,11 +52,12 @@ FILES			=	so_long														\
 \
 					game/entities/enemy/enemy									\
 					game/entities/enemy/lst_enemy								\
-					game/entities/enemy/attack/check_range						\
+					game/entities/enemy/attack/check_enemy_range				\
 					game/entities/enemy/attack/check_enemy_kill					\
 \
 					game/entities/boss/boss										\
 					game/entities/boss/lst_boss									\
+					game/entities/boss/attack/check_boss_attack					\
 \
 					game/display/display										\
 \

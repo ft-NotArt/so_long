@@ -6,7 +6,7 @@
 /*   By: anoteris <noterisarthur42@gmail.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/04 22:19:52 by anoteris          #+#    #+#             */
-/*   Updated: 2024/12/18 16:21:24 by anoteris         ###   ########.fr       */
+/*   Updated: 2024/12/18 17:20:57 by anoteris         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,6 +69,7 @@
 # define SWALLOW		"swallowing"
 # define KNIFE			"knife"
 # define MAGIC_BEAM		"magic_beam"
+# define KAMEHAMEHA		"kamehameha"
 
 # define RIGHT			"right"
 # define FRONT			"front"
@@ -226,14 +227,16 @@ void		update_player_attack(t_game *game, t_player *player);
 void		check_player_attack(t_game *game, t_attack *attack);
 
 void		enemy_turn(t_game *game, t_enemy *enemy);
-bool		player_in_range(t_map *map, t_enemy *enemy);
-void		check_enemy_attack(t_game *game, t_enemy *enemy);
+bool		player_in_range_enemy(t_player *player, t_enemy *enemy);
+void		check_enemy_attack(t_game *game, t_attack *attack);
 t_enemy		*enemy_last(t_enemy *lst);
 void		enemy_add_back(t_enemy **lst, t_enemy *new);
 t_enemy		*get_enemy(t_enemy *enemy, int y, int x);
 void		del_enemy(t_game *game, t_enemy **enemy, int y, int x);
 
 void		boss_turn(t_game *game, t_boss *boss);
+bool		player_in_range_boss(t_player *player, t_boss *boss);
+void		check_boss_attack(t_game *game, t_boss *boss);
 t_boss		*boss_last(t_boss *lst);
 void		boss_add_back(t_boss **lst, t_boss *new);
 t_boss		*get_boss(t_boss *boss, int y, int x);

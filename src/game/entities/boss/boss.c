@@ -6,7 +6,7 @@
 /*   By: anoteris <noterisarthur42@gmail.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/18 15:45:06 by anoteris          #+#    #+#             */
-/*   Updated: 2024/12/18 16:24:54 by anoteris         ###   ########.fr       */
+/*   Updated: 2024/12/18 17:29:02 by anoteris         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,22 +51,29 @@ static void	move_boss(t_game *game, t_boss *boss, t_orient input_dir)
 	after_boss_move(game, boss, input_dir);
 }
 
+static void	update_boss_attack(t_game *game, t_boss *boss)
+{
+	update_attack_sprite(game, boss->attack);
+	if (boss->attack->frame == 4)
+		(free(boss->attack), boss->attack = NULL);
+	else
+		check_boss_attack(game, boss);
+}
+
 void	boss_turn(t_game *game, t_boss *boss)
 {
 	if (boss == NULL)
 		return ;
-	// if (boss->attack != NULL)
-	// 	update_boss_attack(game, boss);
-	// else if (player_in_range(game->maps, boss))
-	// {
-	// 	boss->attack = attack_init(boss->type,
-	// 			boss->x, boss->y, boss->orient);
-	// 	display_attack(game, boss->attack);
-	// 	check_boss_attack(game, boss);
-	// }
-	// else if ((rand_uchar() % 6) == 0)
-	// 	move_boss(game, boss, (rand_uchar() % 4));
-	if ((rand_uchar() % 6) == 0)
+	printf("in range : %d\n", player_in_range_boss(game->maps->player, boss));
+	if (boss->attack != NULL)
+		update_boss_attack(game, boss);
+	else if (player_in_range_boss(game->maps->player, boss))
+	{
+		boss->attack = attack_init(BOSS, boss->x, boss->y, boss->orient);
+		display_attack(game, boss->attack);
+		check_boss_attack(game, boss);
+	}
+	else if ((rand_uchar() % 6) == 0)
 		move_boss(game, boss, (rand_uchar() % 4));
 	boss_turn(game, boss->next);
 }

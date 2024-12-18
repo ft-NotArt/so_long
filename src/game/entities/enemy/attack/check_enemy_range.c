@@ -1,18 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   check_range.c                                      :+:      :+:    :+:   */
+/*   check_enemy_range.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: anoteris <noterisarthur42@gmail.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/16 01:33:39 by anoteris          #+#    #+#             */
-/*   Updated: 2024/12/17 02:05:53 by anoteris         ###   ########.fr       */
+/*   Updated: 2024/12/18 16:47:56 by anoteris         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
 
-static bool	in_range_east(t_player *player, t_enemy *enemy)
+static bool	in_range_east_enemy(t_player *player, t_enemy *enemy)
 {
 	if (enemy->type == DEE)
 	{
@@ -35,7 +35,7 @@ static bool	in_range_east(t_player *player, t_enemy *enemy)
 	return (false);
 }
 
-static bool	in_range_south(t_player *player, t_enemy *enemy)
+static bool	in_range_south_enemy(t_player *player, t_enemy *enemy)
 {
 	if (enemy->type == DEE)
 	{
@@ -58,7 +58,7 @@ static bool	in_range_south(t_player *player, t_enemy *enemy)
 	return (false);
 }
 
-static bool	in_range_west(t_player *player, t_enemy *enemy)
+static bool	in_range_west_enemy(t_player *player, t_enemy *enemy)
 {
 	if (enemy->type == DEE)
 	{
@@ -81,7 +81,7 @@ static bool	in_range_west(t_player *player, t_enemy *enemy)
 	return (false);
 }
 
-static bool	in_range_north(t_player *player, t_enemy *enemy)
+static bool	in_range_north_enemy(t_player *player, t_enemy *enemy)
 {
 	if (enemy->type == DEE)
 	{
@@ -104,15 +104,15 @@ static bool	in_range_north(t_player *player, t_enemy *enemy)
 	return (false);
 }
 
-bool	player_in_range(t_map *map, t_enemy *enemy)
+bool	player_in_range_enemy(t_player *player, t_enemy *enemy)
 {
 	if (enemy->orient == EAST)
-		return (in_range_east(map->player, enemy));
+		return (in_range_east_enemy(player, enemy));
 	else if (enemy->orient == SOUTH)
-		return (in_range_south(map->player, enemy));
+		return (in_range_south_enemy(player, enemy));
 	else if (enemy->orient == WEST)
-		return (in_range_west(map->player, enemy));
+		return (in_range_west_enemy(player, enemy));
 	else if (enemy->orient == NORTH)
-		return (in_range_north(map->player, enemy));
+		return (in_range_north_enemy(player, enemy));
 	return (false);
 }
