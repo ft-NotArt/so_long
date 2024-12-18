@@ -6,7 +6,7 @@
 /*   By: anoteris <noterisarthur42@gmail.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/04 22:19:52 by anoteris          #+#    #+#             */
-/*   Updated: 2024/12/18 15:20:35 by anoteris         ###   ########.fr       */
+/*   Updated: 2024/12/18 15:34:30 by anoteris         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,13 +55,14 @@
 #  define PLAYER_TYPE	"kirby/kirby_"
 # endif
 
+# define WADDLE_DOO		"textures/enemies/waddle_doo/waddle_doo_"
+# define WADDLE_DEE		"textures/enemies/waddle_dee/waddle_dee_"
+# define CELL			"textures/enemies/cell/cell_"
+
 # define P_STANDING		"standing_"
 # define P_WALKING_1	"walking_1_"
 # define P_WALKING_2	"walking_2_"
 # define P_SWALLOWING	"swallowing_"
-
-# define WADDLE_DOO		"textures/enemies/waddle_doo/waddle_doo_"
-# define WADDLE_DEE		"textures/enemies/waddle_dee/waddle_dee_"
 
 # define ATTACKS		"textures/attacks/"
 
@@ -232,6 +233,11 @@ void		enemy_add_back(t_enemy **lst, t_enemy *new);
 t_enemy		*get_enemy(t_enemy *enemy, int y, int x);
 void		del_enemy(t_game *game, t_enemy **enemy, int y, int x);
 
+t_boss		*boss_last(t_boss *lst);
+void		boss_add_back(t_boss **lst, t_boss *new);
+t_boss		*get_boss(t_boss *boss, int y, int x);
+void		del_boss(t_game *game, t_boss **boss, int y, int x);
+
 void		check_player_mov(t_game *game, int y, int x);
 void		check_enemy_mov(t_game *game, int y, int x);
 bool		is_enemy(char c);
@@ -254,6 +260,8 @@ void		display_player(t_game *game, int x, int y);
 void		update_player_sprite(t_game *game, t_player *player);
 void		display_enemy(t_game *game, int x, int y);
 void		update_enemy_sprite(t_game *game, t_enemy *enemy);
+void		display_boss(t_game *game, int x, int y);
+void		update_boss_sprite(t_game *game, t_boss *boss);
 void		add_orient(t_orient orient, char *sprite_file);
 
 void		display_attack(t_game *game, t_attack *attack);

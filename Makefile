@@ -51,9 +51,11 @@ FILES			=	so_long														\
 					game/entities/player/attack/check_player_kill				\
 \
 					game/entities/enemy/enemy									\
-					game/entities/enemy/lst_enemies								\
+					game/entities/enemy/lst_enemy								\
 					game/entities/enemy/attack/check_range						\
 					game/entities/enemy/attack/check_enemy_kill					\
+\
+					game/entities/boss/lst_boss									\
 \
 					game/display/display										\
 \
@@ -66,6 +68,7 @@ FILES			=	so_long														\
 \
 					game/display/entities/tiles_player							\
 					game/display/entities/tiles_enemy							\
+					game/display/entities/tiles_boss							\
 					game/display/entities/tiles_entities						\
 \
 					game/display/background/tiles_background					\

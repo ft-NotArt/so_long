@@ -6,7 +6,7 @@
 /*   By: anoteris <noterisarthur42@gmail.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/05 11:55:57 by anoteris          #+#    #+#             */
-/*   Updated: 2024/12/17 02:08:14 by anoteris         ###   ########.fr       */
+/*   Updated: 2024/12/18 15:35:36 by anoteris         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,9 @@ void	display_tile(t_game *game, int x, int y)
 		display_ground(game, x, y);
 	if (game->maps->map[y][x] == 'P')
 		display_player(game, x, y);
-	else if (is_enemy(game->maps->map[y][x]) && game->maps->map[y][x] != 'B')
+	else if (game->maps->map[y][x] == 'B')
+		display_boss(game, x, y);
+	else if (is_enemy(game->maps->map[y][x]))
 		display_enemy(game, x, y);
 	else if (game->maps->map[y][x] == 'E')
 		display_star(game, x, y);

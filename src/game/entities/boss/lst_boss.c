@@ -6,7 +6,7 @@
 /*   By: anoteris <noterisarthur42@gmail.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/10 05:46:22 by anoteris          #+#    #+#             */
-/*   Updated: 2024/12/18 15:08:16 by anoteris         ###   ########.fr       */
+/*   Updated: 2024/12/18 15:38:36 by anoteris         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,7 +53,7 @@ void	del_boss(t_game *game, t_boss **boss, int y, int x)
 		*boss = cur->next ;
 		game->maps->map[y][x] = '0' ;
 		game->maps->enemy_number-- ;
-		return (mlx_delete_image(game->mlx, cur->image), free_enemy(cur));
+		return (mlx_delete_image(game->mlx, cur->image), free_boss(cur));
 	}
 	nxt = cur->next ;
 	while (cur)
