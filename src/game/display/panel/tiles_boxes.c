@@ -6,7 +6,7 @@
 /*   By: anoteris <noterisarthur42@gmail.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/16 11:10:21 by anoteris          #+#    #+#             */
-/*   Updated: 2024/12/19 07:49:15 by anoteris         ###   ########.fr       */
+/*   Updated: 2024/12/19 09:33:49 by anoteris         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,15 +22,15 @@ void	display_boxes(t_game *game)
 	ft_strlcat(sprite_file, PNG, ft_strlen(sprite_file) + ft_strlen(PNG) + 1);
 	img = get_mlx_img(game, sprite_file);
 	mlx_image_to_window(game->mlx, img, 16, (game->maps->height * BITS) + 16);
-	mlx_set_instance_depth(img->instances, 1400);
+	mlx_set_instance_depth(img->instances, 56);
 	sprite_file[ft_strlen(sprite_file) - ft_strlen(PNG) - 1] = '2' ;
 	img = get_mlx_img(game, sprite_file);
 	mlx_image_to_window(game->mlx, img, 56, (game->maps->height * BITS) + 16);
-	mlx_set_instance_depth(img->instances, 1400);
+	mlx_set_instance_depth(img->instances, 56);
 	sprite_file[ft_strlen(sprite_file) - ft_strlen(PNG) - 1] = '3' ;
 	img = get_mlx_img(game, sprite_file);
 	mlx_image_to_window(game->mlx, img, 96, (game->maps->height * BITS) + 16);
-	mlx_set_instance_depth(img->instances, 1400);
+	mlx_set_instance_depth(img->instances, 56);
 }
 
 static void	display_power_swallow(t_game *game)
@@ -44,7 +44,7 @@ static void	display_power_swallow(t_game *game)
 	game->player_attack_set_img[0] = get_mlx_img(game, sprite_file);
 	mlx_image_to_window(game->mlx, game->player_attack_set_img[0],
 		16, (game->maps->height * BITS) + 16);
-	mlx_set_instance_depth(game->player_attack_set_img[0]->instances, 1600);
+	mlx_set_instance_depth(game->player_attack_set_img[0]->instances, 57);
 }
 
 static void	display_power_knife(t_game *game)
@@ -58,7 +58,7 @@ static void	display_power_knife(t_game *game)
 	game->player_attack_set_img[1] = get_mlx_img(game, sprite_file);
 	mlx_image_to_window(game->mlx, game->player_attack_set_img[1],
 		56, (game->maps->height * BITS) + 16);
-	mlx_set_instance_depth(game->player_attack_set_img[1]->instances, 1600);
+	mlx_set_instance_depth(game->player_attack_set_img[1]->instances, 57);
 	game->player_attack_set_img[1]->enabled = game->player_attack_set[1];
 }
 
@@ -73,7 +73,7 @@ static void	display_power_magic_beam(t_game *game)
 	game->player_attack_set_img[2] = get_mlx_img(game, sprite_file);
 	mlx_image_to_window(game->mlx, game->player_attack_set_img[2],
 		96, (game->maps->height * BITS) + 16);
-	mlx_set_instance_depth(game->player_attack_set_img[2]->instances, 1600);
+	mlx_set_instance_depth(game->player_attack_set_img[2]->instances, 57);
 	game->player_attack_set_img[2]->enabled = game->player_attack_set[2];
 }
 

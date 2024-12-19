@@ -6,7 +6,7 @@
 /*   By: anoteris <noterisarthur42@gmail.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/10 04:20:54 by anoteris          #+#    #+#             */
-/*   Updated: 2024/12/19 07:48:54 by anoteris         ###   ########.fr       */
+/*   Updated: 2024/12/19 09:31:13 by anoteris         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,7 @@ void	display_enemy(t_game *game, int x, int y)
 	img = get_mlx_enemy(game, enemy);
 	enemy->image = img ;
 	mlx_image_to_window(game->mlx, img, BITS * x, (BITS * y) - 8);
-	mlx_set_instance_depth(img->instances, 800);
+	mlx_set_instance_depth(img->instances, 4);
 }
 
 void	update_enemy_sprite(t_game *game, t_enemy *enemy)

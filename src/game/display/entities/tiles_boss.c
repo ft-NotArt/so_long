@@ -6,7 +6,7 @@
 /*   By: anoteris <noterisarthur42@gmail.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/18 15:24:48 by anoteris          #+#    #+#             */
-/*   Updated: 2024/12/19 07:52:37 by anoteris         ###   ########.fr       */
+/*   Updated: 2024/12/19 09:31:53 by anoteris         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,8 +59,8 @@ void	display_boss(t_game *game, int x, int y)
 	img = get_mlx_boss(game, boss);
 	boss->image = img ;
 	mlx_image_to_window(game->mlx, img, (BITS * x) - 16, (BITS * (y - 1)) - 8);
-	mlx_set_instance_depth(img->instances, 900 + count);
-	count = (count + 1) % 100 ;
+	mlx_set_instance_depth(img->instances, 5 + count);
+	count = (count + 1) % 25 ;
 }
 
 void	update_boss_sprite(t_game *game, t_boss *boss)

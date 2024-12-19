@@ -6,7 +6,7 @@
 /*   By: anoteris <noterisarthur42@gmail.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/16 19:41:19 by anoteris          #+#    #+#             */
-/*   Updated: 2024/12/19 07:49:35 by anoteris         ###   ########.fr       */
+/*   Updated: 2024/12/19 09:34:25 by anoteris         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ static void	display_transition_image(t_game *game)
 	ft_strlcat(sprite_file, PNG, ft_strlen(sprite_file) + ft_strlen(PNG) + 1);
 	transition = get_mlx_img(game, sprite_file);
 	mlx_image_to_window(game->mlx, transition, 0, 0);
-	mlx_set_instance_depth(transition->instances, 2000);
+	mlx_set_instance_depth(transition->instances, 60);
 }
 
 void	display_transition(t_game *game)
