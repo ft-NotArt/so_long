@@ -6,7 +6,7 @@
 /*   By: anoteris <noterisarthur42@gmail.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/05 11:46:51 by anoteris          #+#    #+#             */
-/*   Updated: 2024/12/17 02:49:23 by anoteris         ###   ########.fr       */
+/*   Updated: 2024/12/19 07:48:34 by anoteris         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,7 +65,7 @@ void	display_ground(t_game *game, int x, int y)
 
 	ground = get_mlx_ground(game, x, y);
 	mlx_image_to_window(game->mlx, ground, BITS * x, BITS * y);
-	mlx_set_instance_depth(ground->instances, 2);
+	mlx_set_instance_depth(ground->instances, 200);
 }
 
 void	display_water(t_game *game, int x, int y)
@@ -83,5 +83,5 @@ void	display_star(t_game *game, int x, int y)
 
 	star = get_mlx_img(game, STAR);
 	mlx_image_to_window(game->mlx, star, BITS * x, BITS * y);
-	mlx_set_instance_depth(star->instances, 4);
+	mlx_set_instance_depth(star->instances, 400);
 }

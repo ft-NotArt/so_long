@@ -6,7 +6,7 @@
 /*   By: anoteris <noterisarthur42@gmail.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/12 14:43:52 by anoteris          #+#    #+#             */
-/*   Updated: 2024/12/17 02:46:00 by anoteris         ###   ########.fr       */
+/*   Updated: 2024/12/19 07:49:30 by anoteris         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ void	display_sign(t_game *game)
 	img = get_mlx_img(game, sprite_file);
 	mlx_image_to_window(game->mlx, img,
 		(game->maps->width * BITS) - 80, (game->maps->height * BITS));
-	mlx_set_instance_depth(img->instances, 14);
+	mlx_set_instance_depth(img->instances, 1400);
 }
 
 void	init_step_count(t_game *game)
@@ -33,7 +33,7 @@ void	init_step_count(t_game *game)
 	game->maps->step_count_img = mlx_put_string(game->mlx, str_step_count,
 			(game->maps->width * BITS) - 55, (game->maps->height * BITS) + 18);
 	free(str_step_count);
-	mlx_set_instance_depth(game->maps->step_count_img->instances, 16);
+	mlx_set_instance_depth(game->maps->step_count_img->instances, 1600);
 }
 
 void	update_step_count(t_game *game)

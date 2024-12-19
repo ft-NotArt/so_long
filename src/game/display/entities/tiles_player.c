@@ -6,7 +6,7 @@
 /*   By: anoteris <noterisarthur42@gmail.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/09 23:40:27 by anoteris          #+#    #+#             */
-/*   Updated: 2024/12/18 03:16:29 by anoteris         ###   ########.fr       */
+/*   Updated: 2024/12/19 07:48:58 by anoteris         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,7 +46,7 @@ void	display_player(t_game *game, int x, int y)
 	game->maps->player->image = get_mlx_player(game);
 	mlx_image_to_window(game->mlx, game->maps->player->image,
 		BITS * x, (BITS * y) - 8);
-	mlx_set_instance_depth(game->maps->player->image->instances, 6);
+	mlx_set_instance_depth(game->maps->player->image->instances, 600);
 }
 
 void	update_player_sprite(t_game *game, t_player *player)

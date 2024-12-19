@@ -6,7 +6,7 @@
 /*   By: anoteris <noterisarthur42@gmail.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/15 23:35:22 by anoteris          #+#    #+#             */
-/*   Updated: 2024/12/18 06:03:54 by anoteris         ###   ########.fr       */
+/*   Updated: 2024/12/19 07:49:03 by anoteris         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@ void	display_panel(t_game *game)
 			panel = get_mlx_panel(game, x, y);
 			mlx_image_to_window(game->mlx, panel,
 				x * BITS, (game->maps->height + y) * BITS);
-			mlx_set_instance_depth(panel->instances, 12);
+			mlx_set_instance_depth(panel->instances, 1200);
 			x++ ;
 		}
 		y++ ;
