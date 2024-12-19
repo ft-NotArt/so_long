@@ -47,13 +47,14 @@ FILES			=	so_long														\
 \
 					game/entities/player/player									\
 					game/entities/player/status									\
+					game/entities/player/attack/player_kill						\
 					game/entities/player/attack/player_attack					\
-					game/entities/player/attack/check_player_kill				\
+					game/entities/player/attack/check_player_attack				\
 \
 					game/entities/enemy/enemy									\
 					game/entities/enemy/lst_enemy								\
 					game/entities/enemy/attack/check_enemy_range				\
-					game/entities/enemy/attack/check_enemy_kill					\
+					game/entities/enemy/attack/check_enemy_attack				\
 \
 					game/entities/boss/boss										\
 					game/entities/boss/lst_boss									\

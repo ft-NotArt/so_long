@@ -6,7 +6,7 @@
 /*   By: anoteris <noterisarthur42@gmail.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/04 22:19:52 by anoteris          #+#    #+#             */
-/*   Updated: 2024/12/19 05:41:00 by anoteris         ###   ########.fr       */
+/*   Updated: 2024/12/19 07:18:02 by anoteris         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -226,6 +226,7 @@ void		end_transition(t_game *game);
 
 void		get_input_dir(keys_t key_press, t_game *game);
 void		alternate_walking(t_player *player);
+void		player_kill(t_game *game, int y, int x);
 void		player_swallow(t_game *game, t_map *maps,
 				char **map, t_player *player);
 void		player_knife(t_game *game, t_player *player);
