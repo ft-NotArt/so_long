@@ -6,7 +6,7 @@
 /*   By: anoteris <noterisarthur42@gmail.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/18 15:45:06 by anoteris          #+#    #+#             */
-/*   Updated: 2024/12/19 07:06:49 by anoteris         ###   ########.fr       */
+/*   Updated: 2024/12/19 07:36:46 by anoteris         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,8 +18,8 @@ static void	after_boss_move(t_game *game, t_boss *boss, t_orient input_dir)
 		&& boss->x + 1 == game->maps->player->attack->x
 		&& boss->y == game->maps->player->attack->y)
 		del_boss(game, &game->maps->bosses, boss->y, boss->x);
-	else if (boss->orient != input_dir &&
-		(input_dir == EAST || input_dir == WEST))
+	else if (boss->orient != input_dir
+		&& (input_dir == EAST || input_dir == WEST))
 	{
 		boss->orient = input_dir ;
 		update_boss_sprite(game, boss);
@@ -51,7 +51,7 @@ static void	move_boss(t_game *game, t_boss *boss, t_orient input_dir)
 	after_boss_move(game, boss, input_dir);
 }
 
-static void boss_toward_player(t_game *game, t_boss *boss)
+static void	boss_toward_player(t_game *game, t_boss *boss)
 {
 	if (game->maps->player->x < boss->x)
 		boss->orient = WEST ;
