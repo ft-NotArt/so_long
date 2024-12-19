@@ -6,13 +6,13 @@
 /*   By: anoteris <noterisarthur42@gmail.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/16 04:30:19 by anoteris          #+#    #+#             */
-/*   Updated: 2024/12/18 17:23:01 by anoteris         ###   ########.fr       */
+/*   Updated: 2024/12/19 05:52:00 by anoteris         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
 
-static void	update_dee_attack(t_attack *attack)
+static void	update_dee_attack_sprite(t_attack *attack)
 {
 	if (attack->orient == EAST)
 	{
@@ -36,10 +36,23 @@ static void	update_dee_attack(t_attack *attack)
 	}
 }
 
-static void	update_doo_attack(t_game *game, t_attack *attack)
+static void	update_doo_attack_sprite(t_game *game, t_attack *attack)
 {
 	mlx_image_t	*tmp_img ;
 
+	tmp_img = get_mlx_attack(game, attack);
+	free(attack->image->pixels);
+	attack->image->pixels = tmp_img->pixels ;
+	tmp_img->pixels = NULL ;
+	mlx_delete_image(game->mlx, tmp_img);
+}
+
+static void	update_boss_attack_sprite(t_game *game, t_attack *attack)
+{
+	mlx_image_t	*tmp_img ;
+
+	if (attack->frame == FRAME3)
+		attack->frame = FRAME1 ;
 	tmp_img = get_mlx_attack(game, attack);
 	free(attack->image->pixels);
 	attack->image->pixels = tmp_img->pixels ;
@@ -55,8 +68,10 @@ void	update_attack_sprite(t_game *game, t_attack *attack)
 	else
 	{
 		if (attack->type == DEE)
-			update_dee_attack(attack);
+			update_dee_attack_sprite(attack);
 		else if (attack->type == DOO)
-			update_doo_attack(game, attack);
+			update_doo_attack_sprite(game, attack);
+		else if (attack->type == BOSS)
+			update_boss_attack_sprite(game, attack);
 	}
 }

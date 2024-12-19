@@ -6,7 +6,7 @@
 /*   By: anoteris <noterisarthur42@gmail.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/04 22:19:52 by anoteris          #+#    #+#             */
-/*   Updated: 2024/12/19 04:34:38 by anoteris         ###   ########.fr       */
+/*   Updated: 2024/12/19 05:41:00 by anoteris         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -103,12 +103,12 @@ typedef enum position
 	WALKING1,
 	WALKING2,
 	SWALLOWING,
-	ATTACKING,
 	LOADING1,
 	LOADING2,
 	LOADING3,
 	LOADING4,
-	LOADING5
+	LOADING5,
+	ATTACKING
 }			t_pos;
 
 typedef enum attack_frame
@@ -179,6 +179,7 @@ typedef struct s_boss
 	t_orient		orient ;
 	t_pos			status ;
 	struct s_attack	*attack ;
+	double			start_of_kamehameha ;
 	struct s_boss	*next ;
 }			t_boss;
 

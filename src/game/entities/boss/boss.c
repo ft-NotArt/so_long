@@ -6,7 +6,7 @@
 /*   By: anoteris <noterisarthur42@gmail.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/18 15:45:06 by anoteris          #+#    #+#             */
-/*   Updated: 2024/12/19 05:09:35 by anoteris         ###   ########.fr       */
+/*   Updated: 2024/12/19 05:56:26 by anoteris         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,8 +54,9 @@ static void	move_boss(t_game *game, t_boss *boss, t_orient input_dir)
 static void	update_boss_attack(t_game *game, t_boss *boss)
 {
 	update_attack_sprite(game, boss->attack);
-	if (boss->attack->frame == 4)
+	if (boss->start_of_kamehameha + 3 < mlx_get_time())
 	{
+		mlx_delete_image(game->mlx, boss->attack->image);
 		free(boss->attack);
 		boss->attack = NULL ;
 		boss->status = STANDING ;
@@ -69,7 +70,9 @@ void	boss_turn(t_game *game, t_boss *boss)
 {
 	if (boss == NULL)
 		return ;
-	if (boss->status == STANDING)
+	if (boss->attack != NULL)
+		update_boss_attack(game, boss);
+	else if (boss->status == STANDING)
 	{
 		if (player_in_range_boss(game->maps->player, boss))
 		{
@@ -79,19 +82,16 @@ void	boss_turn(t_game *game, t_boss *boss)
 		else if ((rand_uchar() % 6) == 0)
 			move_boss(game, boss, (rand_uchar() % 4));
 	}
-	else if (boss->status >= LOADING1 && boss->status <= LOADING4)
+	else if (boss->status >= LOADING1 && boss->status <= LOADING5)
 	{
 		boss->status++ ;
 		update_boss_sprite(game, boss);
 	}
-	else if (boss->status == LOADING5)
+	if (boss->attack == NULL && boss->status == ATTACKING)
 	{
-		boss->status = ATTACKING ;
-		update_boss_sprite(game, boss);
 		boss->attack = attack_init(BOSS, boss->x, boss->y, boss->orient);
 		(display_attack(game, boss->attack), check_boss_attack(game, boss));
+		boss->start_of_kamehameha = mlx_get_time();
 	}
-	else if (boss->status == ATTACKING)
-		update_boss_attack(game, boss);
 	boss_turn(game, boss->next);
 }
