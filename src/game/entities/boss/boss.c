@@ -6,7 +6,7 @@
 /*   By: anoteris <noterisarthur42@gmail.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/18 15:45:06 by anoteris          #+#    #+#             */
-/*   Updated: 2024/12/19 05:56:26 by anoteris         ###   ########.fr       */
+/*   Updated: 2024/12/19 06:08:43 by anoteris         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,6 +51,22 @@ static void	move_boss(t_game *game, t_boss *boss, t_orient input_dir)
 	after_boss_move(game, boss, input_dir);
 }
 
+static void boss_toward_player(t_game *game, t_boss *boss)
+{
+	if (game->maps->player->x < boss->x)
+		boss->orient = WEST ;
+	else if (game->maps->player->x > boss->x)
+		boss->orient = EAST ;
+	if (game->maps->player->y < boss->y)
+		move_boss(game, boss, NORTH);
+	else if (game->maps->player->y > boss->y)
+		move_boss(game, boss, SOUTH);
+	else if (game->maps->player->x < boss->x)
+		move_boss(game, boss, WEST);
+	else if (game->maps->player->x > boss->x)
+		move_boss(game, boss, EAST);
+}
+
 static void	update_boss_attack(t_game *game, t_boss *boss)
 {
 	update_attack_sprite(game, boss->attack);
@@ -75,12 +91,10 @@ void	boss_turn(t_game *game, t_boss *boss)
 	else if (boss->status == STANDING)
 	{
 		if (player_in_range_boss(game->maps->player, boss))
-		{
 			boss->status = LOADING1 ;
-			update_boss_sprite(game, boss);
-		}
-		else if ((rand_uchar() % 6) == 0)
-			move_boss(game, boss, (rand_uchar() % 4));
+		else
+			boss_toward_player(game, boss);
+		update_boss_sprite(game, boss);
 	}
 	else if (boss->status >= LOADING1 && boss->status <= LOADING5)
 	{
