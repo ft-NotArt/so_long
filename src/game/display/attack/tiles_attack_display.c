@@ -6,12 +6,12 @@
 /*   By: anoteris <noterisarthur42@gmail.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/16 03:24:38 by anoteris          #+#    #+#             */
-/*   Updated: 2024/12/19 03:52:42 by anoteris         ###   ########.fr       */
+/*   Updated: 2024/12/19 05:33:55 by anoteris         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
-//TODO: kamehameha not displayed on right place
+
 static int	get_attack_img_x(t_attack *attack)
 {
 	if (attack->type == BOSS && attack->orient == WEST)
@@ -31,7 +31,7 @@ static int	get_attack_img_x(t_attack *attack)
 static int	get_attack_img_y(t_attack *attack)
 {
 	if (attack->type == BOSS)
-		return (((attack->y - 1) * BITS) - BITS / 2);
+		return (((attack->y - 1) * BITS) - 24);
 	else if (attack->type == DOO)
 	{
 		if (attack->orient == EAST)

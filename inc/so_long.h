@@ -6,7 +6,7 @@
 /*   By: anoteris <noterisarthur42@gmail.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/04 22:19:52 by anoteris          #+#    #+#             */
-/*   Updated: 2024/12/18 17:20:57 by anoteris         ###   ########.fr       */
+/*   Updated: 2024/12/19 04:34:38 by anoteris         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,6 +63,12 @@
 # define P_WALKING_1	"walking_1_"
 # define P_WALKING_2	"walking_2_"
 # define P_SWALLOWING	"swallowing_"
+# define P_LOADING_1	"loading_kamehameha_1_"
+# define P_LOADING_2	"loading_kamehameha_2_"
+# define P_LOADING_3	"loading_kamehameha_3_"
+# define P_LOADING_4	"loading_kamehameha_4_"
+# define P_LOADING_5	"loading_kamehameha_5_"
+# define P_LAUNCHING	"launching_kamehameha_"
 
 # define ATTACKS		"textures/attacks/"
 

@@ -6,7 +6,7 @@
 /*   By: anoteris <noterisarthur42@gmail.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/18 15:45:06 by anoteris          #+#    #+#             */
-/*   Updated: 2024/12/19 04:17:59 by anoteris         ###   ########.fr       */
+/*   Updated: 2024/12/19 05:09:35 by anoteris         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,7 +55,12 @@ static void	update_boss_attack(t_game *game, t_boss *boss)
 {
 	update_attack_sprite(game, boss->attack);
 	if (boss->attack->frame == 4)
-		(free(boss->attack), boss->attack = NULL, boss->status = STANDING);
+	{
+		free(boss->attack);
+		boss->attack = NULL ;
+		boss->status = STANDING ;
+		update_boss_sprite(game, boss);
+	}
 	else
 		check_boss_attack(game, boss);
 }
@@ -64,7 +69,6 @@ void	boss_turn(t_game *game, t_boss *boss)
 {
 	if (boss == NULL)
 		return ;
-
 	if (boss->status == STANDING)
 	{
 		if (player_in_range_boss(game->maps->player, boss))
@@ -75,8 +79,7 @@ void	boss_turn(t_game *game, t_boss *boss)
 		else if ((rand_uchar() % 6) == 0)
 			move_boss(game, boss, (rand_uchar() % 4));
 	}
-	else if (boss->status == LOADING1 || boss->status == LOADING2
-			|| boss->status == LOADING3 || boss->status == LOADING4)
+	else if (boss->status >= LOADING1 && boss->status <= LOADING4)
 	{
 		boss->status++ ;
 		update_boss_sprite(game, boss);
@@ -84,26 +87,11 @@ void	boss_turn(t_game *game, t_boss *boss)
 	else if (boss->status == LOADING5)
 	{
 		boss->status = ATTACKING ;
+		update_boss_sprite(game, boss);
 		boss->attack = attack_init(BOSS, boss->x, boss->y, boss->orient);
-		display_attack(game, boss->attack);
-		// printf("\n Boss - x=%d y=%d \n \t - attack - x=%d y=%d \n", boss->x, boss->y, boss->attack->x, boss->attack->y);
-		check_boss_attack(game, boss);
+		(display_attack(game, boss->attack), check_boss_attack(game, boss));
 	}
 	else if (boss->status == ATTACKING)
-	{
 		update_boss_attack(game, boss);
-	}
-
-	// printf("in range : %d\n", player_in_range_boss(game->maps->player, boss));
-	// if (boss->attack != NULL)
-	// 	update_boss_attack(game, boss);
-	// else if (player_in_range_boss(game->maps->player, boss))
-	// {
-	// 	boss->attack = attack_init(BOSS, boss->x, boss->y, boss->orient);
-	// 	display_attack(game, boss->attack);
-	// 	printf("\n Boss - x=%d y=%d \n \t - attack - x=%d y=%d \n", boss->x, boss->y, boss->attack->x, boss->attack->y);
-	// 	check_boss_attack(game, boss);
-	// }
-	
 	boss_turn(game, boss->next);
 }
