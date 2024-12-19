@@ -6,7 +6,7 @@
 /*   By: anoteris <noterisarthur42@gmail.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/18 15:45:06 by anoteris          #+#    #+#             */
-/*   Updated: 2024/12/19 06:08:43 by anoteris         ###   ########.fr       */
+/*   Updated: 2024/12/19 07:06:49 by anoteris         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,9 +57,11 @@ static void boss_toward_player(t_game *game, t_boss *boss)
 		boss->orient = WEST ;
 	else if (game->maps->player->x > boss->x)
 		boss->orient = EAST ;
-	if (game->maps->player->y < boss->y)
+	if (game->maps->player->y < boss->y
+		&& !is_wall(game->maps->map[boss->y - 1][boss->x]))
 		move_boss(game, boss, NORTH);
-	else if (game->maps->player->y > boss->y)
+	else if (game->maps->player->y > boss->y
+		&& !is_wall(game->maps->map[boss->y + 1][boss->x]))
 		move_boss(game, boss, SOUTH);
 	else if (game->maps->player->x < boss->x)
 		move_boss(game, boss, WEST);
