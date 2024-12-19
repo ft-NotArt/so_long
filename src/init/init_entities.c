@@ -6,7 +6,7 @@
 /*   By: anoteris <noterisarthur42@gmail.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/18 15:00:18 by anoteris          #+#    #+#             */
-/*   Updated: 2024/12/18 15:15:32 by anoteris         ###   ########.fr       */
+/*   Updated: 2024/12/19 03:53:20 by anoteris         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ t_boss	*boss_init(int x, int y)
 	boss->image = NULL ;
 	boss->x = x ;
 	boss->y = y ;
-	boss->orient = EAST ;
+	boss->orient = WEST ;
 	boss->attack = NULL ;
 	boss->next = NULL ;
 	return (boss);

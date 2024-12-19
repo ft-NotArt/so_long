@@ -6,7 +6,7 @@
 /*   By: anoteris <noterisarthur42@gmail.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/16 03:24:38 by anoteris          #+#    #+#             */
-/*   Updated: 2024/12/18 17:30:05 by anoteris         ###   ########.fr       */
+/*   Updated: 2024/12/19 03:52:42 by anoteris         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,11 +14,11 @@
 //TODO: kamehameha not displayed on right place
 static int	get_attack_img_x(t_attack *attack)
 {
-	if (attack->type == DOO)
+	if (attack->type == BOSS && attack->orient == WEST)
+		return ((attack->x - 8) * BITS);
+	else if (attack->type == DOO)
 	{
-		if (attack->orient == EAST)
-			return (attack->x * BITS);
-		else if (attack->orient == SOUTH)
+		if (attack->orient == SOUTH)
 			return ((attack->x * BITS) - BITS / 2);
 		else if (attack->orient == WEST)
 			return ((attack->x - 1) * BITS);
@@ -30,12 +30,12 @@ static int	get_attack_img_x(t_attack *attack)
 
 static int	get_attack_img_y(t_attack *attack)
 {
-	if (attack->type == DOO)
+	if (attack->type == BOSS)
+		return (((attack->y - 1) * BITS) - BITS / 2);
+	else if (attack->type == DOO)
 	{
 		if (attack->orient == EAST)
 			return ((attack->y * BITS) - BITS / 2);
-		else if (attack->orient == SOUTH)
-			return (attack->y * BITS);
 		else if (attack->orient == WEST)
 			return ((attack->y * BITS) - BITS / 2);
 		else if (attack->orient == NORTH)

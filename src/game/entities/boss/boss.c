@@ -6,7 +6,7 @@
 /*   By: anoteris <noterisarthur42@gmail.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/18 15:45:06 by anoteris          #+#    #+#             */
-/*   Updated: 2024/12/18 17:29:02 by anoteris         ###   ########.fr       */
+/*   Updated: 2024/12/19 03:57:25 by anoteris         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,13 +64,14 @@ void	boss_turn(t_game *game, t_boss *boss)
 {
 	if (boss == NULL)
 		return ;
-	printf("in range : %d\n", player_in_range_boss(game->maps->player, boss));
+	// printf("in range : %d\n", player_in_range_boss(game->maps->player, boss));
 	if (boss->attack != NULL)
 		update_boss_attack(game, boss);
 	else if (player_in_range_boss(game->maps->player, boss))
 	{
 		boss->attack = attack_init(BOSS, boss->x, boss->y, boss->orient);
 		display_attack(game, boss->attack);
+		// printf("\n Boss - x=%d y=%d \n \t - attack - x=%d y=%d \n", boss->x, boss->y, boss->attack->x, boss->attack->y);
 		check_boss_attack(game, boss);
 	}
 	else if ((rand_uchar() % 6) == 0)
