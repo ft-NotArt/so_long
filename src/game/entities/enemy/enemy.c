@@ -6,7 +6,7 @@
 /*   By: anoteris <noterisarthur42@gmail.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/10 15:00:20 by anoteris          #+#    #+#             */
-/*   Updated: 2024/12/18 17:24:25 by anoteris         ###   ########.fr       */
+/*   Updated: 2024/12/19 06:37:25 by anoteris         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,13 +50,13 @@ static void	move_enemy(t_game *game, t_enemy *enemy, t_orient input_dir)
 	after_enemy_move(game, enemy, input_dir);
 }
 
-static void	update_enemy_attack(t_game *game, t_attack *attack)
+static void	update_enemy_attack(t_game *game, t_enemy *enemy)
 {
-	update_attack_sprite(game, attack);
-	if (attack->frame == 4)
-		(free(attack), attack = NULL);
+	update_attack_sprite(game, enemy->attack);
+	if (enemy->attack->frame == 4)
+		(free(enemy->attack), enemy->attack = NULL);
 	else
-		check_enemy_attack(game, attack);
+		check_enemy_attack(game, enemy->attack);
 }
 
 void	enemy_turn(t_game *game, t_enemy *enemy)
@@ -64,7 +64,7 @@ void	enemy_turn(t_game *game, t_enemy *enemy)
 	if (enemy == NULL)
 		return ;
 	if (enemy->attack != NULL)
-		update_enemy_attack(game, enemy->attack);
+		update_enemy_attack(game, enemy);
 	else if (player_in_range_enemy(game->maps->player, enemy))
 	{
 		enemy->attack = attack_init(enemy->type,
